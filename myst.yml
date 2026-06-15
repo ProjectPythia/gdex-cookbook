@@ -26,7 +26,7 @@ project:
             - file: notebooks/services/tds_intro.ipynb
             - file: notebooks/services/tds_xarray.ipynb
             - file: notebooks/services/tds_siphon.ipynb
-        - title: Zarr
+        - title: Zarr/Kerchunk
           children:
             - file: notebooks/services/zarr_intro.ipynb
             - file: notebooks/services/zarr_workflow.ipynb
@@ -35,16 +35,12 @@ project:
             - file: notebooks/services/api_intro.ipynb
             - file: notebooks/services/api_subset.ipynb
             - file: notebooks/services/api_metadata.ipynb
-        - title: Download
+        - title: Direct Download
           children:
             - file: notebooks/services/download_intro.ipynb
             - file: notebooks/services/download_workflow.ipynb
-        - title: POSIX
-          children:
-            - file: notebooks/services/posix_intro.ipynb
-        - title: Globus
-          children:
-            - file: notebooks/services/globus_intro.ipynb
+        - file: notebooks/services/posix_intro.ipynb
+        - file: notebooks/services/globus_intro.ipynb
     - title: Workflows
       children:
         - title: Reanalysis
