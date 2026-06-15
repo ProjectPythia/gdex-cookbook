@@ -1,7 +1,35 @@
-name: cookbook-dev
+name: gdex-cookbook
 channels:
   - conda-forge
 dependencies:
+  # Python version
+  - python=3.12
+  # pythia infrastructure
   - jupyterlab
   - mystmd
   - jupyterlab-myst
+  # Core Data & Array Computing
+  - xarray
+  - dask
+  - cf-units
+  # File Formats & I/O
+  - netcdf4
+  - zarr>=3.1.6     # pin for stable version3
+  - fastparquet
+  - kerchunk
+  # Remote & Cloud File Access
+  - requests
+  - fsspec
+  - aiohttp
+  # Remote Data Access / Catalogs
+  - siphon
+  - pydap
+  # Visualization
+  - matplotlib
+  - cartopy
+  - folium
+  # pip
+  - pip
+  - pip:
+    # Additional Python packages not available via conda
+    - pelicanfs==1.3.1 # pin for stability
