@@ -19,8 +19,6 @@ authors:
     orcid: https://orcid.org/0000-0002-4838-0140
     website: https://github.com/chiaweh2
     affiliation: NSF NCAR
-
- 
   
   - name: "GDEX Cookbook contributors" # use the 'name' field to acknowledge organizations
     website: "https://github.com/ProjectPythia/gdex-cookbook/graphs/contributors"
