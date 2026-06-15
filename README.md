@@ -16,7 +16,9 @@ This Project Pythia Cookbook covers ... (replace `...` with the main subject of 
 
 ## Authors
 
-First Author, Second Author, etc. _Acknowledge primary content authors here! You can include links to their GitHub profiles or other unique pages._
+[Harsha R. Hampapura](https://github.com/hrhampapura)
+[Riley Conroy](https://github.com/rpconroy)
+[Chia-Wei Hsu](https://github.com/chiaweh2)
 
 ### Contributors
 
