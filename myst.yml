@@ -13,9 +13,34 @@ project:
     - title: Preamble
       children:
         - file: notebooks/how-to-cite.md
-    - title: Introduction
-      children:
         - file: notebooks/notebook-template.ipynb
+    - title: GDEX Introduction
+      children:
+        - file: notebooks/gdex_intro/gdex_intro.ipynb
+        - file: notebooks/gdex_intro/help.ipynb
+        - file: notebooks/gdex_intro/submission.ipynb
+    - title: Services
+      children:
+        - file: notebooks/services/zarr_workflow.ipynb
+        - file: notebooks/services/tds_xarray.ipynb
+        - file: notebooks/services/zarr_intro.ipynb
+        - file: notebooks/services/api_subset.ipynb
+        - file: notebooks/services/download_workflow.ipynb
+        - file: notebooks/services/api_metadata.ipynb
+        - file: notebooks/services/posix_intro.ipynb
+        - file: notebooks/services/download_intro.ipynb
+        - file: notebooks/services/api_intro.ipynb
+        - file: notebooks/services/globus_intro.ipynb
+        - file: notebooks/services/tds_intro.ipynb
+        - file: notebooks/services/tds_siphon.ipynb
+    - title: Workflows
+      children:
+        - file: notebooks/workflows/era5.ipynb
+        - file: notebooks/workflows/hi-res.ipynb
+        - file: notebooks/workflows/GCM.ipynb
+        - file: notebooks/workflows/jra3q.ipynb
+        - file: notebooks/workflows/data_fusion.ipynb
+        - file: notebooks/workflows/observations.ipynb
   jupyter:
       binder:
         url: https://binder.projectpythia.org
