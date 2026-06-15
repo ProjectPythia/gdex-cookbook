@@ -62,6 +62,9 @@
     <loc>http://localhost:3000/notebooks/workflows/jra3q</loc>
   </url>
   <url>
+    <loc>http://localhost:3000/notebooks/workflows/cesm2-lens</loc>
+  </url>
+  <url>
     <loc>http://localhost:3000/notebooks/workflows/hi-res</loc>
   </url>
   <url>
