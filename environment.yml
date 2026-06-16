@@ -26,6 +26,7 @@ dependencies:
   - pydap
   # Visualization
   - matplotlib
+  - nc-time-axis
   - cartopy
   - folium
   - sqlite>=3.39.0
