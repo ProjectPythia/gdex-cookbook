@@ -54,7 +54,7 @@ project:
             - file: notebooks/workflows/jra3q.ipynb
         - title: Model Simulations
           children:
-            - file: notebooks/workflows/GCM.ipynb
+            - file: notebooks/workflows/cesm2_lens.ipynb
             - file: notebooks/workflows/hi-res.ipynb
         - file: notebooks/workflows/data_fusion.ipynb
         - file: notebooks/workflows/observations.ipynb

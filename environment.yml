@@ -26,8 +26,12 @@ dependencies:
   - pydap
   # Visualization
   - matplotlib
+  - nc-time-axis
   - cartopy
   - folium
+  # Force the newer sqlite to be installed by installing icu explicitly
+  # ref: https://github.com/conda-forge/sqlite-feedstock/issues/164
+  - icu
   # pip
   - pip
   - pip:
