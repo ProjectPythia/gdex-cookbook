@@ -12,6 +12,8 @@ dependencies:
   - xarray
   - dask
   - cf-units
+  - scipy
+  - rioxarray
   # File Formats & I/O
   - netcdf4
   - zarr>=3.1.6     # pin for stable version3
@@ -26,8 +28,12 @@ dependencies:
   - pydap
   # Visualization
   - matplotlib
+  - nc-time-axis
   - cartopy
   - folium
+  # Force the newer sqlite to be installed by installing icu explicitly
+  # ref: https://github.com/conda-forge/sqlite-feedstock/issues/164
+  - icu
   # pip
   - pip
   - pip:
