@@ -1,5 +1,104 @@
 [31m---------------------------------------------------------------------------[39m
-[31mClientResponseError[39m                       Traceback (most recent call last)
+[31mCancelledError[39m                            Traceback (most recent call last)
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/connector.py:1301[39m, in [36mTCPConnector._wrap_create_connection[39m[34m(self, addr_infos, req, timeout, client_error, *args, **kwargs)[39m
+[32m   1298[39m [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m ceil_timeout(
+[32m   1299[39m     timeout.sock_connect, ceil_threshold=timeout.ceil_threshold
+[32m   1300[39m ):
+[32m-> [39m[32m1301[39m     sock = [38;5;28;01mawait[39;00m aiohappyeyeballs.start_connection(
+[32m   1302[39m         addr_infos=addr_infos,
+[32m   1303[39m         local_addr_infos=[38;5;28mself[39m._local_addr_infos,
+[32m   1304[39m         happy_eyeballs_delay=[38;5;28mself[39m._happy_eyeballs_delay,
+[32m   1305[39m         interleave=[38;5;28mself[39m._interleave,
+[32m   1306[39m         loop=[38;5;28mself[39m._loop,
+[32m   1307[39m         socket_factory=[38;5;28mself[39m._socket_factory,
+[32m   1308[39m     )
+[32m   1309[39m     [38;5;66;03m# Add ssl_shutdown_timeout for Python 3.11+ when SSL is used[39;00m
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohappyeyeballs/impl.py:75[39m, in [36mstart_connection[39m[34m(addr_infos, local_addr_infos, happy_eyeballs_delay, interleave, loop, socket_factory)[39m
+[32m     74[39m [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m75[39m     sock = [38;5;28;01mawait[39;00m _connect_sock(
+[32m     76[39m         current_loop,
+[32m     77[39m         exceptions,
+[32m     78[39m         addrinfo,
+[32m     79[39m         local_addr_infos,
+[32m     80[39m         [38;5;28;01mNone[39;00m,
+[32m     81[39m         socket_factory,
+[32m     82[39m     )
+[32m     83[39m     [38;5;28;01mbreak[39;00m
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohappyeyeballs/impl.py:210[39m, in [36m_connect_sock[39m[34m(loop, exceptions, addr_info, local_addr_infos, open_sockets, socket_factory)[39m
+[32m    209[39m             [38;5;28;01mraise[39;00m [38;5;167;01mOSError[39;00m([33mf[39m[33m"[39m[33mno matching local address with [39m[38;5;132;01m{[39;00mfamily[38;5;132;01m=}[39;00m[33m found[39m[33m"[39m)
+[32m--> [39m[32m210[39m [38;5;28;01mawait[39;00m loop.sock_connect(sock, address)
+[32m    211[39m [38;5;28;01mreturn[39;00m sock
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/asyncio/selector_events.py:651[39m, in [36mBaseSelectorEventLoop.sock_connect[39m[34m(self, sock, address)[39m
+[32m    650[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m651[39m     [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m fut
+[32m    652[39m [38;5;28;01mfinally[39;00m:
+[32m    653[39m     [38;5;66;03m# Needed to break cycles when an exception occurs.[39;00m
+
+[31mCancelledError[39m: 
+
+The above exception was the direct cause of the following exception:
+
+[31mTimeoutError[39m                              Traceback (most recent call last)
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client.py:810[39m, in [36mClientSession._request.<locals>._connect_and_send_request[39m[34m(req)[39m
+[32m    809[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m810[39m     conn = [38;5;28;01mawait[39;00m [38;5;28mself[39m._connector.connect(
+[32m    811[39m         req, traces=traces, timeout=real_timeout
+[32m    812[39m     )
+[32m    813[39m [38;5;28;01mexcept[39;00m asyncio.TimeoutError [38;5;28;01mas[39;00m exc:
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/connector.py:657[39m, in [36mBaseConnector.connect[39m[34m(self, req, traces, timeout)[39m
+[32m    656[39m         [38;5;28;01mawait[39;00m trace.send_connection_create_start()
+[32m--> [39m[32m657[39m proto = [38;5;28;01mawait[39;00m [38;5;28mself[39m._create_connection(req, traces, timeout)
+[32m    658[39m [38;5;28;01mif[39;00m traces:
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/connector.py:1242[39m, in [36mTCPConnector._create_connection[39m[34m(self, req, traces, timeout)[39m
+[32m   1241[39m [38;5;28;01melse[39;00m:
+[32m-> [39m[32m1242[39m     _, proto = [38;5;28;01mawait[39;00m [38;5;28mself[39m._create_direct_connection(req, traces, timeout)
+[32m   1244[39m [38;5;28;01mreturn[39;00m proto
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/connector.py:1620[39m, in [36mTCPConnector._create_direct_connection[39m[34m(self, req, traces, timeout, client_error)[39m
+[32m   1619[39m [38;5;28;01massert[39;00m last_exc [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m
+[32m-> [39m[32m1620[39m [38;5;28;01mraise[39;00m last_exc
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/connector.py:1589[39m, in [36mTCPConnector._create_direct_connection[39m[34m(self, req, traces, timeout, client_error)[39m
+[32m   1588[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m1589[39m     transp, proto = [38;5;28;01mawait[39;00m [38;5;28mself[39m._wrap_create_connection(
+[32m   1590[39m         [38;5;28mself[39m._factory,
+[32m   1591[39m         timeout=timeout,
+[32m   1592[39m         ssl=sslcontext,
+[32m   1593[39m         addr_infos=addr_infos,
+[32m   1594[39m         server_hostname=server_hostname,
+[32m   1595[39m         req=req,
+[32m   1596[39m         client_error=client_error,
+[32m   1597[39m     )
+[32m   1598[39m [38;5;28;01mexcept[39;00m (ClientConnectorError, asyncio.TimeoutError) [38;5;28;01mas[39;00m exc:
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/connector.py:1298[39m, in [36mTCPConnector._wrap_create_connection[39m[34m(self, addr_infos, req, timeout, client_error, *args, **kwargs)[39m
+[32m   1297[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m1298[39m     [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m ceil_timeout(
+[32m   1299[39m         timeout.sock_connect, ceil_threshold=timeout.ceil_threshold
+[32m   1300[39m     ):
+[32m   1301[39m         sock = [38;5;28;01mawait[39;00m aiohappyeyeballs.start_connection(
+[32m   1302[39m             addr_infos=addr_infos,
+[32m   1303[39m             local_addr_infos=[38;5;28mself[39m._local_addr_infos,
+[32m   (...)[39m[32m   1307[39m             socket_factory=[38;5;28mself[39m._socket_factory,
+[32m   1308[39m         )
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/asyncio/timeouts.py:115[39m, in [36mTimeout.__aexit__[39m[34m(self, exc_type, exc_val, exc_tb)[39m
+[32m    112[39m     [38;5;28;01mif[39;00m [38;5;28mself[39m._task.uncancel() <= [38;5;28mself[39m._cancelling [38;5;129;01mand[39;00m exc_type [38;5;129;01mis[39;00m exceptions.CancelledError:
+[32m    113[39m         [38;5;66;03m# Since there are no new cancel requests, we're[39;00m
+[32m    114[39m         [38;5;66;03m# handling this.[39;00m
+[32m--> [39m[32m115[39m         [38;5;28;01mraise[39;00m [38;5;167;01mTimeoutError[39;00m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mexc_val[39;00m
+[32m    116[39m [38;5;28;01melif[39;00m [38;5;28mself[39m._state [38;5;129;01mis[39;00m _State.ENTERED:
+
+[31mTimeoutError[39m: 
+
+The above exception was the direct cause of the following exception:
+
+[31mConnectionTimeoutError[39m                    Traceback (most recent call last)
 [36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/reference.py:839[39m, in [36mReferenceFileSystem._cat_file[39m[34m(self, path, start, end, **kwargs)[39m
 [32m    838[39m [38;5;28;01mtry[39;00m:
 [32m--> [39m[32m839[39m     [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m [38;5;28mself[39m.fss[protocol]._cat_file(
@@ -7,26 +106,29 @@
 [32m    841[39m     )
 [32m    842[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py:250[39m, in [36mHTTPFileSystem._cat_file[39m[34m(self, url, start, end, **kwargs)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py:248[39m, in [36mHTTPFileSystem._cat_file[39m[34m(self, url, start, end, **kwargs)[39m
+[32m    247[39m session = [38;5;28;01mawait[39;00m [38;5;28mself[39m.set_session()
+[32m--> [39m[32m248[39m [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m session.get([38;5;28mself[39m.encode_url(url), **kw) [38;5;28;01mas[39;00m r:
 [32m    249[39m     out = [38;5;28;01mawait[39;00m r.read()
-[32m--> [39m[32m250[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43m_raise_not_found_for_status[39;49m[30;43m([39;49m[30;43mr[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m)[39;49m
-[32m    251[39m [38;5;28;01mreturn[39;00m out
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py:233[39m, in [36mHTTPFileSystem._raise_not_found_for_status[39m[34m(self, response, url)[39m
-[32m    232[39m     [38;5;28;01mraise[39;00m [38;5;167;01mFileNotFoundError[39;00m(url)
-[32m--> [39m[32m233[39m [30;43mresponse[39;49m[30;43m.[39;49m[30;43mraise_for_status[39;49m[30;43m([39;49m[30;43m)[39;49m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client.py:1683[39m, in [36m_BaseRequestContextManager.__aenter__[39m[34m(self)[39m
+[32m   1682[39m [38;5;28;01masync[39;00m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m__aenter__[39m([38;5;28mself[39m) -> _RetType_co:
+[32m-> [39m[32m1683[39m     [38;5;28mself[39m._resp: _RetType_co = [38;5;28;01mawait[39;00m [38;5;28mself[39m._coro
+[32m   1684[39m     [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m [38;5;28mself[39m._resp.[34m__aenter__[39m()
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client_reqrep.py:655[39m, in [36mClientResponse.raise_for_status[39m[34m(self)[39m
-[32m    653[39m     [38;5;28mself[39m.release()
-[32m--> [39m[32m655[39m [38;5;28;01mraise[39;00m ClientResponseError(
-[32m    656[39m     [38;5;28mself[39m.request_info,
-[32m    657[39m     [38;5;28mself[39m.history,
-[32m    658[39m     status=[38;5;28mself[39m.status,
-[32m    659[39m     message=[38;5;28mself[39m.reason,
-[32m    660[39m     headers=[38;5;28mself[39m.headers,
-[32m    661[39m )
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client.py:856[39m, in [36mClientSession._request[39m[34m(self, method, str_or_url, params, data, json, cookies, headers, skip_auto_headers, auth, allow_redirects, max_redirects, compress, chunked, expect100, raise_for_status, read_until_eof, proxy, proxy_auth, timeout, verify_ssl, fingerprint, ssl_context, ssl, server_hostname, proxy_headers, trace_request_ctx, read_bufsize, auto_decompress, max_line_size, max_field_size, max_headers, middlewares)[39m
+[32m    855[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m856[39m     resp = [38;5;28;01mawait[39;00m handler(req)
+[32m    857[39m [38;5;66;03m# Client connector errors should not be retried[39;00m
 
-[31mClientResponseError[39m: 500, message='Internal Server Error', url='https://dtn-pas.kans.nrp.internet2.edu:8443/ncar/gdex/d633000/e5.oper.fc.sfc.meanflux/202307/e5.oper.fc.sfc.meanflux.235_055_mtpr.ll025sc.2023070106_2023071606.nc'
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client.py:814[39m, in [36mClientSession._request.<locals>._connect_and_send_request[39m[34m(req)[39m
+[32m    813[39m [38;5;28;01mexcept[39;00m asyncio.TimeoutError [38;5;28;01mas[39;00m exc:
+[32m--> [39m[32m814[39m     [38;5;28;01mraise[39;00m ConnectionTimeoutError(
+[32m    815[39m         [33mf[39m[33m"[39m[33mConnection timeout to host [39m[38;5;132;01m{[39;00mreq.url[38;5;132;01m}[39;00m[33m"[39m
+[32m    816[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mexc[39;00m
+[32m    818[39m [38;5;28;01massert[39;00m conn.protocol [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m
+
+[31mConnectionTimeoutError[39m: Connection timeout to host https://osdfcache.ligo.caltech.edu:8443/ncar/gdex/d633000/e5.oper.fc.sfc.meanflux/202307/e5.oper.fc.sfc.meanflux.235_055_mtpr.ll025sc.2023070106_2023071606.nc
 
 The above exception was the direct cause of the following exception:
 
