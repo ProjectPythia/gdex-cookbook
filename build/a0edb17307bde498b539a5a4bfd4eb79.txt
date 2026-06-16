@@ -26,164 +26,96 @@
 [32m    660[39m     headers=[38;5;28mself[39m.headers,
 [32m    661[39m )
 
-[31mClientResponseError[39m: 500, message='Internal Server Error', url='https://osg-hawk-cache.cc.lehigh.edu:8443/ncar/gdex/d633000/e5.oper.fc.sfc.meanflux/202207/e5.oper.fc.sfc.meanflux.235_055_mtpr.ll025sc.2022070106_2022071606.nc'
+[31mClientResponseError[39m: 502, message='Bad Gateway', url='https://osdf-director.osg-htc.org/ncar/gdex/d633000/e5.oper.fc.sfc.meanflux/196705/e5.oper.fc.sfc.meanflux.235_055_mtpr.ll025sc.1967051606_1967060106.nc'
 
 The above exception was the direct cause of the following exception:
 
 [31mReferenceNotReachable[39m                     Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 1[39m
-[32m----> [39m[32m1[39m get_ipython().run_cell_magic([33m'time'[39m, [33m''[39m, [33m"ds = xr.open_dataset(reference_url, engine ='kerchunk')\nds\n"[39m)
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m ds.MTPR.isel(forecast_initial_time=[32m20000[39m, forecast_hour=[32m5[39m).plot()
 
-[36mFile [39m[32m<timed exec>:1[39m
-[32m----> [39m[32m1[39m [33m'Could not get source, probably due dynamically evaluated source code.'[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/plot/accessor.py:48[39m, in [36mDataArrayPlotAccessor.__call__[39m[34m(self, **kwargs)[39m
+[32m     46[39m [38;5;129m@functools[39m.wraps(dataarray_plot.plot, assigned=([33m"[39m[33m__doc__[39m[33m"[39m, [33m"[39m[33m__annotations__[39m[33m"[39m))
+[32m     47[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m__call__[39m([38;5;28mself[39m, **kwargs) -> Any:
+[32m---> [39m[32m48[39m     [38;5;28;01mreturn[39;00m [30;43mdataarray_plot[39;49m[30;43m.[39;49m[30;43mplot[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_da[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/api.py:607[39m, in [36mopen_dataset[39m[34m(filename_or_obj, engine, chunks, cache, decode_cf, mask_and_scale, decode_times, decode_timedelta, use_cftime, concat_characters, decode_coords, drop_variables, create_default_indexes, inline_array, chunked_array_type, from_array_kwargs, backend_kwargs, **kwargs)[39m
-[32m    595[39m decoders = _resolve_decoders_kwargs(
-[32m    596[39m     decode_cf,
-[32m    597[39m     open_backend_dataset_parameters=backend.open_dataset_parameters,
-[32m   (...)[39m[32m    603[39m     decode_coords=decode_coords,
-[32m    604[39m )
-[32m    606[39m overwrite_encoded_chunks = kwargs.pop([33m"[39m[33moverwrite_encoded_chunks[39m[33m"[39m, [38;5;28;01mNone[39;00m)
-[32m--> [39m[32m607[39m backend_ds = [30;43mbackend[39;49m[30;43m.[39;49m[30;43mopen_dataset[39;49m[30;43m([39;49m
-[32m    608[39m [30;43m    [39;49m[30;43mfilename_or_obj[39;49m[30;43m,[39;49m
-[32m    609[39m [30;43m    [39;49m[30;43mdrop_variables[39;49m[30;43m=[39;49m[30;43mdrop_variables[39;49m[30;43m,[39;49m
-[32m    610[39m [30;43m    [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mdecoders[39;49m[30;43m,[39;49m
-[32m    611[39m [30;43m    [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m,[39;49m
-[32m    612[39m [30;43m[39;49m[30;43m)[39;49m
-[32m    613[39m ds = _dataset_from_backend_dataset(
-[32m    614[39m     backend_ds,
-[32m    615[39m     filename_or_obj,
-[32m   (...)[39m[32m    626[39m     **kwargs,
-[32m    627[39m )
-[32m    628[39m [38;5;28;01mreturn[39;00m ds
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/plot/dataarray_plot.py:318[39m, in [36mplot[39m[34m(darray, row, col, col_wrap, ax, hue, subplot_kws, **kwargs)[39m
+[32m    314[39m     plotfunc = hist
+[32m    316[39m kwargs[[33m"[39m[33max[39m[33m"[39m] = ax
+[32m--> [39m[32m318[39m [38;5;28;01mreturn[39;00m [30;43mplotfunc[39;49m[30;43m([39;49m[30;43mdarray[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/kerchunk/xarray_backend.py:13[39m, in [36mKerchunkBackend.open_dataset[39m[34m(self, filename_or_obj, storage_options, open_dataset_options, **kw)[39m
-[32m      9[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mopen_dataset[39m(
-[32m     10[39m     [38;5;28mself[39m, filename_or_obj, *, storage_options=[38;5;28;01mNone[39;00m, open_dataset_options=[38;5;28;01mNone[39;00m, **kw
-[32m     11[39m ):
-[32m     12[39m     open_dataset_options = (open_dataset_options [38;5;129;01mor[39;00m {}) | kw
-[32m---> [39m[32m13[39m     ref_ds = [30;43mopen_reference_dataset[39;49m[30;43m([39;49m
-[32m     14[39m [30;43m        [39;49m[30;43mfilename_or_obj[39;49m[30;43m,[39;49m
-[32m     15[39m [30;43m        [39;49m[30;43mstorage_options[39;49m[30;43m=[39;49m[30;43mstorage_options[39;49m[30;43m,[39;49m
-[32m     16[39m [30;43m        [39;49m[30;43mopen_dataset_options[39;49m[30;43m=[39;49m[30;43mopen_dataset_options[39;49m[30;43m,[39;49m
-[32m     17[39m [30;43m    [39;49m[30;43m)[39;49m
-[32m     18[39m     [38;5;28;01mreturn[39;00m ref_ds
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/plot/dataarray_plot.py:1580[39m, in [36m_plot2d.<locals>.newplotfunc[39m[34m(***failed resolving arguments***)[39m
+[32m   1577[39m yvalnp = yval.to_numpy()
+[32m   1579[39m [38;5;66;03m# Pass the data as a masked ndarray too[39;00m
+[32m-> [39m[32m1580[39m zval = [30;43mdarray[39;49m[30;43m.[39;49m[30;43mto_masked_array[39;49m[30;43m([39;49m[30;43mcopy[39;49m[30;43m=[39;49m[30;43;01mFalse[39;49;00m[30;43m)[39;49m
+[32m   1582[39m [38;5;66;03m# Replace pd.Intervals if contained in xval or yval.[39;00m
+[32m   1583[39m xplt, xlab_extra = _resolve_intervals_2dplot(xvalnp, plotfunc.[34m__name__[39m)
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/kerchunk/xarray_backend.py:47[39m, in [36mopen_reference_dataset[39m[34m(filename_or_obj, storage_options, open_dataset_options)[39m
-[32m     43[39m     open_dataset_options = {}
-[32m     45[39m store = refs_as_store(filename_or_obj, **storage_options)
-[32m---> [39m[32m47[39m [38;5;28;01mreturn[39;00m [30;43mxr[39;49m[30;43m.[39;49m[30;43mopen_zarr[39;49m[30;43m([39;49m
-[32m     48[39m [30;43m    [39;49m[30;43mstore[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mzarr_format[39;49m[30;43m=[39;49m[30;43m2[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mconsolidated[39;49m[30;43m=[39;49m[30;43;01mFalse[39;49;00m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mopen_dataset_options[39;49m
-[32m     49[39m [30;43m[39;49m[30;43m)[39;49m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/dataarray.py:4058[39m, in [36mDataArray.to_masked_array[39m[34m(self, copy)[39m
+[32m   4044[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mto_masked_array[39m([38;5;28mself[39m, copy: [38;5;28mbool[39m = [38;5;28;01mTrue[39;00m) -> np.ma.MaskedArray:
+[32m   4045[39m [38;5;250m    [39m[33;03m"""Convert this array into a numpy.ma.MaskedArray[39;00m
+[32m   4046[39m 
+[32m   4047[39m [33;03m    Parameters[39;00m
+[32m   (...)[39m[32m   4056[39m [33;03m        Masked where invalid values (nan or inf) occur.[39;00m
+[32m   4057[39m [33;03m    """[39;00m
+[32m-> [39m[32m4058[39m     values = [30;43mself[39;49m[30;43m.[39;49m[30;43mto_numpy[39;49m[30;43m([39;49m[30;43m)[39;49m  [38;5;66;03m# only compute lazy arrays once[39;00m
+[32m   4059[39m     isnull = pd.isnull(values)
+[32m   4060[39m     [38;5;28;01mreturn[39;00m np.ma.MaskedArray(data=values, mask=isnull, copy=copy)
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/zarr.py:1658[39m, in [36mopen_zarr[39m[34m(store, group, synchronizer, chunks, decode_cf, mask_and_scale, decode_times, concat_characters, decode_coords, drop_variables, consolidated, overwrite_encoded_chunks, chunk_store, storage_options, decode_timedelta, use_cftime, zarr_version, zarr_format, use_zarr_fill_value_as_mask, chunked_array_type, from_array_kwargs, create_default_indexes, **kwargs)[39m
-[32m   1644[39m     [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m(
-[32m   1645[39m         [33m"[39m[33mopen_zarr() got unexpected keyword arguments [39m[33m"[39m + [33m"[39m[33m,[39m[33m"[39m.join(kwargs.keys())
-[32m   1646[39m     )
-[32m   1648[39m backend_kwargs = {
-[32m   1649[39m     [33m"[39m[33msynchronizer[39m[33m"[39m: synchronizer,
-[32m   1650[39m     [33m"[39m[33mconsolidated[39m[33m"[39m: consolidated,
-[32m   (...)[39m[32m   1655[39m     [33m"[39m[33mzarr_format[39m[33m"[39m: zarr_format,
-[32m   1656[39m }
-[32m-> [39m[32m1658[39m ds = [30;43mopen_dataset[39;49m[30;43m([39;49m
-[32m   1659[39m [30;43m    [39;49m[30;43mfilename_or_obj[39;49m[30;43m=[39;49m[30;43mstore[39;49m[30;43m,[39;49m
-[32m   1660[39m [30;43m    [39;49m[30;43mgroup[39;49m[30;43m=[39;49m[30;43mgroup[39;49m[30;43m,[39;49m
-[32m   1661[39m [30;43m    [39;49m[30;43mdecode_cf[39;49m[30;43m=[39;49m[30;43mdecode_cf[39;49m[30;43m,[39;49m
-[32m   1662[39m [30;43m    [39;49m[30;43mmask_and_scale[39;49m[30;43m=[39;49m[30;43mmask_and_scale[39;49m[30;43m,[39;49m
-[32m   1663[39m [30;43m    [39;49m[30;43mdecode_times[39;49m[30;43m=[39;49m[30;43mdecode_times[39;49m[30;43m,[39;49m
-[32m   1664[39m [30;43m    [39;49m[30;43mconcat_characters[39;49m[30;43m=[39;49m[30;43mconcat_characters[39;49m[30;43m,[39;49m
-[32m   1665[39m [30;43m    [39;49m[30;43mdecode_coords[39;49m[30;43m=[39;49m[30;43mdecode_coords[39;49m[30;43m,[39;49m
-[32m   1666[39m [30;43m    [39;49m[30;43mengine[39;49m[30;43m=[39;49m[30;43m"[39;49m[30;43mzarr[39;49m[30;43m"[39;49m[30;43m,[39;49m
-[32m   1667[39m [30;43m    [39;49m[30;43mchunks[39;49m[30;43m=[39;49m[30;43mchunks[39;49m[30;43m,[39;49m
-[32m   1668[39m [30;43m    [39;49m[30;43mdrop_variables[39;49m[30;43m=[39;49m[30;43mdrop_variables[39;49m[30;43m,[39;49m
-[32m   1669[39m [30;43m    [39;49m[30;43mcreate_default_indexes[39;49m[30;43m=[39;49m[30;43mcreate_default_indexes[39;49m[30;43m,[39;49m
-[32m   1670[39m [30;43m    [39;49m[30;43mchunked_array_type[39;49m[30;43m=[39;49m[30;43mchunked_array_type[39;49m[30;43m,[39;49m
-[32m   1671[39m [30;43m    [39;49m[30;43mfrom_array_kwargs[39;49m[30;43m=[39;49m[30;43mfrom_array_kwargs[39;49m[30;43m,[39;49m
-[32m   1672[39m [30;43m    [39;49m[30;43mbackend_kwargs[39;49m[30;43m=[39;49m[30;43mbackend_kwargs[39;49m[30;43m,[39;49m
-[32m   1673[39m [30;43m    [39;49m[30;43mdecode_timedelta[39;49m[30;43m=[39;49m[30;43mdecode_timedelta[39;49m[30;43m,[39;49m
-[32m   1674[39m [30;43m    [39;49m[30;43muse_cftime[39;49m[30;43m=[39;49m[30;43muse_cftime[39;49m[30;43m,[39;49m
-[32m   1675[39m [30;43m    [39;49m[30;43mzarr_version[39;49m[30;43m=[39;49m[30;43mzarr_version[39;49m[30;43m,[39;49m
-[32m   1676[39m [30;43m    [39;49m[30;43muse_zarr_fill_value_as_mask[39;49m[30;43m=[39;49m[30;43muse_zarr_fill_value_as_mask[39;49m[30;43m,[39;49m
-[32m   1677[39m [30;43m[39;49m[30;43m)[39;49m
-[32m   1678[39m [38;5;28;01mreturn[39;00m ds
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/dataarray.py:820[39m, in [36mDataArray.to_numpy[39m[34m(self)[39m
+[32m    809[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mto_numpy[39m([38;5;28mself[39m) -> np.ndarray:
+[32m    810[39m [38;5;250m    [39m[33;03m"""[39;00m
+[32m    811[39m [33;03m    Coerces wrapped data to numpy and returns a numpy.ndarray.[39;00m
+[32m    812[39m 
+[32m   (...)[39m[32m    818[39m [33;03m    DataArray.data[39;00m
+[32m    819[39m [33;03m    """[39;00m
+[32m--> [39m[32m820[39m     [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43mvariable[39;49m[30;43m.[39;49m[30;43mto_numpy[39;49m[30;43m([39;49m[30;43m)[39;49m
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/api.py:613[39m, in [36mopen_dataset[39m[34m(filename_or_obj, engine, chunks, cache, decode_cf, mask_and_scale, decode_times, decode_timedelta, use_cftime, concat_characters, decode_coords, drop_variables, create_default_indexes, inline_array, chunked_array_type, from_array_kwargs, backend_kwargs, **kwargs)[39m
-[32m    606[39m overwrite_encoded_chunks = kwargs.pop([33m"[39m[33moverwrite_encoded_chunks[39m[33m"[39m, [38;5;28;01mNone[39;00m)
-[32m    607[39m backend_ds = backend.open_dataset(
-[32m    608[39m     filename_or_obj,
-[32m    609[39m     drop_variables=drop_variables,
-[32m    610[39m     **decoders,
-[32m    611[39m     **kwargs,
-[32m    612[39m )
-[32m--> [39m[32m613[39m ds = [30;43m_dataset_from_backend_dataset[39;49m[30;43m([39;49m
-[32m    614[39m [30;43m    [39;49m[30;43mbackend_ds[39;49m[30;43m,[39;49m
-[32m    615[39m [30;43m    [39;49m[30;43mfilename_or_obj[39;49m[30;43m,[39;49m
-[32m    616[39m [30;43m    [39;49m[30;43mengine[39;49m[30;43m,[39;49m
-[32m    617[39m [30;43m    [39;49m[30;43mchunks[39;49m[30;43m,[39;49m
-[32m    618[39m [30;43m    [39;49m[30;43mcache[39;49m[30;43m,[39;49m
-[32m    619[39m [30;43m    [39;49m[30;43moverwrite_encoded_chunks[39;49m[30;43m,[39;49m
-[32m    620[39m [30;43m    [39;49m[30;43minline_array[39;49m[30;43m,[39;49m
-[32m    621[39m [30;43m    [39;49m[30;43mchunked_array_type[39;49m[30;43m,[39;49m
-[32m    622[39m [30;43m    [39;49m[30;43mfrom_array_kwargs[39;49m[30;43m,[39;49m
-[32m    623[39m [30;43m    [39;49m[30;43mdrop_variables[39;49m[30;43m=[39;49m[30;43mdrop_variables[39;49m[30;43m,[39;49m
-[32m    624[39m [30;43m    [39;49m[30;43mcreate_default_indexes[39;49m[30;43m=[39;49m[30;43mcreate_default_indexes[39;49m[30;43m,[39;49m
-[32m    625[39m [30;43m    [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mdecoders[39;49m[30;43m,[39;49m
-[32m    626[39m [30;43m    [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m,[39;49m
-[32m    627[39m [30;43m[39;49m[30;43m)[39;49m
-[32m    628[39m [38;5;28;01mreturn[39;00m ds
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/namedarray/core.py:858[39m, in [36mNamedArray.to_numpy[39m[34m(self)[39m
+[32m    856[39m [38;5;250m[39m[33;03m"""Coerces wrapped data to numpy and returns a numpy.ndarray"""[39;00m
+[32m    857[39m [38;5;66;03m# TODO an entrypoint so array libraries can choose coercion method?[39;00m
+[32m--> [39m[32m858[39m [38;5;28;01mreturn[39;00m [30;43mto_numpy[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_data[39;49m[30;43m)[39;49m
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/api.py:303[39m, in [36m_dataset_from_backend_dataset[39m[34m(backend_ds, filename_or_obj, engine, chunks, cache, overwrite_encoded_chunks, inline_array, chunked_array_type, from_array_kwargs, create_default_indexes, **extra_tokens)[39m
-[32m    300[39m _protect_dataset_variables_inplace(backend_ds, cache)
-[32m    302[39m [38;5;28;01mif[39;00m create_default_indexes:
-[32m--> [39m[32m303[39m     ds = [30;43m_maybe_create_default_indexes[39;49m[30;43m([39;49m[30;43mbackend_ds[39;49m[30;43m)[39;49m
-[32m    304[39m [38;5;28;01melse[39;00m:
-[32m    305[39m     ds = backend_ds
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/namedarray/pycompat.py:117[39m, in [36mto_numpy[39m[34m(data, **kwargs)[39m
+[32m    115[39m [38;5;28;01mif[39;00m is_chunked_array(data):
+[32m    116[39m     chunkmanager = get_chunked_array_type(data)
+[32m--> [39m[32m117[39m     data, *_ = [30;43mchunkmanager[39;49m[30;43m.[39;49m[30;43mcompute[39;49m[30;43m([39;49m[30;43mdata[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+[32m    118[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(data, array_type([33m"[39m[33mcupy[39m[33m"[39m)):
+[32m    119[39m     data = data.get()
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/api.py:279[39m, in [36m_maybe_create_default_indexes[39m[34m(ds)[39m
-[32m    273[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_maybe_create_default_indexes[39m(ds):
-[32m    274[39m     to_index = {
-[32m    275[39m         name: coord.variable
-[32m    276[39m         [38;5;28;01mfor[39;00m name, coord [38;5;129;01min[39;00m ds.coords.items()
-[32m    277[39m         [38;5;28;01mif[39;00m coord.dims == (name,) [38;5;129;01mand[39;00m name [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m ds.xindexes
-[32m    278[39m     }
-[32m--> [39m[32m279[39m     [38;5;28;01mreturn[39;00m ds.assign_coords([30;43mCoordinates[39;49m[30;43m([39;49m[30;43mto_index[39;49m[30;43m)[39;49m)
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/namedarray/daskmanager.py:85[39m, in [36mDaskManager.compute[39m[34m(self, *data, **kwargs)[39m
+[32m     80[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mcompute[39m(
+[32m     81[39m     [38;5;28mself[39m, *data: Any, **kwargs: Any
+[32m     82[39m ) -> [38;5;28mtuple[39m[np.ndarray[Any, _DType_co], ...]:
+[32m     83[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mdask[39;00m[34;01m.[39;00m[34;01marray[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m compute
+[32m---> [39m[32m85[39m     [38;5;28;01mreturn[39;00m [30;43mcompute[39;49m[30;43m([39;49m[30;43m*[39;49m[30;43mdata[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/coordinates.py:324[39m, in [36mCoordinates.__init__[39m[34m(self, coords, indexes)[39m
-[32m    322[39m var = as_variable(data, name=name, auto_convert=[38;5;28;01mFalse[39;00m)
-[32m    323[39m [38;5;28;01mif[39;00m var.dims == (name,) [38;5;129;01mand[39;00m indexes [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
-[32m--> [39m[32m324[39m     index, index_vars = [30;43mcreate_default_index_implicit[39;49m[30;43m([39;49m[30;43mvar[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mlist[39;49m[30;43m([39;49m[30;43mcoords[39;49m[30;43m)[39;49m[30;43m)[39;49m
-[32m    325[39m     default_indexes.update([38;5;28mdict[39m.fromkeys(index_vars, index))
-[32m    326[39m     variables.update(index_vars)
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/dask/base.py:685[39m, in [36mcompute[39m[34m(traverse, optimize_graph, scheduler, get, *args, **kwargs)[39m
+[32m    682[39m     expr = expr.optimize()
+[32m    683[39m     keys = [38;5;28mlist[39m(flatten(expr.__dask_keys__()))
+[32m--> [39m[32m685[39m     results = [30;43mschedule[39;49m[30;43m([39;49m[30;43mexpr[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mkeys[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+[32m    687[39m [38;5;28;01mreturn[39;00m repack(results)
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexes.py:1675[39m, in [36mcreate_default_index_implicit[39m[34m(dim_variable, all_variables)[39m
-[32m   1673[39m [38;5;28;01melse[39;00m:
-[32m   1674[39m     dim_var = {name: dim_variable}
-[32m-> [39m[32m1675[39m     index = [30;43mPandasIndex[39;49m[30;43m.[39;49m[30;43mfrom_variables[39;49m[30;43m([39;49m[30;43mdim_var[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43moptions[39;49m[30;43m=[39;49m[30;43m{[39;49m[30;43m}[39;49m[30;43m)[39;49m
-[32m   1676[39m     index_vars = index.create_variables(dim_var)
-[32m   1678[39m [38;5;28;01mreturn[39;00m index, index_vars
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py:686[39m, in [36mImplicitToExplicitIndexingAdapter.__array__[39m[34m(self, dtype, copy)[39m
+[32m    682[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m__array__[39m(
+[32m    683[39m     [38;5;28mself[39m, dtype: DTypeLike | [38;5;28;01mNone[39;00m = [38;5;28;01mNone[39;00m, /, *, copy: [38;5;28mbool[39m | [38;5;28;01mNone[39;00m = [38;5;28;01mNone[39;00m
+[32m    684[39m ) -> np.ndarray:
+[32m    685[39m     [38;5;28;01mif[39;00m Version(np.__version__) >= Version([33m"[39m[33m2.0.0[39m[33m"[39m):
+[32m--> [39m[32m686[39m         [38;5;28;01mreturn[39;00m np.asarray([30;43mself[39;49m[30;43m.[39;49m[30;43mget_duck_array[39;49m[30;43m([39;49m[30;43m)[39;49m, dtype=dtype, copy=copy)
+[32m    687[39m     [38;5;28;01melse[39;00m:
+[32m    688[39m         [38;5;28;01mreturn[39;00m np.asarray([38;5;28mself[39m.get_duck_array(), dtype=dtype)
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexes.py:732[39m, in [36mPandasIndex.from_variables[39m[34m(cls, variables, options)[39m
-[32m    724[39m dim = var.dims[[32m0[39m]
-[32m    726[39m [38;5;66;03m# TODO: (benbovy - explicit indexes): add __index__ to ExplicitlyIndexesNDArrayMixin?[39;00m
-[32m    727[39m [38;5;66;03m# this could be eventually used by Variable.to_index() and would remove the need to perform[39;00m
-[32m    728[39m [38;5;66;03m# the checks below.[39;00m
-[32m    729[39m 
-[32m    730[39m [38;5;66;03m# preserve wrapped pd.Index (if any)[39;00m
-[32m    731[39m [38;5;66;03m# accessing `.data` can load data from disk, so we only access if needed[39;00m
-[32m--> [39m[32m732[39m data = var._data [38;5;28;01mif[39;00m [38;5;28misinstance[39m(var._data, PandasIndexingAdapter) [38;5;28;01melse[39;00m [30;43mvar[39;49m[30;43m.[39;49m[30;43mdata[39;49m  [38;5;66;03m# type: ignore[redundant-expr][39;00m
-[32m    733[39m [38;5;66;03m# multi-index level variable: get level index[39;00m
-[32m    734[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(var._data, PandasMultiIndexingAdapter):
-
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/variable.py:455[39m, in [36mVariable.data[39m[34m(self)[39m
-[32m    453[39m     duck_array = [38;5;28mself[39m._data.array
-[32m    454[39m [38;5;28;01melif[39;00m [38;5;28misinstance[39m([38;5;28mself[39m._data, indexing.ExplicitlyIndexed):
-[32m--> [39m[32m455[39m     duck_array = [30;43mself[39;49m[30;43m.[39;49m[30;43m_data[39;49m[30;43m.[39;49m[30;43mget_duck_array[39;49m[30;43m([39;49m[30;43m)[39;49m
-[32m    456[39m [38;5;28;01melif[39;00m is_duck_array([38;5;28mself[39m._data):
-[32m    457[39m     duck_array = [38;5;28mself[39m._data
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py:691[39m, in [36mImplicitToExplicitIndexingAdapter.get_duck_array[39m[34m(self)[39m
+[32m    690[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mget_duck_array[39m([38;5;28mself[39m):
+[32m--> [39m[32m691[39m     [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43marray[39;49m[30;43m.[39;49m[30;43mget_duck_array[39;49m[30;43m([39;49m[30;43m)[39;49m
 
 [36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py:924[39m, in [36mCopyOnWriteArray.get_duck_array[39m[34m(self)[39m
 [32m    923[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mget_duck_array[39m([38;5;28mself[39m):
 [32m--> [39m[32m924[39m     [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43marray[39;49m[30;43m.[39;49m[30;43mget_duck_array[39;49m[30;43m([39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/coding/common.py:80[39m, in [36m_ElementwiseFunctionArray.get_duck_array[39m[34m(self)[39m
+[32m     79[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mget_duck_array[39m([38;5;28mself[39m):
+[32m---> [39m[32m80[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m.func([30;43mself[39;49m[30;43m.[39;49m[30;43marray[39;49m[30;43m.[39;49m[30;43mget_duck_array[39;49m[30;43m([39;49m[30;43m)[39;49m)
 
 [36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py:764[39m, in [36mLazilyIndexedArray.get_duck_array[39m[34m(self)[39m
 [32m    761[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mxarray[39;00m[34;01m.[39;00m[34;01mbackends[39;00m[34;01m.[39;00m[34;01mcommon[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m BackendArray
@@ -367,4 +299,4 @@ The above exception was the direct cause of the following exception:
 [32m    842[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
 [32m--> [39m[32m843[39m     [38;5;28;01mraise[39;00m ReferenceNotReachable(path, part_or_url) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
 
-[31mReferenceNotReachable[39m: Reference "longitude/0" failed to fetch target https://osdf-director.osg-htc.org/ncar/gdex/d633000/e5.oper.fc.sfc.meanflux/202207/e5.oper.fc.sfc.meanflux.235_055_mtpr.ll025sc.2022070106_2022071606.nc
+[31mReferenceNotReachable[39m: Reference "MTPR/20000.0.0.0" failed to fetch target https://osdf-director.osg-htc.org/ncar/gdex/d633000/e5.oper.fc.sfc.meanflux/196705/e5.oper.fc.sfc.meanflux.235_055_mtpr.ll025sc.1967051606_1967060106.nc
