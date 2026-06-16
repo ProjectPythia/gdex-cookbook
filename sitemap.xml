@@ -68,12 +68,18 @@
     <loc>http://localhost:3000/notebooks/workflows/cesm2-lens</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/workflows/hi-res</loc>
+    <loc>http://localhost:3000/notebooks/workflows/mesaclip</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/notebooks/workflows/conus404</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/notebooks/workflows/hadisst</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/notebooks/workflows/radar</loc>
   </url>
   <url>
     <loc>http://localhost:3000/notebooks/workflows/data-fusion</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/notebooks/workflows/observations</loc>
   </url>
 </urlset>
