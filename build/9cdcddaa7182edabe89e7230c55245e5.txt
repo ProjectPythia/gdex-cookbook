@@ -1,19 +1,5 @@
 [31m---------------------------------------------------------------------------[39m
-[31mContentLengthError[39m                        Traceback (most recent call last)
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client_proto.py:143[39m, in [36mResponseHandler.connection_lost[39m[34m(self, exc)[39m
-[32m    142[39m [38;5;28;01mtry[39;00m:
-[32m--> [39m[32m143[39m     uncompleted = [30;43mself[39;49m[30;43m.[39;49m[30;43m_parser[39;49m[30;43m.[39;49m[30;43mfeed_eof[39;49m[30;43m([39;49m[30;43m)[39;49m
-[32m    144[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m underlying_exc:
-
-[36mFile [39m[32maiohttp/_http_parser.pyx:578[39m, in [36maiohttp._http_parser.HttpParser.feed_eof[39m[34m()[39m
-[32m--> [39m[32m578[39m [33m'Could not get source, probably due dynamically evaluated source code.'[39m
-
-[31mContentLengthError[39m: 400, message:
-  Not enough data to satisfy content length header (received 0 of 5245496 bytes).
-
-The above exception was the direct cause of the following exception:
-
-[31mClientPayloadError[39m                        Traceback (most recent call last)
+[31mClientResponseError[39m                       Traceback (most recent call last)
 [36mCell[39m[36m [39m[32mIn[2][39m[32m, line 6[39m
 [32m      2[39m file_url = [33m'https://osdf-director.osg-htc.org/ncar/gdex/d651056/CESM2-LE/atm/proc/tseries/month_1/LHFLX/b.e21.BHISTcmip6.f09_g17.LE2-1001.001.cam.h0.LHFLX.185001-185912.nc'[39m
 [32m      3[39m 
@@ -249,12 +235,12 @@ The above exception was the direct cause of the following exception:
 [32m   2139[39m )
 [32m   2140[39m [38;5;28mself[39m.loc += [38;5;28mlen[39m(out)
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/caching.py:527[39m, in [36mBytesCache._fetch[39m[34m(self, start, end)[39m
-[32m    525[39m [38;5;28;01mif[39;00m [38;5;28mself[39m.end [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mor[39;00m [38;5;28mself[39m.end - end > [38;5;28mself[39m.blocksize:
-[32m    526[39m     [38;5;28mself[39m.total_requested_bytes += bend - start
-[32m--> [39m[32m527[39m     [38;5;28mself[39m.cache = [30;43mself[39;49m[30;43m.[39;49m[30;43mfetcher[39;49m[30;43m([39;49m[30;43mstart[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mbend[39;49m[30;43m)[39;49m
-[32m    528[39m     [38;5;28mself[39m.start = start
-[32m    529[39m [38;5;28;01melse[39;00m:
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/caching.py:539[39m, in [36mBytesCache._fetch[39m[34m(self, start, end)[39m
+[32m    537[39m [38;5;28;01melif[39;00m end - [38;5;28mself[39m.end > [38;5;28mself[39m.blocksize:
+[32m    538[39m     [38;5;28mself[39m.total_requested_bytes += bend - start
+[32m--> [39m[32m539[39m     [38;5;28mself[39m.cache = [30;43mself[39;49m[30;43m.[39;49m[30;43mfetcher[39;49m[30;43m([39;49m[30;43mstart[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mbend[39;49m[30;43m)[39;49m
+[32m    540[39m     [38;5;28mself[39m.start = start
+[32m    541[39m [38;5;28;01melse[39;00m:
 
 [36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/asyn.py:118[39m, in [36msync_wrapper.<locals>.wrapper[39m[34m(*args, **kwargs)[39m
 [32m    115[39m [38;5;129m@functools[39m.wraps(func)
@@ -276,58 +262,38 @@ The above exception was the direct cause of the following exception:
 [32m     57[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m ex:
 [32m     58[39m     result[[32m0[39m] = ex
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py:718[39m, in [36mHTTPFile.async_fetch_range[39m[34m(self, start, end)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py:704[39m, in [36mHTTPFile.async_fetch_range[39m[34m(self, start, end)[39m
+[32m    701[39m [38;5;28;01mif[39;00m r.status == [32m416[39m:
+[32m    702[39m     [38;5;66;03m# range request outside file[39;00m
+[32m    703[39m     [38;5;28;01mreturn[39;00m [33mb[39m[33m"[39m[33m"[39m
+[32m--> [39m[32m704[39m [30;43mr[39;49m[30;43m.[39;49m[30;43mraise_for_status[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m    706[39m [38;5;66;03m# If the server has handled the range request, it should reply[39;00m
+[32m    707[39m [38;5;66;03m# with status 206 (partial content). But we'll guess that a suitable[39;00m
+[32m    708[39m [38;5;66;03m# Content-Range header or a Content-Length no more than the[39;00m
+[32m    709[39m [38;5;66;03m# requested range also mean we have got the desired range.[39;00m
 [32m    710[39m response_is_range = (
 [32m    711[39m     r.status == [32m206[39m
 [32m    712[39m     [38;5;129;01mor[39;00m [38;5;28mself[39m._parse_content_range(r.headers)[[32m0[39m] == start
 [32m    713[39m     [38;5;129;01mor[39;00m [38;5;28mint[39m(r.headers.get([33m"[39m[33mContent-Length[39m[33m"[39m, end + [32m1[39m)) <= end - start
 [32m    714[39m )
-[32m    716[39m [38;5;28;01mif[39;00m response_is_range:
-[32m    717[39m     [38;5;66;03m# partial content, as expected[39;00m
-[32m--> [39m[32m718[39m     out = [38;5;28;01mawait[39;00m r.read()
-[32m    719[39m [38;5;28;01melif[39;00m start > [32m0[39m:
-[32m    720[39m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
-[32m    721[39m         [33m"[39m[33mThe HTTP server doesn[39m[33m'[39m[33mt appear to support range requests. [39m[33m"[39m
-[32m    722[39m         [33m"[39m[33mOnly reading this file from the beginning is supported. [39m[33m"[39m
-[32m    723[39m         [33m"[39m[33mOpen with block_size=0 for a streaming file interface.[39m[33m"[39m
-[32m    724[39m     )
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client_reqrep.py:715[39m, in [36mClientResponse.read[39m[34m(self)[39m
-[32m    713[39m [38;5;28;01mif[39;00m [38;5;28mself[39m._body [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
-[32m    714[39m     [38;5;28;01mtry[39;00m:
-[32m--> [39m[32m715[39m         [38;5;28mself[39m._body = [38;5;28;01mawait[39;00m [38;5;28mself[39m.content.read()
-[32m    716[39m         [38;5;28;01mfor[39;00m trace [38;5;129;01min[39;00m [38;5;28mself[39m._traces:
-[32m    717[39m             [38;5;28;01mawait[39;00m trace.send_response_chunk_received(
-[32m    718[39m                 [38;5;28mself[39m.method, [38;5;28mself[39m.url, [38;5;28mself[39m._body
-[32m    719[39m             )
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client_reqrep.py:655[39m, in [36mClientResponse.raise_for_status[39m[34m(self)[39m
+[32m    652[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m._in_context:
+[32m    653[39m     [38;5;28mself[39m.release()
+[32m--> [39m[32m655[39m [38;5;28;01mraise[39;00m ClientResponseError(
+[32m    656[39m     [38;5;28mself[39m.request_info,
+[32m    657[39m     [38;5;28mself[39m.history,
+[32m    658[39m     status=[38;5;28mself[39m.status,
+[32m    659[39m     message=[38;5;28mself[39m.reason,
+[32m    660[39m     headers=[38;5;28mself[39m.headers,
+[32m    661[39m )
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/streams.py:437[39m, in [36mStreamReader.read[39m[34m(self, n)[39m
-[32m    435[39m blocks = []
-[32m    436[39m [38;5;28;01mwhile[39;00m [38;5;28;01mTrue[39;00m:
-[32m--> [39m[32m437[39m     block = [38;5;28;01mawait[39;00m [38;5;28mself[39m.readany()
-[32m    438[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m block:
-[32m    439[39m         [38;5;28;01mbreak[39;00m
-
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/streams.py:460[39m, in [36mStreamReader.readany[39m[34m(self)[39m
-[32m    456[39m [38;5;66;03m# TODO: should be `if` instead of `while`[39;00m
-[32m    457[39m [38;5;66;03m# because waiter maybe triggered on chunk end,[39;00m
-[32m    458[39m [38;5;66;03m# without feeding any data[39;00m
-[32m    459[39m [38;5;28;01mwhile[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m._buffer [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m._eof:
-[32m--> [39m[32m460[39m     [38;5;28;01mawait[39;00m [38;5;28mself[39m._wait([33m"[39m[33mreadany[39m[33m"[39m)
-[32m    462[39m [38;5;28;01mreturn[39;00m [38;5;28mself[39m._read_nowait(-[32m1[39m)
-
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/streams.py:365[39m, in [36mStreamReader._wait[39m[34m(self, func_name)[39m
-[32m    363[39m [38;5;28;01mtry[39;00m:
-[32m    364[39m     [38;5;28;01mwith[39;00m [38;5;28mself[39m._timer:
-[32m--> [39m[32m365[39m         [38;5;28;01mawait[39;00m waiter
-[32m    366[39m [38;5;28;01mfinally[39;00m:
-[32m    367[39m     [38;5;28mself[39m._waiter = [38;5;28;01mNone[39;00m
-
-[31mClientPayloadError[39m: Response payload is not completed: <ContentLengthError: 400, message='Not enough data to satisfy content length header (received 0 of 5245496 bytes).'>
-Raised while decoding variable 'time_bnds' with value <xarray.Variable (time: 120, nbnd: 2)> Size: 2kB
-[240 values with dtype=float64]
+[31mClientResponseError[39m: 500, message='Internal Server Error', url='https://osg-hawk-cache.cc.lehigh.edu:8443/ncar/gdex/d651056/CESM2-LE/atm/proc/tseries/month_1/LHFLX/b.e21.BHISTcmip6.f09_g17.LE2-1001.001.cam.h0.LHFLX.185001-185912.nc'
+Raised while decoding variable 'time' with value <xarray.Variable (time: 120)> Size: 960B
+[120 values with dtype=float64]
 Attributes:
     _FillValue:  -900.0
-    long_name:   time interval endpoints
+    long_name:   time
     units:       days since 1850-01-01 00:00:00
     calendar:    noleap
+    bounds:      time_bnds
