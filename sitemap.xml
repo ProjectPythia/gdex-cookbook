@@ -20,6 +20,9 @@
     <loc>http://localhost:3000/notebooks/gdex-intro/submission</loc>
   </url>
   <url>
+    <loc>http://localhost:3000/notebooks/services/services-intro</loc>
+  </url>
+  <url>
     <loc>http://localhost:3000/notebooks/services/tds-intro</loc>
   </url>
   <url>
