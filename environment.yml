@@ -14,6 +14,7 @@ dependencies:
   - cf-units
   - scipy
   - rioxarray
+  - xradar
   # File Formats & I/O
   - netcdf4
   - h5netcdf
