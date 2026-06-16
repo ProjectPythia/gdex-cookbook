@@ -21,6 +21,7 @@ project:
         - file: notebooks/gdex_intro/submission.ipynb
     - title: Services
       children:
+        - file: notebooks/services/services_intro.md
         - title: TDS
           children:
             - file: notebooks/services/tds_intro.ipynb
