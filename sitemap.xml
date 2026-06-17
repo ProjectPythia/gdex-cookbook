@@ -8,9 +8,6 @@
     <loc>http://localhost:3000/notebooks/how-to-cite</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/notebook-template</loc>
-  </url>
-  <url>
     <loc>http://localhost:3000/notebooks/gdex-intro/gdex-intro</loc>
   </url>
   <url>
@@ -71,10 +68,10 @@
     <loc>http://localhost:3000/notebooks/workflows/cesm2-lens</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/workflows/conus404</loc>
+    <loc>http://localhost:3000/notebooks/workflows/na-cordex</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/workflows/na-cordex</loc>
+    <loc>http://localhost:3000/notebooks/workflows/conus404</loc>
   </url>
   <url>
     <loc>http://localhost:3000/notebooks/workflows/hadisst</loc>
