@@ -15,12 +15,10 @@
 The above exception was the direct cause of the following exception:
 
 [31mTimeoutError[39m                              Traceback (most recent call last)
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/reference.py:839[39m, in [36m_cat_file[39m[34m()[39m
-[32m    838[39m [38;5;28;01mtry[39;00m:
-[32m--> [39m[32m839[39m     [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m [38;5;28mself[39m.fss[protocol]._cat_file(
-[32m    840[39m         part_or_url, start=start0, end=end0
-[32m    841[39m     )
-[32m    842[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/asyn.py:56[39m, in [36m_runner[39m[34m()[39m
+[32m     55[39m [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m56[39m     result[[32m0[39m] = [38;5;28;01mawait[39;00m coro
+[32m     57[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m ex:
 
 [36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py:248[39m, in [36m_cat_file[39m[34m()[39m
 [32m    247[39m session = [38;5;28;01mawait[39;00m [38;5;28mself[39m.set_session()
@@ -57,7 +55,7 @@ The above exception was the direct cause of the following exception:
 
 The above exception was the direct cause of the following exception:
 
-[31mReferenceNotReachable[39m                     Traceback (most recent call last)
+[31mFSTimeoutError[39m                            Traceback (most recent call last)
 [36mCell[39m[36m [39m[32mIn[6][39m[32m, line 1[39m
 [32m----> [39m[32m1[39m get_ipython().run_cell_magic([33m'time'[39m, [33m''[39m, [33m'diff = diff.compute()\n'[39m)
 
@@ -303,11 +301,49 @@ The above exception was the direct cause of the following exception:
 [32m   (...)[39m[32m    296[39m             )
 [32m    297[39m         )
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/reference.py:843[39m, in [36m_cat_file[39m[34m()[39m
-[32m    839[39m     [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m [38;5;28mself[39m.fss[protocol]._cat_file(
-[32m    840[39m         part_or_url, start=start0, end=end0
-[32m    841[39m     )
-[32m    842[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
-[32m--> [39m[32m843[39m     [38;5;28;01mraise[39;00m ReferenceNotReachable(path, part_or_url) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/reference.py:834[39m, in [36m_cat_file[39m[34m()[39m
+[32m    833[39m [38;5;28;01masync[39;00m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_cat_file[39m([38;5;28mself[39m, path, start=[38;5;28;01mNone[39;00m, end=[38;5;28;01mNone[39;00m, **kwargs):
+[32m--> [39m[32m834[39m     part_or_url, start0, end0 = [38;5;28mself[39m._cat_common(path, start=start, end=end)
+[32m    835[39m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(part_or_url, [38;5;28mbytes[39m):
+[32m    836[39m         [38;5;28;01mreturn[39;00m part_or_url[start:end]
 
-[31mReferenceNotReachable[39m: Reference "prmsl-msl-an-ll125/103444.0.0" failed to fetch target https://data.gdex.ucar.edu/d640000/anl_surf125/201806/jra3q.anl_surf125.0_3_1.prmsl-msl-an-ll125.2018060100_2018063018.nc
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/reference.py:793[39m, in [36m_cat_common[39m[34m()[39m
+[32m    791[39m logger.debug([33mf[39m[33m"[39m[33mcat: [39m[38;5;132;01m{[39;00mpath[38;5;132;01m}[39;00m[33m"[39m)
+[32m    792[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m793[39m     part = [38;5;28mself[39m.references[path]
+[32m    794[39m [38;5;28;01mexcept[39;00m [38;5;167;01mKeyError[39;00m [38;5;28;01mas[39;00m exc:
+[32m    795[39m     [38;5;28;01mraise[39;00m [38;5;167;01mFileNotFoundError[39;00m(path) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mexc[39;00m
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/reference.py:395[39m, in [36m__getitem__[39m[34m()[39m
+[32m    394[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m__getitem__[39m([38;5;28mself[39m, key):
+[32m--> [39m[32m395[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m._load_one_key(key)
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/reference.py:324[39m, in [36m_load_one_key[39m[34m()[39m
+[32m    322[39m [38;5;66;03m# Chunk keys can be loaded from row group and cached in LRU cache[39;00m
+[32m    323[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m324[39m     refs = [38;5;28mself[39m.open_refs(field, record)
+[32m    325[39m [38;5;28;01mexcept[39;00m ([38;5;167;01mValueError[39;00m, [38;5;167;01mTypeError[39;00m, [38;5;167;01mFileNotFoundError[39;00m) [38;5;28;01mas[39;00m exc:
+[32m    326[39m     [38;5;28;01mraise[39;00m [38;5;167;01mKeyError[39;00m(key) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mexc[39;00m
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/reference.py:188[39m, in [36mopen_refs[39m[34m()[39m
+[32m    186[39m [38;5;250m[39m[33;03m"""cached parquet file loader"""[39;00m
+[32m    187[39m path = [38;5;28mself[39m.url.format(field=field, record=record)
+[32m--> [39m[32m188[39m data = io.BytesIO([38;5;28mself[39m.fs.cat_file(path))
+[32m    189[39m [38;5;28;01mtry[39;00m:
+[32m    190[39m     df = [38;5;28mself[39m.pd.read_parquet(data, engine=[38;5;28mself[39m.engine)
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/asyn.py:118[39m, in [36mwrapper[39m[34m()[39m
+[32m    115[39m [38;5;129m@functools[39m.wraps(func)
+[32m    116[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mwrapper[39m(*args, **kwargs):
+[32m    117[39m     [38;5;28mself[39m = obj [38;5;129;01mor[39;00m args[[32m0[39m]
+[32m--> [39m[32m118[39m     [38;5;28;01mreturn[39;00m sync([38;5;28mself[39m.loop, func, *args, **kwargs)
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/asyn.py:101[39m, in [36msync[39m[34m()[39m
+[32m     98[39m return_result = result[[32m0[39m]
+[32m     99[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(return_result, asyncio.TimeoutError):
+[32m    100[39m     [38;5;66;03m# suppress asyncio.TimeoutError, raise FSTimeoutError[39;00m
+[32m--> [39m[32m101[39m     [38;5;28;01mraise[39;00m FSTimeoutError [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mreturn_result[39;00m
+[32m    102[39m [38;5;28;01melif[39;00m [38;5;28misinstance[39m(return_result, [38;5;167;01mBaseException[39;00m):
+[32m    103[39m     [38;5;28;01mraise[39;00m return_result
+
+[31mFSTimeoutError[39m: 
