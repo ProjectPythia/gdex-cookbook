@@ -1,5 +1,104 @@
 [31m---------------------------------------------------------------------------[39m
-[31mClientResponseError[39m                       Traceback (most recent call last)
+[31mCancelledError[39m                            Traceback (most recent call last)
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/connector.py:1301[39m, in [36mTCPConnector._wrap_create_connection[39m[34m(self, addr_infos, req, timeout, client_error, *args, **kwargs)[39m
+[32m   1298[39m [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m ceil_timeout(
+[32m   1299[39m     timeout.sock_connect, ceil_threshold=timeout.ceil_threshold
+[32m   1300[39m ):
+[32m-> [39m[32m1301[39m     sock = [38;5;28;01mawait[39;00m aiohappyeyeballs.start_connection(
+[32m   1302[39m         addr_infos=addr_infos,
+[32m   1303[39m         local_addr_infos=[38;5;28mself[39m._local_addr_infos,
+[32m   1304[39m         happy_eyeballs_delay=[38;5;28mself[39m._happy_eyeballs_delay,
+[32m   1305[39m         interleave=[38;5;28mself[39m._interleave,
+[32m   1306[39m         loop=[38;5;28mself[39m._loop,
+[32m   1307[39m         socket_factory=[38;5;28mself[39m._socket_factory,
+[32m   1308[39m     )
+[32m   1309[39m     [38;5;66;03m# Add ssl_shutdown_timeout for Python 3.11+ when SSL is used[39;00m
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohappyeyeballs/impl.py:75[39m, in [36mstart_connection[39m[34m(addr_infos, local_addr_infos, happy_eyeballs_delay, interleave, loop, socket_factory)[39m
+[32m     74[39m [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m75[39m     sock = [38;5;28;01mawait[39;00m _connect_sock(
+[32m     76[39m         current_loop,
+[32m     77[39m         exceptions,
+[32m     78[39m         addrinfo,
+[32m     79[39m         local_addr_infos,
+[32m     80[39m         [38;5;28;01mNone[39;00m,
+[32m     81[39m         socket_factory,
+[32m     82[39m     )
+[32m     83[39m     [38;5;28;01mbreak[39;00m
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohappyeyeballs/impl.py:210[39m, in [36m_connect_sock[39m[34m(loop, exceptions, addr_info, local_addr_infos, open_sockets, socket_factory)[39m
+[32m    209[39m             [38;5;28;01mraise[39;00m [38;5;167;01mOSError[39;00m([33mf[39m[33m"[39m[33mno matching local address with [39m[38;5;132;01m{[39;00mfamily[38;5;132;01m=}[39;00m[33m found[39m[33m"[39m)
+[32m--> [39m[32m210[39m [38;5;28;01mawait[39;00m loop.sock_connect(sock, address)
+[32m    211[39m [38;5;28;01mreturn[39;00m sock
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/asyncio/selector_events.py:651[39m, in [36mBaseSelectorEventLoop.sock_connect[39m[34m(self, sock, address)[39m
+[32m    650[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m651[39m     [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m fut
+[32m    652[39m [38;5;28;01mfinally[39;00m:
+[32m    653[39m     [38;5;66;03m# Needed to break cycles when an exception occurs.[39;00m
+
+[31mCancelledError[39m: 
+
+The above exception was the direct cause of the following exception:
+
+[31mTimeoutError[39m                              Traceback (most recent call last)
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client.py:810[39m, in [36mClientSession._request.<locals>._connect_and_send_request[39m[34m(req)[39m
+[32m    809[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m810[39m     conn = [38;5;28;01mawait[39;00m [38;5;28mself[39m._connector.connect(
+[32m    811[39m         req, traces=traces, timeout=real_timeout
+[32m    812[39m     )
+[32m    813[39m [38;5;28;01mexcept[39;00m asyncio.TimeoutError [38;5;28;01mas[39;00m exc:
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/connector.py:657[39m, in [36mBaseConnector.connect[39m[34m(self, req, traces, timeout)[39m
+[32m    656[39m         [38;5;28;01mawait[39;00m trace.send_connection_create_start()
+[32m--> [39m[32m657[39m proto = [38;5;28;01mawait[39;00m [38;5;28mself[39m._create_connection(req, traces, timeout)
+[32m    658[39m [38;5;28;01mif[39;00m traces:
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/connector.py:1242[39m, in [36mTCPConnector._create_connection[39m[34m(self, req, traces, timeout)[39m
+[32m   1241[39m [38;5;28;01melse[39;00m:
+[32m-> [39m[32m1242[39m     _, proto = [38;5;28;01mawait[39;00m [38;5;28mself[39m._create_direct_connection(req, traces, timeout)
+[32m   1244[39m [38;5;28;01mreturn[39;00m proto
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/connector.py:1620[39m, in [36mTCPConnector._create_direct_connection[39m[34m(self, req, traces, timeout, client_error)[39m
+[32m   1619[39m [38;5;28;01massert[39;00m last_exc [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m
+[32m-> [39m[32m1620[39m [38;5;28;01mraise[39;00m last_exc
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/connector.py:1589[39m, in [36mTCPConnector._create_direct_connection[39m[34m(self, req, traces, timeout, client_error)[39m
+[32m   1588[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m1589[39m     transp, proto = [38;5;28;01mawait[39;00m [38;5;28mself[39m._wrap_create_connection(
+[32m   1590[39m         [38;5;28mself[39m._factory,
+[32m   1591[39m         timeout=timeout,
+[32m   1592[39m         ssl=sslcontext,
+[32m   1593[39m         addr_infos=addr_infos,
+[32m   1594[39m         server_hostname=server_hostname,
+[32m   1595[39m         req=req,
+[32m   1596[39m         client_error=client_error,
+[32m   1597[39m     )
+[32m   1598[39m [38;5;28;01mexcept[39;00m (ClientConnectorError, asyncio.TimeoutError) [38;5;28;01mas[39;00m exc:
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/connector.py:1298[39m, in [36mTCPConnector._wrap_create_connection[39m[34m(self, addr_infos, req, timeout, client_error, *args, **kwargs)[39m
+[32m   1297[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m1298[39m     [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m ceil_timeout(
+[32m   1299[39m         timeout.sock_connect, ceil_threshold=timeout.ceil_threshold
+[32m   1300[39m     ):
+[32m   1301[39m         sock = [38;5;28;01mawait[39;00m aiohappyeyeballs.start_connection(
+[32m   1302[39m             addr_infos=addr_infos,
+[32m   1303[39m             local_addr_infos=[38;5;28mself[39m._local_addr_infos,
+[32m   (...)[39m[32m   1307[39m             socket_factory=[38;5;28mself[39m._socket_factory,
+[32m   1308[39m         )
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/asyncio/timeouts.py:115[39m, in [36mTimeout.__aexit__[39m[34m(self, exc_type, exc_val, exc_tb)[39m
+[32m    112[39m     [38;5;28;01mif[39;00m [38;5;28mself[39m._task.uncancel() <= [38;5;28mself[39m._cancelling [38;5;129;01mand[39;00m exc_type [38;5;129;01mis[39;00m exceptions.CancelledError:
+[32m    113[39m         [38;5;66;03m# Since there are no new cancel requests, we're[39;00m
+[32m    114[39m         [38;5;66;03m# handling this.[39;00m
+[32m--> [39m[32m115[39m         [38;5;28;01mraise[39;00m [38;5;167;01mTimeoutError[39;00m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mexc_val[39;00m
+[32m    116[39m [38;5;28;01melif[39;00m [38;5;28mself[39m._state [38;5;129;01mis[39;00m _State.ENTERED:
+
+[31mTimeoutError[39m: 
+
+The above exception was the direct cause of the following exception:
+
+[31mConnectionTimeoutError[39m                    Traceback (most recent call last)
 [36mCell[39m[36m [39m[32mIn[3][39m[32m, line 1[39m
 [32m----> [39m[32m1[39m dt_rhi = xr.open_datatree(rhi_url, engine=[33m"zarr"[39m, decode_timedelta=[38;5;28;01mFalse[39;00m)
 [32m      2[39m dt_ppi = xr.open_datatree(ppi_url, engine=[33m"zarr"[39m, decode_timedelta=[38;5;28;01mFalse[39;00m)
@@ -108,60 +207,44 @@
 [32m    422[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
 [32m    423[39m     e.add_note([33mf[39m[33m"[39m[33mRaised while decoding variable [39m[38;5;132;01m{[39;00mk[38;5;132;01m!r}[39;00m[33m with value [39m[38;5;132;01m{[39;00mv[38;5;132;01m!r}[39;00m[33m"[39m)
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/conventions.py:237[39m, in [36mdecode_cf_variable[39m[34m(name, var, concat_characters, mask_and_scale, decode_times, decode_endianness, stack_char_dim, use_cftime, decode_timedelta)[39m
-[32m    227[39m     [38;5;28;01melif[39;00m use_cftime [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
-[32m    228[39m         [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m(
-[32m    229[39m             [33m"[39m[33mUsage of [39m[33m'[39m[33muse_cftime[39m[33m'[39m[33m as a kwarg is not allowed [39m[33m"[39m
-[32m    230[39m             [33m"[39m[33mif a [39m[33m'[39m[33mCFDatetimeCoder[39m[33m'[39m[33m instance is passed to [39m[33m"[39m
-[32m   (...)[39m[32m    235[39m             [33m"[39m[33m    ds = xr.open_dataset(decode_times=time_coder)[39m[38;5;130;01m\n[39;00m[33m"[39m,
-[32m    236[39m         )
-[32m--> [39m[32m237[39m     var = [30;43mdecode_times[39;49m[30;43m.[39;49m[30;43mdecode[39;49m[30;43m([39;49m[30;43mvar[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mname[39;49m[30;43m=[39;49m[30;43mname[39;49m[30;43m)[39;49m
-[32m    239[39m [38;5;28;01mif[39;00m decode_endianness [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m var.dtype.isnative:
-[32m    240[39m     var = variables.EndianCoder().decode(var)
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/conventions.py:171[39m, in [36mdecode_cf_variable[39m[34m(name, var, concat_characters, mask_and_scale, decode_times, decode_endianness, stack_char_dim, use_cftime, decode_timedelta)[39m
+[32m    120[39m [38;5;250m[39m[33;03m"""[39;00m
+[32m    121[39m [33;03mDecodes a variable which may hold CF encoded information.[39;00m
+[32m    122[39m 
+[32m   (...)[39m[32m    168[39m [33;03m    A variable holding the decoded equivalent of var.[39;00m
+[32m    169[39m [33;03m"""[39;00m
+[32m    170[39m [38;5;66;03m# Ensure datetime-like Variables are passed through unmodified (GH 6453)[39;00m
+[32m--> [39m[32m171[39m [38;5;28;01mif[39;00m [30;43m_contains_datetime_like_objects[39;49m[30;43m([39;49m[30;43mvar[39;49m[30;43m)[39;49m:
+[32m    172[39m     [38;5;28;01mreturn[39;00m var
+[32m    174[39m original_dtype = var.dtype
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/coding/times.py:1414[39m, in [36mCFDatetimeCoder.decode[39m[34m(self, variable, name)[39m
-[32m   1412[39m units = pop_to(attrs, encoding, [33m"[39m[33munits[39m[33m"[39m)
-[32m   1413[39m calendar = pop_to(attrs, encoding, [33m"[39m[33mcalendar[39m[33m"[39m)
-[32m-> [39m[32m1414[39m dtype = [30;43m_decode_cf_datetime_dtype[39;49m[30;43m([39;49m
-[32m   1415[39m [30;43m    [39;49m[30;43mdata[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43munits[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcalendar[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43muse_cftime[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mtime_unit[39;49m
-[32m   1416[39m [30;43m[39;49m[30;43m)[39;49m
-[32m   1417[39m transform = partial(
-[32m   1418[39m     decode_cf_datetime,
-[32m   1419[39m     units=units,
-[32m   (...)[39m[32m   1422[39m     time_unit=[38;5;28mself[39m.time_unit,
-[32m   1423[39m )
-[32m   1424[39m data = lazy_elemwise_func(data, transform, dtype)
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/common.py:2102[39m, in [36m_contains_datetime_like_objects[39m[34m(var)[39m
+[32m   2098[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_contains_datetime_like_objects[39m(var: T_Variable) -> [38;5;28mbool[39m:
+[32m   2099[39m [38;5;250m    [39m[33;03m"""Check if a variable contains datetime like objects (either[39;00m
+[32m   2100[39m [33;03m    np.datetime64, np.timedelta64, or cftime.datetime)[39;00m
+[32m   2101[39m [33;03m    """[39;00m
+[32m-> [39m[32m2102[39m     [38;5;28;01mreturn[39;00m is_np_datetime_like(var.dtype) [38;5;129;01mor[39;00m [30;43mcontains_cftime_datetimes[39;49m[30;43m([39;49m[30;43mvar[39;49m[30;43m)[39;49m
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/coding/times.py:351[39m, in [36m_decode_cf_datetime_dtype[39m[34m(data, units, calendar, use_cftime, time_unit)[39m
-[32m    339[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_decode_cf_datetime_dtype[39m(
-[32m    340[39m     data,
-[32m    341[39m     units: [38;5;28mstr[39m,
-[32m   (...)[39m[32m    347[39m     [38;5;66;03m# successfully. Otherwise, tracebacks end up swallowed by[39;00m
-[32m    348[39m     [38;5;66;03m# Dataset.__repr__ when users try to view their lazily decoded array.[39;00m
-[32m    349[39m     values = indexing.ImplicitToExplicitIndexingAdapter(indexing.as_indexable(data))
-[32m    350[39m     example_value = np.concatenate(
-[32m--> [39m[32m351[39m         [to_numpy([30;43mfirst_n_items[39;49m[30;43m([39;49m[30;43mvalues[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m1[39;49m[30;43m)[39;49m), to_numpy(last_item(values))]
-[32m    352[39m     )
-[32m    354[39m     [38;5;28;01mtry[39;00m:
-[32m    355[39m         result = decode_cf_datetime(
-[32m    356[39m             example_value, units, calendar, use_cftime, time_unit
-[32m    357[39m         )
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/common.py:2095[39m, in [36mcontains_cftime_datetimes[39m[34m(var)[39m
+[32m   2093[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mcontains_cftime_datetimes[39m(var: T_Variable) -> [38;5;28mbool[39m:
+[32m   2094[39m [38;5;250m    [39m[33;03m"""Check if an xarray.Variable contains cftime.datetime objects"""[39;00m
+[32m-> [39m[32m2095[39m     [38;5;28;01mreturn[39;00m [30;43m_contains_cftime_datetimes[39;49m[30;43m([39;49m[30;43mvar[39;49m[30;43m.[39;49m[30;43m_data[39;49m[30;43m)[39;49m
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/formatting.py:104[39m, in [36mfirst_n_items[39m[34m(array, n_desired)[39m
-[32m    102[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(array, Variable):
-[32m    103[39m     array = array._data
-[32m--> [39m[32m104[39m [38;5;28;01mreturn[39;00m ravel([30;43mto_duck_array[39;49m[30;43m([39;49m[30;43marray[39;49m[30;43m)[39;49m)[:n_desired]
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/common.py:2088[39m, in [36m_contains_cftime_datetimes[39m[34m(array)[39m
+[32m   2086[39m         first_idx = BasicIndexer(first_idx)
+[32m   2087[39m     sample = array[first_idx]
+[32m-> [39m[32m2088[39m     [38;5;28;01mreturn[39;00m [38;5;28misinstance[39m([30;43mnp[39;49m[30;43m.[39;49m[30;43masarray[39;49m[30;43m([39;49m[30;43msample[39;49m[30;43m)[39;49m.item(), cftime.datetime)
+[32m   2090[39m [38;5;28;01mreturn[39;00m [38;5;28;01mFalse[39;00m
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/namedarray/pycompat.py:143[39m, in [36mto_duck_array[39m[34m(data, **kwargs)[39m
-[32m    140[39m     [38;5;28;01mreturn[39;00m loaded_data
-[32m    142[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(data, ExplicitlyIndexed | ImplicitToExplicitIndexingAdapter):
-[32m--> [39m[32m143[39m     [38;5;28;01mreturn[39;00m [30;43mdata[39;49m[30;43m.[39;49m[30;43mget_duck_array[39;49m[30;43m([39;49m[30;43m)[39;49m  [38;5;66;03m# type: ignore[no-untyped-call, no-any-return][39;00m
-[32m    144[39m [38;5;28;01melif[39;00m is_duck_array(data):
-[32m    145[39m     [38;5;28;01mreturn[39;00m data
-
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py:691[39m, in [36mImplicitToExplicitIndexingAdapter.get_duck_array[39m[34m(self)[39m
-[32m    690[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mget_duck_array[39m([38;5;28mself[39m):
-[32m--> [39m[32m691[39m     [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43marray[39;49m[30;43m.[39;49m[30;43mget_duck_array[39;49m[30;43m([39;49m[30;43m)[39;49m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py:604[39m, in [36mExplicitlyIndexed.__array__[39m[34m(self, dtype, copy)[39m
+[32m    599[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m__array__[39m(
+[32m    600[39m     [38;5;28mself[39m, dtype: DTypeLike | [38;5;28;01mNone[39;00m = [38;5;28;01mNone[39;00m, /, *, copy: [38;5;28mbool[39m | [38;5;28;01mNone[39;00m = [38;5;28;01mNone[39;00m
+[32m    601[39m ) -> np.ndarray:
+[32m    602[39m     [38;5;66;03m# Leave casting to an array up to the underlying array type.[39;00m
+[32m    603[39m     [38;5;28;01mif[39;00m Version(np.__version__) >= Version([33m"[39m[33m2.0.0[39m[33m"[39m):
+[32m--> [39m[32m604[39m         [38;5;28;01mreturn[39;00m np.asarray([30;43mself[39;49m[30;43m.[39;49m[30;43mget_duck_array[39;49m[30;43m([39;49m[30;43m)[39;49m, dtype=dtype, copy=copy)
+[32m    605[39m     [38;5;28;01melse[39;00m:
+[32m    606[39m         [38;5;28;01mreturn[39;00m np.asarray([38;5;28mself[39m.get_duck_array(), dtype=dtype)
 
 [36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py:764[39m, in [36mLazilyIndexedArray.get_duck_array[39m[34m(self)[39m
 [32m    761[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mxarray[39;00m[34;01m.[39;00m[34;01mbackends[39;00m[34;01m.[39;00m[34;01mcommon[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m BackendArray
@@ -338,35 +421,45 @@
 [32m   (...)[39m[32m    296[39m             )
 [32m    297[39m         )
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py:250[39m, in [36mHTTPFileSystem._cat_file[39m[34m(self, url, start, end, **kwargs)[39m
-[32m    248[39m [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m session.get([38;5;28mself[39m.encode_url(url), **kw) [38;5;28;01mas[39;00m r:
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py:248[39m, in [36mHTTPFileSystem._cat_file[39m[34m(self, url, start, end, **kwargs)[39m
+[32m    246[39m     kw[[33m"[39m[33mheaders[39m[33m"[39m] = headers
+[32m    247[39m session = [38;5;28;01mawait[39;00m [38;5;28mself[39m.set_session()
+[32m--> [39m[32m248[39m [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m session.get([38;5;28mself[39m.encode_url(url), **kw) [38;5;28;01mas[39;00m r:
 [32m    249[39m     out = [38;5;28;01mawait[39;00m r.read()
-[32m--> [39m[32m250[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43m_raise_not_found_for_status[39;49m[30;43m([39;49m[30;43mr[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m)[39;49m
-[32m    251[39m [38;5;28;01mreturn[39;00m out
+[32m    250[39m     [38;5;28mself[39m._raise_not_found_for_status(r, url)
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py:233[39m, in [36mHTTPFileSystem._raise_not_found_for_status[39m[34m(self, response, url)[39m
-[32m    231[39m [38;5;28;01mif[39;00m response.status == [32m404[39m:
-[32m    232[39m     [38;5;28;01mraise[39;00m [38;5;167;01mFileNotFoundError[39;00m(url)
-[32m--> [39m[32m233[39m [30;43mresponse[39;49m[30;43m.[39;49m[30;43mraise_for_status[39;49m[30;43m([39;49m[30;43m)[39;49m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client.py:1683[39m, in [36m_BaseRequestContextManager.__aenter__[39m[34m(self)[39m
+[32m   1682[39m [38;5;28;01masync[39;00m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m__aenter__[39m([38;5;28mself[39m) -> _RetType_co:
+[32m-> [39m[32m1683[39m     [38;5;28mself[39m._resp: _RetType_co = [38;5;28;01mawait[39;00m [38;5;28mself[39m._coro
+[32m   1684[39m     [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m [38;5;28mself[39m._resp.[34m__aenter__[39m()
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client_reqrep.py:655[39m, in [36mClientResponse.raise_for_status[39m[34m(self)[39m
-[32m    652[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m._in_context:
-[32m    653[39m     [38;5;28mself[39m.release()
-[32m--> [39m[32m655[39m [38;5;28;01mraise[39;00m ClientResponseError(
-[32m    656[39m     [38;5;28mself[39m.request_info,
-[32m    657[39m     [38;5;28mself[39m.history,
-[32m    658[39m     status=[38;5;28mself[39m.status,
-[32m    659[39m     message=[38;5;28mself[39m.reason,
-[32m    660[39m     headers=[38;5;28mself[39m.headers,
-[32m    661[39m )
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client.py:856[39m, in [36mClientSession._request[39m[34m(self, method, str_or_url, params, data, json, cookies, headers, skip_auto_headers, auth, allow_redirects, max_redirects, compress, chunked, expect100, raise_for_status, read_until_eof, proxy, proxy_auth, timeout, verify_ssl, fingerprint, ssl_context, ssl, server_hostname, proxy_headers, trace_request_ctx, read_bufsize, auto_decompress, max_line_size, max_field_size, max_headers, middlewares)[39m
+[32m    853[39m     handler = _connect_and_send_request
+[32m    855[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m856[39m     resp = [38;5;28;01mawait[39;00m handler(req)
+[32m    857[39m [38;5;66;03m# Client connector errors should not be retried[39;00m
+[32m    858[39m [38;5;28;01mexcept[39;00m (
+[32m    859[39m     ConnectionTimeoutError,
+[32m    860[39m     ClientConnectorError,
+[32m    861[39m     ClientConnectorCertificateError,
+[32m    862[39m     ClientConnectorSSLError,
+[32m    863[39m ):
 
-[31mClientResponseError[39m: 500, message='Internal Server Error', url='https://osdf-uw-cache.svc.osg-htc.org:8443/ncar-gdex/d694517/v2.0_zarr/cfrad.20220525_015443.665_to_20220525_015709.985_SPOL_PrecipRhi2_RHI.zarr/sweep_3/time/c/0'
-Raised while decoding variable 'time' with value <xarray.Variable (azimuth: 255)> Size: 2kB
-[255 values with dtype=float64]
-Attributes:
-    standard_name:  time
-    long_name:      time in seconds since volume start
-    comment:        times are relative to the volume start_time
-    units:          seconds since 2022-05-25T01:54:43+00:00
-    calendar:       gregorian
-    _FillValue:     nan
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client.py:814[39m, in [36mClientSession._request.<locals>._connect_and_send_request[39m[34m(req)[39m
+[32m    810[39m     conn = [38;5;28;01mawait[39;00m [38;5;28mself[39m._connector.connect(
+[32m    811[39m         req, traces=traces, timeout=real_timeout
+[32m    812[39m     )
+[32m    813[39m [38;5;28;01mexcept[39;00m asyncio.TimeoutError [38;5;28;01mas[39;00m exc:
+[32m--> [39m[32m814[39m     [38;5;28;01mraise[39;00m ConnectionTimeoutError(
+[32m    815[39m         [33mf[39m[33m"[39m[33mConnection timeout to host [39m[38;5;132;01m{[39;00mreq.url[38;5;132;01m}[39;00m[33m"[39m
+[32m    816[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mexc[39;00m
+[32m    818[39m [38;5;28;01massert[39;00m conn.protocol [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m
+[32m    819[39m conn.protocol.set_response_params(
+[32m    820[39m     timer=timer,
+[32m    821[39m     skip_payload=req.method [38;5;129;01min[39;00m EMPTY_BODY_METHODS,
+[32m   (...)[39m[32m    829[39m     max_headers=max_headers,
+[32m    830[39m )
+
+[31mConnectionTimeoutError[39m: Connection timeout to host https://osdfcache.ligo.caltech.edu:8443/ncar-gdex/d694517/v2.0_zarr/cfrad.20220525_015443.665_to_20220525_015709.985_SPOL_PrecipRhi2_RHI.zarr/sweep_group_name/c/0
+Raised while decoding variable 'sweep_group_name' with value <xarray.Variable (sweep: 11)> Size: 88B
+[11 values with dtype=object]
