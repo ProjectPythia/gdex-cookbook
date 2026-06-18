@@ -1,20 +1,36 @@
 [31m---------------------------------------------------------------------------[39m
-[31mCancelledError[39m                            Traceback (most recent call last)
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client_reqrep.py:558[39m, in [36mClientResponse.start[39m[34m(self, connection)[39m
-[32m    557[39m     protocol = [38;5;28mself[39m._protocol
-[32m--> [39m[32m558[39m     message, payload = [38;5;28;01mawait[39;00m protocol.read()  [38;5;66;03m# type: ignore[union-attr][39;00m
-[32m    559[39m [38;5;28;01mexcept[39;00m http.HttpProcessingError [38;5;28;01mas[39;00m exc:
+[31mConnectionResetError[39m                      Traceback (most recent call last)
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/connector.py:1316[39m, in [36mTCPConnector._wrap_create_connection[39m[34m(self, addr_infos, req, timeout, client_error, *args, **kwargs)[39m
+[32m   1315[39m             kwargs[[33m"[39m[33mssl_shutdown_timeout[39m[33m"[39m] = [38;5;28mself[39m._ssl_shutdown_timeout
+[32m-> [39m[32m1316[39m         [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m [38;5;28mself[39m._loop.create_connection(*args, **kwargs, sock=sock)
+[32m   1317[39m [38;5;28;01mexcept[39;00m cert_errors [38;5;28;01mas[39;00m exc:
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/streams.py:705[39m, in [36mDataQueue.read[39m[34m(self)[39m
-[32m    704[39m [38;5;28;01mtry[39;00m:
-[32m--> [39m[32m705[39m     [38;5;28;01mawait[39;00m [38;5;28mself[39m._waiter
-[32m    706[39m [38;5;28;01mexcept[39;00m (asyncio.CancelledError, asyncio.TimeoutError):
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/asyncio/base_events.py:1159[39m, in [36mBaseEventLoop.create_connection[39m[34m(self, protocol_factory, host, port, ssl, family, proto, flags, sock, local_addr, server_hostname, ssl_handshake_timeout, ssl_shutdown_timeout, happy_eyeballs_delay, interleave, all_errors)[39m
+[32m   1156[39m         [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[32m   1157[39m             [33mf[39m[33m'[39m[33mA Stream Socket was expected, got [39m[38;5;132;01m{[39;00msock[38;5;132;01m!r}[39;00m[33m'[39m)
+[32m-> [39m[32m1159[39m transport, protocol = [38;5;28;01mawait[39;00m [38;5;28mself[39m._create_connection_transport(
+[32m   1160[39m     sock, protocol_factory, ssl, server_hostname,
+[32m   1161[39m     ssl_handshake_timeout=ssl_handshake_timeout,
+[32m   1162[39m     ssl_shutdown_timeout=ssl_shutdown_timeout)
+[32m   1163[39m [38;5;28;01mif[39;00m [38;5;28mself[39m._debug:
+[32m   1164[39m     [38;5;66;03m# Get the socket from the transport because SSL transport closes[39;00m
+[32m   1165[39m     [38;5;66;03m# the old socket and creates a new SSL socket[39;00m
 
-[31mCancelledError[39m: 
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/asyncio/base_events.py:1192[39m, in [36mBaseEventLoop._create_connection_transport[39m[34m(self, sock, protocol_factory, ssl, server_hostname, server_side, ssl_handshake_timeout, ssl_shutdown_timeout)[39m
+[32m   1191[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m1192[39m     [38;5;28;01mawait[39;00m waiter
+[32m   1193[39m [38;5;28;01mexcept[39;00m:
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/asyncio/selector_events.py:988[39m, in [36m_SelectorSocketTransport._read_ready__get_buffer[39m[34m(self)[39m
+[32m    987[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m988[39m     nbytes = [30;43mself[39;49m[30;43m.[39;49m[30;43m_sock[39;49m[30;43m.[39;49m[30;43mrecv_into[39;49m[30;43m([39;49m[30;43mbuf[39;49m[30;43m)[39;49m
+[32m    989[39m [38;5;28;01mexcept[39;00m ([38;5;167;01mBlockingIOError[39;00m, [38;5;167;01mInterruptedError[39;00m):
+
+[31mConnectionResetError[39m: [Errno 104] Connection reset by peer
 
 The above exception was the direct cause of the following exception:
 
-[31mTimeoutError[39m                              Traceback (most recent call last)
+[31mClientConnectorError[39m                      Traceback (most recent call last)
 [36mCell[39m[36m [39m[32mIn[1][39m[32m, line 4[39m
 [32m      1[39m [38;5;28;01mimport[39;00m xarray [38;5;28;01mas[39;00m xr
 [32m      2[39m 
@@ -334,25 +350,55 @@ The above exception was the direct cause of the following exception:
 [32m    862[39m     ClientConnectorSSLError,
 [32m    863[39m ):
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client.py:834[39m, in [36mClientSession._request.<locals>._connect_and_send_request[39m[34m(req)[39m
-[32m    832[39m resp = [38;5;28;01mawait[39;00m req.send(conn)
-[32m    833[39m [38;5;28;01mtry[39;00m:
-[32m--> [39m[32m834[39m     [38;5;28;01mawait[39;00m resp.start(conn)
-[32m    835[39m [38;5;28;01mexcept[39;00m [38;5;167;01mBaseException[39;00m:
-[32m    836[39m     resp.close()
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client.py:810[39m, in [36mClientSession._request.<locals>._connect_and_send_request[39m[34m(req)[39m
+[32m    808[39m [38;5;28;01massert[39;00m [38;5;28mself[39m._connector [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m
+[32m    809[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m810[39m     conn = [38;5;28;01mawait[39;00m [38;5;28mself[39m._connector.connect(
+[32m    811[39m         req, traces=traces, timeout=real_timeout
+[32m    812[39m     )
+[32m    813[39m [38;5;28;01mexcept[39;00m asyncio.TimeoutError [38;5;28;01mas[39;00m exc:
+[32m    814[39m     [38;5;28;01mraise[39;00m ConnectionTimeoutError(
+[32m    815[39m         [33mf[39m[33m"[39m[33mConnection timeout to host [39m[38;5;132;01m{[39;00mreq.url[38;5;132;01m}[39;00m[33m"[39m
+[32m    816[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mexc[39;00m
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client_reqrep.py:553[39m, in [36mClientResponse.start[39m[34m(self, connection)[39m
-[32m    550[39m [38;5;28mself[39m._protocol = connection.protocol
-[32m    551[39m [38;5;28mself[39m._connection = connection
-[32m--> [39m[32m553[39m [38;5;28;01mwith[39;00m [38;5;28mself[39m._timer:
-[32m    554[39m     [38;5;28;01mwhile[39;00m [38;5;28;01mTrue[39;00m:
-[32m    555[39m         [38;5;66;03m# read response[39;00m
-[32m    556[39m         [38;5;28;01mtry[39;00m:
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/connector.py:657[39m, in [36mBaseConnector.connect[39m[34m(self, req, traces, timeout)[39m
+[32m    655[39m     [38;5;28;01mfor[39;00m trace [38;5;129;01min[39;00m traces:
+[32m    656[39m         [38;5;28;01mawait[39;00m trace.send_connection_create_start()
+[32m--> [39m[32m657[39m proto = [38;5;28;01mawait[39;00m [38;5;28mself[39m._create_connection(req, traces, timeout)
+[32m    658[39m [38;5;28;01mif[39;00m traces:
+[32m    659[39m     [38;5;28;01mfor[39;00m trace [38;5;129;01min[39;00m traces:
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/helpers.py:759[39m, in [36mTimerContext.__exit__[39m[34m(self, exc_type, exc_val, exc_tb)[39m
-[32m    757[39m         [38;5;28;01mif[39;00m enter_task.uncancel() > [38;5;28mself[39m._cancelling:
-[32m    758[39m             [38;5;28;01mreturn[39;00m [38;5;28;01mNone[39;00m
-[32m--> [39m[32m759[39m     [38;5;28;01mraise[39;00m asyncio.TimeoutError [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mexc_val[39;00m
-[32m    760[39m [38;5;28;01mreturn[39;00m [38;5;28;01mNone[39;00m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/connector.py:1242[39m, in [36mTCPConnector._create_connection[39m[34m(self, req, traces, timeout)[39m
+[32m   1240[39m     _, proto = [38;5;28;01mawait[39;00m [38;5;28mself[39m._create_proxy_connection(req, traces, timeout)
+[32m   1241[39m [38;5;28;01melse[39;00m:
+[32m-> [39m[32m1242[39m     _, proto = [38;5;28;01mawait[39;00m [38;5;28mself[39m._create_direct_connection(req, traces, timeout)
+[32m   1244[39m [38;5;28;01mreturn[39;00m proto
 
-[31mTimeoutError[39m: 
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/connector.py:1620[39m, in [36mTCPConnector._create_direct_connection[39m[34m(self, req, traces, timeout, client_error)[39m
+[32m   1618[39m [38;5;28;01melse[39;00m:
+[32m   1619[39m     [38;5;28;01massert[39;00m last_exc [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m
+[32m-> [39m[32m1620[39m     [38;5;28;01mraise[39;00m last_exc
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/connector.py:1589[39m, in [36mTCPConnector._create_direct_connection[39m[34m(self, req, traces, timeout, client_error)[39m
+[32m   1584[39m server_hostname = (
+[32m   1585[39m     (req.server_hostname [38;5;129;01mor[39;00m host).rstrip([33m"[39m[33m.[39m[33m"[39m) [38;5;28;01mif[39;00m sslcontext [38;5;28;01melse[39;00m [38;5;28;01mNone[39;00m
+[32m   1586[39m )
+[32m   1588[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m1589[39m     transp, proto = [38;5;28;01mawait[39;00m [38;5;28mself[39m._wrap_create_connection(
+[32m   1590[39m         [38;5;28mself[39m._factory,
+[32m   1591[39m         timeout=timeout,
+[32m   1592[39m         ssl=sslcontext,
+[32m   1593[39m         addr_infos=addr_infos,
+[32m   1594[39m         server_hostname=server_hostname,
+[32m   1595[39m         req=req,
+[32m   1596[39m         client_error=client_error,
+[32m   1597[39m     )
+[32m   1598[39m [38;5;28;01mexcept[39;00m (ClientConnectorError, asyncio.TimeoutError) [38;5;28;01mas[39;00m exc:
+[32m   1599[39m     last_exc = exc
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/connector.py:1324[39m, in [36mTCPConnector._wrap_create_connection[39m[34m(self, addr_infos, req, timeout, client_error, *args, **kwargs)[39m
+[32m   1322[39m [38;5;28;01mif[39;00m exc.errno [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mand[39;00m [38;5;28misinstance[39m(exc, asyncio.TimeoutError):
+[32m   1323[39m     [38;5;28;01mraise[39;00m
+[32m-> [39m[32m1324[39m [38;5;28;01mraise[39;00m client_error(req.connection_key, exc) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mexc[39;00m
+
+[31mClientConnectorError[39m: Cannot connect to host data.gdex.ucar.edu:443 ssl:default [Connection reset by peer]
