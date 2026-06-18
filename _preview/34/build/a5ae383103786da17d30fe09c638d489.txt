@@ -1,0 +1,247 @@
+2026-06-18 17:36:49,132 - distributed.protocol.pickle - ERROR - Failed to serialize 500, message='Internal Server Error', url='https://osdf-cache-01.gwave.ics.psu.edu:8443/ncar-gdex/d316010/day/tmax.eval.day.NAM-44i.raw.zarr/tmax/0.7.1.0'.
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/distributed/worker.py", line 2821, in _run_task_simple
+    result = task(data)
+             ^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/dask/_task_spec.py", line 768, in __call__
+    return self.func(*new_argspec)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/dask/_task_spec.py", line 199, in _execute_subgraph
+    res = execute_graph(final, keys=[outkey])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/dask/_task_spec.py", line 1096, in execute_graph
+    cache[key] = node(cache)
+                 ^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/dask/_task_spec.py", line 768, in __call__
+    return self.func(*new_argspec)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/dask/array/core.py", line 140, in getter
+    c = np.asarray(c)
+        ^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py", line 686, in __array__
+    return np.asarray(self.get_duck_array(), dtype=dtype, copy=copy)
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py", line 691, in get_duck_array
+    return self.array.get_duck_array()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py", line 924, in get_duck_array
+    return self.array.get_duck_array()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/coding/common.py", line 80, in get_duck_array
+    return self.func(self.array.get_duck_array())
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py", line 764, in get_duck_array
+    array = self.array[self.key]
+            ~~~~~~~~~~^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/zarr.py", line 316, in __getitem__
+    return indexing.explicit_indexing_adapter(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py", line 1156, in explicit_indexing_adapter
+    result = raw_indexing_method(raw_key.tuple)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/zarr.py", line 279, in _getitem
+    return self._array[key]
+           ~~~~~~~~~~~^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py", line 2578, in __getitem__
+    return self.get_orthogonal_selection(pure_selection, fields=fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py", line 3055, in get_orthogonal_selection
+    return sync(
+           ^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/sync.py", line 158, in sync
+    raise return_result
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/sync.py", line 118, in _runner
+    return await coro
+           ^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py", line 1414, in _get_selection
+    return await _get_selection(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py", line 5452, in _get_selection
+    results = await codec_pipeline.read(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/codec_pipeline.py", line 601, in read
+    batch_results = await concurrent_map(
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py", line 110, in concurrent_map
+    return await asyncio.gather(*[asyncio.ensure_future(run(item)) for item in items])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py", line 108, in run
+    return await func(*item)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/codec_pipeline.py", line 392, in read_batch
+    chunk_bytes_batch = await concurrent_map(
+                        ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py", line 110, in concurrent_map
+    return await asyncio.gather(*[asyncio.ensure_future(run(item)) for item in items])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py", line 108, in run
+    return await func(*item)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/storage/_common.py", line 162, in get
+    return await self.store.get(self.path, prototype=prototype, byte_range=byte_range)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/storage/_fsspec.py", line 289, in get
+    value = prototype.buffer.from_bytes(await self.fs._cat_file(path))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py", line 250, in _cat_file
+    self._raise_not_found_for_status(r, url)
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py", line 233, in _raise_not_found_for_status
+    response.raise_for_status()
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client_reqrep.py", line 655, in raise_for_status
+    raise ClientResponseError(
+aiohttp.client_exceptions.ClientResponseError: 500, message='Internal Server Error', url='https://osdf-cache-01.gwave.ics.psu.edu:8443/ncar-gdex/d316010/day/tmax.eval.day.NAM-44i.raw.zarr/tmax/0.7.1.0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/distributed/protocol/pickle.py", line 63, in dumps
+    result = pickle.dumps(x, **dump_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: can't pickle multidict._multidict.CIMultiDictProxy objects
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/distributed/protocol/pickle.py", line 68, in dumps
+    pickler.dump(x)
+TypeError: can't pickle multidict._multidict.CIMultiDictProxy objects
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/distributed/protocol/pickle.py", line 80, in dumps
+    result = cloudpickle.dumps(x, **dump_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/cloudpickle/cloudpickle.py", line 1544, in dumps
+    cp.dump(obj)
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/cloudpickle/cloudpickle.py", line 1313, in dump
+    return super().dump(obj)
+           ^^^^^^^^^^^^^^^^^
+TypeError: can't pickle multidict._multidict.CIMultiDictProxy objects
+2026-06-18 17:36:49,134 - distributed.protocol.pickle - ERROR - Failed to serialize 500, message='Internal Server Error', url='https://osdf-cache-01.gwave.ics.psu.edu:8443/ncar-gdex/d316010/day/tmax.eval.day.NAM-44i.raw.zarr/tmax/0.8.1.0'.
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/distributed/worker.py", line 2821, in _run_task_simple
+    result = task(data)
+             ^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/dask/_task_spec.py", line 768, in __call__
+    return self.func(*new_argspec)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/dask/_task_spec.py", line 199, in _execute_subgraph
+    res = execute_graph(final, keys=[outkey])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/dask/_task_spec.py", line 1096, in execute_graph
+    cache[key] = node(cache)
+                 ^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/dask/_task_spec.py", line 768, in __call__
+    return self.func(*new_argspec)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/dask/array/core.py", line 140, in getter
+    c = np.asarray(c)
+        ^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py", line 686, in __array__
+    return np.asarray(self.get_duck_array(), dtype=dtype, copy=copy)
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py", line 691, in get_duck_array
+    return self.array.get_duck_array()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py", line 924, in get_duck_array
+    return self.array.get_duck_array()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/coding/common.py", line 80, in get_duck_array
+    return self.func(self.array.get_duck_array())
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py", line 764, in get_duck_array
+    array = self.array[self.key]
+            ~~~~~~~~~~^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/zarr.py", line 316, in __getitem__
+    return indexing.explicit_indexing_adapter(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py", line 1156, in explicit_indexing_adapter
+    result = raw_indexing_method(raw_key.tuple)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/zarr.py", line 279, in _getitem
+    return self._array[key]
+           ~~~~~~~~~~~^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py", line 2578, in __getitem__
+    return self.get_orthogonal_selection(pure_selection, fields=fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py", line 3055, in get_orthogonal_selection
+    return sync(
+           ^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/sync.py", line 158, in sync
+    raise return_result
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/sync.py", line 118, in _runner
+    return await coro
+           ^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py", line 1414, in _get_selection
+    return await _get_selection(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py", line 5452, in _get_selection
+    results = await codec_pipeline.read(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/codec_pipeline.py", line 601, in read
+    batch_results = await concurrent_map(
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py", line 110, in concurrent_map
+    return await asyncio.gather(*[asyncio.ensure_future(run(item)) for item in items])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py", line 108, in run
+    return await func(*item)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/codec_pipeline.py", line 392, in read_batch
+    chunk_bytes_batch = await concurrent_map(
+                        ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py", line 110, in concurrent_map
+    return await asyncio.gather(*[asyncio.ensure_future(run(item)) for item in items])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py", line 108, in run
+    return await func(*item)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/storage/_common.py", line 162, in get
+    return await self.store.get(self.path, prototype=prototype, byte_range=byte_range)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/storage/_fsspec.py", line 289, in get
+    value = prototype.buffer.from_bytes(await self.fs._cat_file(path))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py", line 250, in _cat_file
+    self._raise_not_found_for_status(r, url)
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py", line 233, in _raise_not_found_for_status
+    response.raise_for_status()
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client_reqrep.py", line 655, in raise_for_status
+    raise ClientResponseError(
+aiohttp.client_exceptions.ClientResponseError: 500, message='Internal Server Error', url='https://osdf-cache-01.gwave.ics.psu.edu:8443/ncar-gdex/d316010/day/tmax.eval.day.NAM-44i.raw.zarr/tmax/0.8.1.0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/distributed/protocol/pickle.py", line 63, in dumps
+    result = pickle.dumps(x, **dump_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: can't pickle multidict._multidict.CIMultiDictProxy objects
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/distributed/protocol/pickle.py", line 68, in dumps
+    pickler.dump(x)
+TypeError: can't pickle multidict._multidict.CIMultiDictProxy objects
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/distributed/protocol/pickle.py", line 80, in dumps
+    result = cloudpickle.dumps(x, **dump_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/cloudpickle/cloudpickle.py", line 1544, in dumps
+    cp.dump(obj)
+  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/cloudpickle/cloudpickle.py", line 1313, in dump
+    return super().dump(obj)
+           ^^^^^^^^^^^^^^^^^
+TypeError: can't pickle multidict._multidict.CIMultiDictProxy objects
+2026-06-18 17:36:49,302 - distributed.worker - ERROR - Compute Failed
+Key:       ('getitem-open_dataset-tmax-nanmin_skip-0acef88ae7e4503eca14c46d6a93b91f', 7, 1, 0)
+State:     executing
+Task:  <Task ('getitem-open_dataset-tmax-nanmin_skip-0acef88ae7e4503eca14c46d6a93b91f', 7, 1, 0) _execute_subgraph(...)>
+Exception: 'ClientResponseError(RequestInfo(url=URL(\'https://osdf-cache-01.gwave.ics.psu.edu:8443/ncar-gdex/d316010/day/tmax.eval.day.NAM-44i.raw.zarr/tmax/0.7.1.0\'), method=\'GET\', headers=<CIMultiDictProxy(\'Host\': \'osdf-cache-01.gwave.ics.psu.edu:8443\', \'Accept\': \'*/*\', \'Accept-Encoding\': \'gzip, deflate, br, zstd\', \'User-Agent\': \'Python/3.12 aiohttp/3.14.1\')>, real_url=URL(\'https://osdf-cache-01.gwave.ics.psu.edu:8443/ncar-gdex/d316010/day/tmax.eval.day.NAM-44i.raw.zarr/tmax/0.7.1.0\')), (<ClientResponse(https://osdf-director.osg-htc.org/ncar-gdex/d316010/day/tmax.eval.day.NAM-44i.raw.zarr/tmax/0.7.1.0) [307 Temporary Redirect]>\n<CIMultiDictProxy(\'Access-Control-Allow-Headers\': \'Content-Type, Authorization, Depth\', \'Access-Control-Allow-Methods\': \'GET, PUT, OPTIONS, PROPFIND\', \'Access-Control-Allow-Origin\': \'*\', \'Access-Control-Expose-Headers\': \'Content-Type, Authorization, X-Pelican-User, X-Pelican-Timeout, X-Pelican-Token-Generation, X-Pelican-Authorization, X-Pelican-Namespace\', \'Content-Length\': \'146\', \'Content-Type\': \'text/html; charset=utf-8\', \'Date\': \'Thu, 18 Jun 2026 17:36:40 GMT\', \'Link\': \'<https://osdf-cache-01.gwave.ics.psu.edu:8443/ncar-gdex/d316010/day/tmax.eval.day.NAM-44i.raw.zarr/tmax/0.7.1.0>; rel="duplicate"; pri=1; depth=5, <https://dtn-pas.cinc.nrp.internet2.edu:8443/ncar-gdex/d316010/day/tmax.eval.day.NAM-44i.raw.zarr/tmax/0.7.1.0>; rel="duplicate"; pri=2; depth=5, <https://pelican-cache.rc.duke.edu:443/ncar-gdex/d316010/day/tmax.eval.day.NAM-44i.raw.zarr/tmax/0.7.1.0>; rel="duplicate"; pri=3; depth=5, <https://osdf1.chic.nrp.internet2.edu:8443/ncar-gdex/d316010/day/tmax.eval.day.NAM-44i.raw.zarr/tmax/0.7.1.0>; rel="duplicate"; pri=4; depth=5, <https://osg-hawk-cache.cc.lehigh.edu:8443/ncar-gdex/d316010/day/tmax.eval.day.NAM-44i.raw.zarr/tmax/0.7.1.0>; rel="duplicate"; pri=5; depth=5, <https://dtn-pas.kans.nrp.internet2.edu:8443/ncar-gdex/d316010/day/tmax.eval.day.NAM-44i.raw.zarr/tmax/0.7.1.0>; rel="duplicate"; pri=6; depth=5\', \'Location\': \'https://osdf-cache-01.gwave.ics.psu.edu:8443/ncar-gdex/d316010/day/tmax.eval.day.NAM-44i.raw.zarr/tmax/0.7.1.0\', \'Server\': \'pelican/7.25.1-rc.6\', \'X-Pelican-Authorization\': \'issuer=https://ncar-s3-origin.nationalresearchplatform.org:8000\', \'X-Pelican-Jobid\': \'63b4ee68-50c0-4213-bc8d-d9cd94dd6f91\', \'X-Pelican-Namespace\': \'namespace=/ncar-gdex, require-token=false, collections-url=https://ncar-s3-origin.nationalresearchplatform.org:8444\', \'X-Pelican-Token-Generation\': \'issuer=https://ncar-s3-origin.nationalresearchplatform.org:8000, max-scope-depth=3, strategy=OAuth2, base-path=/ncar-gdex\')>\n,), status=500, message=\'Internal Server Error\', headers=<CIMultiDictProxy(\'Connection\': \'Close\', \'Server\': \'XrootD/v5.9.1\', \'Access-Control-Allow-Origin\': \'*\', \'Access-Control-Allow-Headers\': \'Authorization,Want-Digest,Content-Type,User-Agent\', \'Content-Length\': \'97\')>)'
+Traceback: '  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/dask/array/core.py", line 140, in getter\n    c = np.asarray(c)\n        ^^^^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py", line 686, in __array__\n    return np.asarray(self.get_duck_array(), dtype=dtype, copy=copy)\n                      ^^^^^^^^^^^^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py", line 691, in get_duck_array\n    return self.array.get_duck_array()\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py", line 924, in get_duck_array\n    return self.array.get_duck_array()\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/coding/common.py", line 80, in get_duck_array\n    return self.func(self.array.get_duck_array())\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py", line 764, in get_duck_array\n    array = self.array[self.key]\n            ~~~~~~~~~~^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/zarr.py", line 316, in __getitem__\n    return indexing.explicit_indexing_adapter(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py", line 1156, in explicit_indexing_adapter\n    result = raw_indexing_method(raw_key.tuple)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/zarr.py", line 279, in _getitem\n    return self._array[key]\n           ~~~~~~~~~~~^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py", line 2578, in __getitem__\n    return self.get_orthogonal_selection(pure_selection, fields=fields)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py", line 3055, in get_orthogonal_selection\n    return sync(\n           ^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/sync.py", line 158, in sync\n    raise return_result\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/sync.py", line 118, in _runner\n    return await coro\n           ^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py", line 1414, in _get_selection\n    return await _get_selection(\n           ^^^^^^^^^^^^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py", line 5452, in _get_selection\n    results = await codec_pipeline.read(\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/codec_pipeline.py", line 601, in read\n    batch_results = await concurrent_map(\n                    ^^^^^^^^^^^^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py", line 110, in concurrent_map\n    return await asyncio.gather(*[asyncio.ensure_future(run(item)) for item in items])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py", line 108, in run\n    return await func(*item)\n           ^^^^^^^^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/codec_pipeline.py", line 392, in read_batch\n    chunk_bytes_batch = await concurrent_map(\n                        ^^^^^^^^^^^^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py", line 110, in concurrent_map\n    return await asyncio.gather(*[asyncio.ensure_future(run(item)) for item in items])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py", line 108, in run\n    return await func(*item)\n           ^^^^^^^^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/storage/_common.py", line 162, in get\n    return await self.store.get(self.path, prototype=prototype, byte_range=byte_range)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/storage/_fsspec.py", line 289, in get\n    value = prototype.buffer.from_bytes(await self.fs._cat_file(path))\n                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py", line 250, in _cat_file\n    self._raise_not_found_for_status(r, url)\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py", line 233, in _raise_not_found_for_status\n    response.raise_for_status()\n  File "/home/runner/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client_reqrep.py", line 655, in raise_for_status\n    raise ClientResponseError(\n'
+
