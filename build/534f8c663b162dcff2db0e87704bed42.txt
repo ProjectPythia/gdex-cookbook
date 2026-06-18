@@ -1,72 +1,47 @@
 [31m---------------------------------------------------------------------------[39m
 [31mClientResponseError[39m                       Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 1[39m
-[32m----> [39m[32m1[39m dt_rhi = xr.open_datatree(rhi_url, engine=[33m"zarr"[39m, decode_timedelta=[38;5;28;01mFalse[39;00m)
-[32m      2[39m dt_ppi = xr.open_datatree(ppi_url, engine=[33m"zarr"[39m, decode_timedelta=[38;5;28;01mFalse[39;00m)
-[32m      3[39m dt_rhi
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 6[39m
+[32m      2[39m 
+[32m      3[39m data_var = [33m"tmax"[39m
+[32m      4[39m store_name = url.split([33m"/"[39m)[-[32m1[39m]
+[32m      5[39m 
+[32m----> [39m[32m6[39m ds = xr.open_dataset(url, engine=[33m"zarr"[39m, chunks={}, consolidated=[38;5;28;01mTrue[39;00m, zarr_format=[32m2[39m)
+[32m      7[39m ds
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/api.py:1077[39m, in [36mopen_datatree[39m[34m(filename_or_obj, engine, chunks, cache, decode_cf, mask_and_scale, decode_times, decode_timedelta, use_cftime, concat_characters, decode_coords, drop_variables, create_default_indexes, inline_array, chunked_array_type, from_array_kwargs, backend_kwargs, **kwargs)[39m
-[32m   1065[39m decoders = _resolve_decoders_kwargs(
-[32m   1066[39m     decode_cf,
-[32m   1067[39m     open_backend_dataset_parameters=backend.open_dataset_parameters,
-[32m   (...)[39m[32m   1073[39m     decode_coords=decode_coords,
-[32m   1074[39m )
-[32m   1075[39m overwrite_encoded_chunks = kwargs.pop([33m"[39m[33moverwrite_encoded_chunks[39m[33m"[39m, [38;5;28;01mNone[39;00m)
-[32m-> [39m[32m1077[39m backend_tree = [30;43mbackend[39;49m[30;43m.[39;49m[30;43mopen_datatree[39;49m[30;43m([39;49m
-[32m   1078[39m [30;43m    [39;49m[30;43mfilename_or_obj[39;49m[30;43m,[39;49m
-[32m   1079[39m [30;43m    [39;49m[30;43mdrop_variables[39;49m[30;43m=[39;49m[30;43mdrop_variables[39;49m[30;43m,[39;49m
-[32m   1080[39m [30;43m    [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mdecoders[39;49m[30;43m,[39;49m
-[32m   1081[39m [30;43m    [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m,[39;49m
-[32m   1082[39m [30;43m[39;49m[30;43m)[39;49m
-[32m   1084[39m tree = _datatree_from_backend_datatree(
-[32m   1085[39m     backend_tree,
-[32m   1086[39m     filename_or_obj,
-[32m   (...)[39m[32m   1097[39m     **kwargs,
-[32m   1098[39m )
-[32m   1100[39m [38;5;28;01mreturn[39;00m tree
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/api.py:607[39m, in [36mopen_dataset[39m[34m(filename_or_obj, engine, chunks, cache, decode_cf, mask_and_scale, decode_times, decode_timedelta, use_cftime, concat_characters, decode_coords, drop_variables, create_default_indexes, inline_array, chunked_array_type, from_array_kwargs, backend_kwargs, **kwargs)[39m
+[32m    595[39m decoders = _resolve_decoders_kwargs(
+[32m    596[39m     decode_cf,
+[32m    597[39m     open_backend_dataset_parameters=backend.open_dataset_parameters,
+[32m   (...)[39m[32m    603[39m     decode_coords=decode_coords,
+[32m    604[39m )
+[32m    606[39m overwrite_encoded_chunks = kwargs.pop([33m"[39m[33moverwrite_encoded_chunks[39m[33m"[39m, [38;5;28;01mNone[39;00m)
+[32m--> [39m[32m607[39m backend_ds = [30;43mbackend[39;49m[30;43m.[39;49m[30;43mopen_dataset[39;49m[30;43m([39;49m
+[32m    608[39m [30;43m    [39;49m[30;43mfilename_or_obj[39;49m[30;43m,[39;49m
+[32m    609[39m [30;43m    [39;49m[30;43mdrop_variables[39;49m[30;43m=[39;49m[30;43mdrop_variables[39;49m[30;43m,[39;49m
+[32m    610[39m [30;43m    [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mdecoders[39;49m[30;43m,[39;49m
+[32m    611[39m [30;43m    [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m,[39;49m
+[32m    612[39m [30;43m[39;49m[30;43m)[39;49m
+[32m    613[39m ds = _dataset_from_backend_dataset(
+[32m    614[39m     backend_ds,
+[32m    615[39m     filename_or_obj,
+[32m   (...)[39m[32m    626[39m     **kwargs,
+[32m    627[39m )
+[32m    628[39m [38;5;28;01mreturn[39;00m ds
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/zarr.py:1782[39m, in [36mZarrBackendEntrypoint.open_datatree[39m[34m(self, filename_or_obj, mask_and_scale, decode_times, concat_characters, decode_coords, drop_variables, use_cftime, decode_timedelta, group, mode, synchronizer, consolidated, chunk_store, storage_options, zarr_version, zarr_format)[39m
-[32m   1761[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mopen_datatree[39m(
-[32m   1762[39m     [38;5;28mself[39m,
-[32m   1763[39m     filename_or_obj: T_PathFileOrDataStore,
-[32m   (...)[39m[32m   1779[39m     zarr_format=[38;5;28;01mNone[39;00m,
-[32m   1780[39m ) -> DataTree:
-[32m   1781[39m     filename_or_obj = _normalize_path(filename_or_obj)
-[32m-> [39m[32m1782[39m     groups_dict = [30;43mself[39;49m[30;43m.[39;49m[30;43mopen_groups_as_dict[39;49m[30;43m([39;49m
-[32m   1783[39m [30;43m        [39;49m[30;43mfilename_or_obj[39;49m[30;43m=[39;49m[30;43mfilename_or_obj[39;49m[30;43m,[39;49m
-[32m   1784[39m [30;43m        [39;49m[30;43mmask_and_scale[39;49m[30;43m=[39;49m[30;43mmask_and_scale[39;49m[30;43m,[39;49m
-[32m   1785[39m [30;43m        [39;49m[30;43mdecode_times[39;49m[30;43m=[39;49m[30;43mdecode_times[39;49m[30;43m,[39;49m
-[32m   1786[39m [30;43m        [39;49m[30;43mconcat_characters[39;49m[30;43m=[39;49m[30;43mconcat_characters[39;49m[30;43m,[39;49m
-[32m   1787[39m [30;43m        [39;49m[30;43mdecode_coords[39;49m[30;43m=[39;49m[30;43mdecode_coords[39;49m[30;43m,[39;49m
-[32m   1788[39m [30;43m        [39;49m[30;43mdrop_variables[39;49m[30;43m=[39;49m[30;43mdrop_variables[39;49m[30;43m,[39;49m
-[32m   1789[39m [30;43m        [39;49m[30;43muse_cftime[39;49m[30;43m=[39;49m[30;43muse_cftime[39;49m[30;43m,[39;49m
-[32m   1790[39m [30;43m        [39;49m[30;43mdecode_timedelta[39;49m[30;43m=[39;49m[30;43mdecode_timedelta[39;49m[30;43m,[39;49m
-[32m   1791[39m [30;43m        [39;49m[30;43mgroup[39;49m[30;43m=[39;49m[30;43mgroup[39;49m[30;43m,[39;49m
-[32m   1792[39m [30;43m        [39;49m[30;43mmode[39;49m[30;43m=[39;49m[30;43mmode[39;49m[30;43m,[39;49m
-[32m   1793[39m [30;43m        [39;49m[30;43msynchronizer[39;49m[30;43m=[39;49m[30;43msynchronizer[39;49m[30;43m,[39;49m
-[32m   1794[39m [30;43m        [39;49m[30;43mconsolidated[39;49m[30;43m=[39;49m[30;43mconsolidated[39;49m[30;43m,[39;49m
-[32m   1795[39m [30;43m        [39;49m[30;43mchunk_store[39;49m[30;43m=[39;49m[30;43mchunk_store[39;49m[30;43m,[39;49m
-[32m   1796[39m [30;43m        [39;49m[30;43mstorage_options[39;49m[30;43m=[39;49m[30;43mstorage_options[39;49m[30;43m,[39;49m
-[32m   1797[39m [30;43m        [39;49m[30;43mzarr_version[39;49m[30;43m=[39;49m[30;43mzarr_version[39;49m[30;43m,[39;49m
-[32m   1798[39m [30;43m        [39;49m[30;43mzarr_format[39;49m[30;43m=[39;49m[30;43mzarr_format[39;49m[30;43m,[39;49m
-[32m   1799[39m [30;43m    [39;49m[30;43m)[39;49m
-[32m   1801[39m     [38;5;28;01mreturn[39;00m datatree_from_dict_with_io_cleanup(groups_dict)
-
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/zarr.py:1849[39m, in [36mZarrBackendEntrypoint.open_groups_as_dict[39m[34m(self, filename_or_obj, mask_and_scale, decode_times, concat_characters, decode_coords, drop_variables, use_cftime, decode_timedelta, group, mode, synchronizer, consolidated, chunk_store, storage_options, zarr_version, zarr_format)[39m
-[32m   1846[39m store_entrypoint = StoreBackendEntrypoint()
-[32m   1848[39m [38;5;28;01mwith[39;00m close_on_error(store):
-[32m-> [39m[32m1849[39m     group_ds = [30;43mstore_entrypoint[39;49m[30;43m.[39;49m[30;43mopen_dataset[39;49m[30;43m([39;49m
-[32m   1850[39m [30;43m        [39;49m[30;43mstore[39;49m[30;43m,[39;49m
-[32m   1851[39m [30;43m        [39;49m[30;43mmask_and_scale[39;49m[30;43m=[39;49m[30;43mmask_and_scale[39;49m[30;43m,[39;49m
-[32m   1852[39m [30;43m        [39;49m[30;43mdecode_times[39;49m[30;43m=[39;49m[30;43mdecode_times[39;49m[30;43m,[39;49m
-[32m   1853[39m [30;43m        [39;49m[30;43mconcat_characters[39;49m[30;43m=[39;49m[30;43mconcat_characters[39;49m[30;43m,[39;49m
-[32m   1854[39m [30;43m        [39;49m[30;43mdecode_coords[39;49m[30;43m=[39;49m[30;43mdecode_coords[39;49m[30;43m,[39;49m
-[32m   1855[39m [30;43m        [39;49m[30;43mdrop_variables[39;49m[30;43m=[39;49m[30;43mdrop_variables[39;49m[30;43m,[39;49m
-[32m   1856[39m [30;43m        [39;49m[30;43muse_cftime[39;49m[30;43m=[39;49m[30;43muse_cftime[39;49m[30;43m,[39;49m
-[32m   1857[39m [30;43m        [39;49m[30;43mdecode_timedelta[39;49m[30;43m=[39;49m[30;43mdecode_timedelta[39;49m[30;43m,[39;49m
-[32m   1858[39m [30;43m    [39;49m[30;43m)[39;49m
-[32m   1859[39m [38;5;28;01mif[39;00m group:
-[32m   1860[39m     group_name = [38;5;28mstr[39m(NodePath(path_group).relative_to(parent))
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/zarr.py:1749[39m, in [36mZarrBackendEntrypoint.open_dataset[39m[34m(self, filename_or_obj, mask_and_scale, decode_times, concat_characters, decode_coords, drop_variables, use_cftime, decode_timedelta, group, mode, synchronizer, consolidated, chunk_store, storage_options, zarr_version, zarr_format, store, engine, use_zarr_fill_value_as_mask, cache_members)[39m
+[32m   1747[39m store_entrypoint = StoreBackendEntrypoint()
+[32m   1748[39m [38;5;28;01mwith[39;00m close_on_error(store):
+[32m-> [39m[32m1749[39m     ds = [30;43mstore_entrypoint[39;49m[30;43m.[39;49m[30;43mopen_dataset[39;49m[30;43m([39;49m
+[32m   1750[39m [30;43m        [39;49m[30;43mstore[39;49m[30;43m,[39;49m
+[32m   1751[39m [30;43m        [39;49m[30;43mmask_and_scale[39;49m[30;43m=[39;49m[30;43mmask_and_scale[39;49m[30;43m,[39;49m
+[32m   1752[39m [30;43m        [39;49m[30;43mdecode_times[39;49m[30;43m=[39;49m[30;43mdecode_times[39;49m[30;43m,[39;49m
+[32m   1753[39m [30;43m        [39;49m[30;43mconcat_characters[39;49m[30;43m=[39;49m[30;43mconcat_characters[39;49m[30;43m,[39;49m
+[32m   1754[39m [30;43m        [39;49m[30;43mdecode_coords[39;49m[30;43m=[39;49m[30;43mdecode_coords[39;49m[30;43m,[39;49m
+[32m   1755[39m [30;43m        [39;49m[30;43mdrop_variables[39;49m[30;43m=[39;49m[30;43mdrop_variables[39;49m[30;43m,[39;49m
+[32m   1756[39m [30;43m        [39;49m[30;43muse_cftime[39;49m[30;43m=[39;49m[30;43muse_cftime[39;49m[30;43m,[39;49m
+[32m   1757[39m [30;43m        [39;49m[30;43mdecode_timedelta[39;49m[30;43m=[39;49m[30;43mdecode_timedelta[39;49m[30;43m,[39;49m
+[32m   1758[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m   1759[39m [38;5;28;01mreturn[39;00m ds
 
 [36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/store.py:45[39m, in [36mStoreBackendEntrypoint.open_dataset[39m[34m(self, filename_or_obj, mask_and_scale, decode_times, concat_characters, decode_coords, drop_variables, set_indexes, use_cftime, decode_timedelta)[39m
 [32m     42[39m [38;5;28mvars[39m, attrs = filename_or_obj.load()
@@ -360,13 +335,9 @@
 [32m    660[39m     headers=[38;5;28mself[39m.headers,
 [32m    661[39m )
 
-[31mClientResponseError[39m: 500, message='Internal Server Error', url='https://osdf-cache-01.gwave.ics.psu.edu:8443/ncar-gdex/d694517/v2.0_zarr/cfrad.20220525_015443.665_to_20220525_015709.985_SPOL_PrecipRhi2_RHI.zarr/sweep_5/time/c/0'
-Raised while decoding variable 'time' with value <xarray.Variable (azimuth: 260)> Size: 2kB
-[260 values with dtype=float64]
+[31mClientResponseError[39m: 500, message='Internal Server Error', url='https://osdf-cache-01.gwave.ics.psu.edu:8443/ncar-gdex/d316010/day/tmax.eval.day.NAM-44i.raw.zarr/time_bnds/0.0'
+Raised while decoding variable 'time_bnds' with value <xarray.Variable (time: 13514, bnds: 2)> Size: 216kB
+[27028 values with dtype=int64]
 Attributes:
-    standard_name:  time
-    long_name:      time in seconds since volume start
-    comment:        times are relative to the volume start_time
-    units:          seconds since 2022-05-25T01:54:43+00:00
-    calendar:       gregorian
-    _FillValue:     nan
+    calendar:  gregorian
+    units:     days since 1979-01-01 00:00:00.000000
