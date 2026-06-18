@@ -14,11 +14,15 @@ dependencies:
   - cf-units
   - scipy
   - rioxarray
+  - xradar
+  - cmweather
   # File Formats & I/O
   - netcdf4
+  - h5netcdf
   - zarr>=3.1.6     # pin for stable version3
   - fastparquet
   - kerchunk
+  - pyarrow
   # Remote & Cloud File Access
   - requests
   - fsspec

@@ -6,17 +6,18 @@
 [![Binder](https://binder.projectpythia.org/badge_logo.svg)](https://binder.projectpythia.org/v2/gh/ProjectPythia/cookbook-template/main?labpath=notebooks)
 [![DOI](https://zenodo.org/badge/475509405.svg)](https://zenodo.org/badge/latestdoi/475509405)
 
-Geoscience Data Exchange is ..... This Project Pythia Cookbook covers ... (replace `...` with the main subject of your cookbook ... e.g., _working with radar data in Python_)
+This Project Pythia Cookbook covers what data users and submitters need to know about NSF NCAR's Geoscience Data Exchange (GDEX), a major geoscience data repository.
 
 ## Motivation
 
-(Add a few sentences stating why this cookbook will be useful. What skills will you, "the chef", gain once you have reached the end of the cookbook?)
+NSF NCAR's Geoscience Data Exchange (GDEX) hosts thousands of freely accessible geoscience datasets — from global reanalyses like ERA5 and JRA-3Q to climate model output and observational records — but knowing how to find, access, and work with that data can be a significant barrier for new users. This cookbook removes that barrier. By the end, you will know how to discover datasets on GDEX, choose the right access method for your workflow (bulk download, THREDDS/OPeNDAP streaming, Zarr cloud access, Globus, or the REST API), and apply those skills to real datasets across a range of geoscience workflows. You will also learn how to submit your own data to GDEX for long-term stewardship and citation.
 
 ## Authors
 
 [Harsha R. Hampapura](https://github.com/hrhampapura)
 [Riley Conroy](https://github.com/rpconroy)
 [Chia-Wei Hsu](https://github.com/chiaweh2)
+[Mya Sears](https://github.com/myasea8)
 
 ### Contributors
 
@@ -26,15 +27,37 @@ Geoscience Data Exchange is ..... This Project Pythia Cookbook covers ... (repla
 
 ## Structure
 
-(State one or more sections that will comprise the notebook. E.g., _This cookbook is broken up into two main sections - "Foundations" and "Example Workflows."_ Then, describe each section below.)
+This cookbook is organized into three main sections — **GDEX Introduction**,
+**Services**, and **Example Workflows** — building from orientation, to access
+methods, to complete analyses.
 
-### Section 1 ( Replace with the title of this section, e.g. "Foundations" )
+### GDEX Introduction
 
-(Add content for this section, e.g., "The foundational content includes ... ")
+A high-level tour of what GDEX is and who it serves: what the repository holds, the
+services it offers for accessing and contributing data, how it enables science, and
+how to submit your own datasets.
 
-### Section 2 ( Replace with the title of this section, e.g. "Example workflows" )
+### Services
 
-(Add content for this section, e.g., "Example workflows include ... ")
+The core access toolkit — each subsection covers one way to get data out of GDEX,
+with a short introduction plus hands-on notebooks:
+
+- **TDS** — the THREDDS Data Server: OPeNDAP and remote subsetting via xarray and Siphon
+- **Zarr/Kerchunk** — Analysis-Ready, Cloud-Optimized access to virtual Zarr stores
+- **API** — programmatic dataset discovery, metadata, and subsetting
+- **Direct Download** — pulling files over HTTPS
+- **POSIX** — direct filesystem access on NSF NCAR HPC
+- **Globus** — high-performance transfer of large datasets
+
+### Example Workflows
+
+End-to-end, dataset-specific analyses that put those services to work — each streams
+data remotely (no bulk downloads) and produces a diagnostic or visualization:
+
+- **Reanalysis** — ERA5 precipitation and JRA-3Q sea-level pressure
+- **Model Simulations** — CESM2 Large Ensemble, NA-CORDEX, and CONUS404
+- **Observations** — HadISST sea surface temperature and S-Pol radar
+- **Data Fusion** — combining wind-profiler observations with ERA5
 
 ## Running the Notebooks
 
@@ -65,8 +88,6 @@ executable book chapter.
 ### Running on Your Own Machine
 
 If you are interested in running this material locally on your computer, you will need to follow this workflow:
-
-(Replace "cookbook-example" with the title of your cookbooks)
 
 1. Clone the `https://github.com/ProjectPythia/gdex-cookbook` repository:
 

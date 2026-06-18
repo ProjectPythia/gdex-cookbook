@@ -6,14 +6,38 @@ project:
   title: GDEX Cookbook
   github: https://github.com/projectpythia/gdex-cookbook
   authors:
+    - name: Harsha R. Hampapura
+      orcid: 0000-0002-2449-9032
+      github: hrhampapura
+      affiliations:
+        - ncar
+    - name: Riley P. Conroy
+      orcid: 0009-0002-6453-2412
+      github: rpconroy
+      affiliations:
+        - ncar
+    - name: Chia-Wei Hsu
+      orcid: 0000-0002-4838-0140
+      github: chiaweh2
+      affiliations:
+        - ncar
+    - name: Mya Sears
+      orcid: 0009-0003-5870-7498
+      github: myasea8
+      affiliations:
+        - ncar
     - name: GDEX Cookbook contributors
+      url: https://github.com/ProjectPythia/gdex-cookbook/graphs/contributors
+  affiliations:
+    - id: ncar
+      name: NSF NCAR
+      
   copyright: '2026'
   toc:
     - file: README.md
     - title: Preamble
       children:
         - file: notebooks/how-to-cite.md
-        - file: notebooks/notebook-template.ipynb
     - title: GDEX Introduction
       children:
         - file: notebooks/gdex_intro/gdex_intro.ipynb
@@ -52,7 +76,7 @@ project:
         - title: Model Simulations
           children:
             - file: notebooks/workflows/cesm2_lens.ipynb
-            - file: notebooks/workflows/mesaclip.ipynb
+            - file: notebooks/workflows/na-cordex.ipynb
             - file: notebooks/workflows/conus404.ipynb
         - title: Observations
           children:
