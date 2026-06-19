@@ -287,4 +287,4 @@
 [32m    660[39m     headers=[38;5;28mself[39m.headers,
 [32m    661[39m )
 
-[31mClientResponseError[39m: 500, message='Internal Server Error', url='https://dtn-pas.kans.nrp.internet2.edu:8443/ncar/gdex/d121499/prof449_M2HATS_winds30.zarr/u_wind/c/9/0'
+[31mClientResponseError[39m: 500, message='Internal Server Error', url='https://osg-houston-stashcache.nrp.internet2.edu:8443/ncar/gdex/d121499/prof449_M2HATS_winds30.zarr/u_wind/c/26/0'

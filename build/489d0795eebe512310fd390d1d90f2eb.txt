@@ -345,7 +345,7 @@
 [32m    660[39m     headers=[38;5;28mself[39m.headers,
 [32m    661[39m )
 
-[31mClientResponseError[39m: 500, message='Internal Server Error', url='https://osdf-cache-01.gwave.ics.psu.edu:8443/ncar-gdex/d694517/v2.0_zarr/cfrad.20220525_015443.665_to_20220525_015709.985_SPOL_PrecipRhi2_RHI.zarr/sweep_3/sweep_mode/c'
+[31mClientResponseError[39m: 500, message='Internal Server Error', url='https://dtn-pas.hous.nrp.internet2.edu:8443/ncar-gdex/d694517/v2.0_zarr/cfrad.20220525_015443.665_to_20220525_015709.985_SPOL_PrecipRhi2_RHI.zarr/sweep_0/sweep_mode/c'
 Raised while decoding variable 'sweep_mode' with value <xarray.Variable ()> Size: 8B
 [1 values with dtype=object]
 Attributes:

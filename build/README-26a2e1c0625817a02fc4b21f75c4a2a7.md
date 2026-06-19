@@ -2,9 +2,9 @@
 
 <img src="thumbnails/gdex_logo.png" alt="thumbnail" width="300"/>
 
-[![nightly-build](https://github.com/ProjectPythia/cookbook-template/actions/workflows/nightly-build.yaml/badge.svg)](https://github.com/ProjectPythia/cookbook-template/actions/workflows/nightly-build.yaml)
-[![Binder](https://binder.projectpythia.org/badge_logo.svg)](https://binder.projectpythia.org/v2/gh/ProjectPythia/cookbook-template/main?labpath=notebooks)
-[![DOI](https://zenodo.org/badge/475509405.svg)](https://zenodo.org/badge/latestdoi/475509405)
+[![nightly-build](https://github.com/ProjectPythia/gdex-cookbook/actions/workflows/nightly-build.yaml/badge.svg)](https://github.com/ProjectPythia/gdex-cookbook/actions/workflows/nightly-build.yaml)
+[![Binder](https://binder.projectpythia.org/badge_logo.svg)](https://binder.projectpythia.org/v2/gh/ProjectPythia/gdex-cookbook/main?labpath=notebooks)
+[![DOI](https://zenodo.org/badge/1269707325.svg)](https://zenodo.org/badge/latestdoi/1269707325)
 
 This Project Pythia Cookbook covers what data users and submitters need to know about NSF NCAR's Geoscience Data Exchange (GDEX), a major geoscience data repository.
 
