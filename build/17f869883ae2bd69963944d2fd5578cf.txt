@@ -1,14 +1,71 @@
 [31m---------------------------------------------------------------------------[39m
-[31mClientResponseError[39m                       Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 5[39m
-[32m      1[39m vars_to_compare = [[33m"u_wind"[39m, [33m"v_wind"[39m, [33m"w_wind"[39m]
-[32m      2[39m fig, axes = plt.subplots([32m1[39m, [32m3[39m, figsize=([32m18[39m, [32m6[39m))
-[32m      3[39m 
-[32m      4[39m [38;5;28;01mfor[39;00m ax, var [38;5;28;01min[39;00m zip(axes, vars_to_compare):
-[32m----> [39m[32m5[39m     x = prof449[var].values.ravel()
-[32m      6[39m     y = era5[var].values.ravel()
-[32m      7[39m     mask = ~np.isnan(x) & ~np.isnan(y)
-[32m      8[39m     x, y = x[mask], y[mask]
+[31mException[39m                                 Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[7][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m get_ipython().run_cell_magic([33m'time'[39m, [33m''[39m, [33m'plot_first_mid_last(ds, data_var, store_name)\nplt.show()\n'[39m)
+
+[36mFile [39m[32m<timed exec>:1[39m
+[32m----> [39m[32m1[39m [33m'Could not get source, probably due dynamically evaluated source code.'[39m
+
+[36mCell[39m[36m [39m[32mIn[6][39m[32m, line 18[39m, in [36mplot_first_mid_last[39m[34m(ds, data_var, store_name)[39m
+[32m     14[39m 
+[32m     15[39m         [38;5;28;01mfor[39;00m col, t_index [38;5;28;01min[39;00m enumerate([start_index, mid_index, end_index]):
+[32m     16[39m             date = ds.time[t_index]
+[32m     17[39m             step = data_slice.sel(time=date)
+[32m---> [39m[32m18[39m             plotMap(axs[index, col], step, date, mem_id [38;5;28;01mif[39;00m col == [32m0[39m [38;5;28;01melse[39;00m [38;5;28;01mNone[39;00m)
+[32m     19[39m 
+[32m     20[39m     plt.suptitle(f'First, middle, and last timesteps for selected runs in "{store_name}"', fontsize=[32m20[39m)
+[32m     21[39m     [38;5;28;01mreturn[39;00m fig
+
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 3[39m, in [36mplotMap[39m[34m(ax, map_slice, date_object, member_id)[39m
+[32m      1[39m [38;5;28;01mdef[39;00m plotMap(ax, map_slice, date_object=[38;5;28;01mNone[39;00m, member_id=[38;5;28;01mNone[39;00m):
+[32m      2[39m     [33m"""Draw a single map on `ax`, annotating spatial min/max."""[39m
+[32m----> [39m[32m3[39m     ax.imshow(map_slice, origin=[33m"lower"[39m)
+[32m      4[39m 
+[32m      5[39m     minval = map_slice.min(dim=[[33m"lat"[39m, [33m"lon"[39m])
+[32m      6[39m     maxval = map_slice.max(dim=[[33m"lat"[39m, [33m"lon"[39m])
+
+    [31m[... skipping hidden 1 frame][39m
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/matplotlib/axes/_axes.py:6377[39m, in [36mAxes.imshow[39m[34m(self, X, cmap, norm, aspect, interpolation, alpha, vmin, vmax, colorizer, origin, extent, interpolation_stage, filternorm, filterrad, resample, url, **kwargs)[39m
+[32m   6374[39m [38;5;28;01mif[39;00m aspect [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m   6375[39m     [38;5;28mself[39m.set_aspect(aspect)
+[32m-> [39m[32m6377[39m [30;43mim[39;49m[30;43m.[39;49m[30;43mset_data[39;49m[30;43m([39;49m[30;43mX[39;49m[30;43m)[39;49m
+[32m   6378[39m im.set_alpha(alpha)
+[32m   6379[39m [38;5;28;01mif[39;00m im.get_clip_path() [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[32m   6380[39m     [38;5;66;03m# image does not already have clipping set, clip to Axes patch[39;00m
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/matplotlib/image.py:709[39m, in [36m_ImageBase.set_data[39m[34m(self, A)[39m
+[32m    707[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(A, PIL.Image.Image):
+[32m    708[39m     A = pil_to_array(A)  [38;5;66;03m# Needed e.g. to apply png palette.[39;00m
+[32m--> [39m[32m709[39m [38;5;28mself[39m._A = [30;43mself[39;49m[30;43m.[39;49m[30;43m_normalize_image_array[39;49m[30;43m([39;49m[30;43mA[39;49m[30;43m)[39;49m
+[32m    710[39m [38;5;28mself[39m._imcache = [38;5;28;01mNone[39;00m
+[32m    711[39m [38;5;28mself[39m.stale = [38;5;28;01mTrue[39;00m
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/matplotlib/image.py:670[39m, in [36m_ImageBase._normalize_image_array[39m[34m(A)[39m
+[32m    664[39m [38;5;129m@staticmethod[39m
+[32m    665[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_normalize_image_array[39m(A):
+[32m    666[39m [38;5;250m    [39m[33;03m"""[39;00m
+[32m    667[39m [33;03m    Check validity of image-like input *A* and normalize it to a format suitable for[39;00m
+[32m    668[39m [33;03m    Image subclasses.[39;00m
+[32m    669[39m [33;03m    """[39;00m
+[32m--> [39m[32m670[39m     A = [30;43mcbook[39;49m[30;43m.[39;49m[30;43msafe_masked_invalid[39;49m[30;43m([39;49m[30;43mA[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcopy[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+[32m    671[39m     [38;5;28;01mif[39;00m A.dtype != np.uint8 [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m np.can_cast(A.dtype, [38;5;28mfloat[39m, [33m"[39m[33msame_kind[39m[33m"[39m):
+[32m    672[39m         [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m([33mf[39m[33m"[39m[33mImage data of dtype [39m[38;5;132;01m{[39;00mA.dtype[38;5;132;01m}[39;00m[33m cannot be [39m[33m"[39m
+[32m    673[39m                         [33mf[39m[33m"[39m[33mconverted to float[39m[33m"[39m)
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/matplotlib/cbook.py:713[39m, in [36msafe_masked_invalid[39m[34m(x, copy)[39m
+[32m    712[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34msafe_masked_invalid[39m(x, copy=[38;5;28;01mFalse[39;00m):
+[32m--> [39m[32m713[39m     x = [30;43mnp[39;49m[30;43m.[39;49m[30;43marray[39;49m[30;43m([39;49m[30;43mx[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43msubok[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m,[39;49m[30;43m [39;49m[30;43mcopy[39;49m[30;43m=[39;49m[30;43mcopy[39;49m[30;43m)[39;49m
+[32m    714[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m x.dtype.isnative:
+[32m    715[39m         [38;5;66;03m# If we have already made a copy, do the byteswap in place, else make a[39;00m
+[32m    716[39m         [38;5;66;03m# copy with the byte order swapped.[39;00m
+[32m    717[39m         [38;5;66;03m# Swap to native order.[39;00m
+[32m    718[39m         x = x.byteswap(inplace=copy).view(x.dtype.newbyteorder([33m'[39m[33mN[39m[33m'[39m))
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/common.py:181[39m, in [36mAbstractArray.__array__[39m[34m(self, dtype, copy)[39m
+[32m    179[39m         [38;5;28;01mexcept[39;00m [38;5;167;01mTypeError[39;00m:
+[32m    180[39m             copy = [38;5;28;01mFalse[39;00m
+[32m--> [39m[32m181[39m [38;5;28;01mreturn[39;00m np.array([30;43mself[39;49m[30;43m.[39;49m[30;43mvalues[39;49m, dtype=dtype, copy=copy)
 
 [36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/dataarray.py:803[39m, in [36mDataArray.values[39m[34m(self)[39m
 [32m    790[39m [38;5;129m@property[39m
@@ -69,81 +126,81 @@
 [32m--> [39m[32m685[39m     results = [30;43mschedule[39;49m[30;43m([39;49m[30;43mexpr[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mkeys[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
 [32m    687[39m [38;5;28;01mreturn[39;00m repack(results)
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py:686[39m, in [36mImplicitToExplicitIndexingAdapter.__array__[39m[34m(self, dtype, copy)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py:686[39m, in [36m__array__[39m[34m()[39m
 [32m    682[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m__array__[39m(
 [32m    683[39m     [38;5;28mself[39m, dtype: DTypeLike | [38;5;28;01mNone[39;00m = [38;5;28;01mNone[39;00m, /, *, copy: [38;5;28mbool[39m | [38;5;28;01mNone[39;00m = [38;5;28;01mNone[39;00m
 [32m    684[39m ) -> np.ndarray:
 [32m    685[39m     [38;5;28;01mif[39;00m Version(np.__version__) >= Version([33m"[39m[33m2.0.0[39m[33m"[39m):
-[32m--> [39m[32m686[39m         [38;5;28;01mreturn[39;00m np.asarray([30;43mself[39;49m[30;43m.[39;49m[30;43mget_duck_array[39;49m[30;43m([39;49m[30;43m)[39;49m, dtype=dtype, copy=copy)
+[32m--> [39m[32m686[39m         [38;5;28;01mreturn[39;00m np.asarray([38;5;28mself[39m.get_duck_array(), dtype=dtype, copy=copy)
 [32m    687[39m     [38;5;28;01melse[39;00m:
 [32m    688[39m         [38;5;28;01mreturn[39;00m np.asarray([38;5;28mself[39m.get_duck_array(), dtype=dtype)
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py:691[39m, in [36mImplicitToExplicitIndexingAdapter.get_duck_array[39m[34m(self)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py:691[39m, in [36mget_duck_array[39m[34m()[39m
 [32m    690[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mget_duck_array[39m([38;5;28mself[39m):
-[32m--> [39m[32m691[39m     [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43marray[39;49m[30;43m.[39;49m[30;43mget_duck_array[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m--> [39m[32m691[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m.array.get_duck_array()
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py:924[39m, in [36mCopyOnWriteArray.get_duck_array[39m[34m(self)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py:924[39m, in [36mget_duck_array[39m[34m()[39m
 [32m    923[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mget_duck_array[39m([38;5;28mself[39m):
-[32m--> [39m[32m924[39m     [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43marray[39;49m[30;43m.[39;49m[30;43mget_duck_array[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m--> [39m[32m924[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m.array.get_duck_array()
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/coding/common.py:80[39m, in [36m_ElementwiseFunctionArray.get_duck_array[39m[34m(self)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/coding/common.py:80[39m, in [36mget_duck_array[39m[34m()[39m
 [32m     79[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mget_duck_array[39m([38;5;28mself[39m):
-[32m---> [39m[32m80[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m.func([30;43mself[39;49m[30;43m.[39;49m[30;43marray[39;49m[30;43m.[39;49m[30;43mget_duck_array[39;49m[30;43m([39;49m[30;43m)[39;49m)
+[32m---> [39m[32m80[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m.func([38;5;28mself[39m.array.get_duck_array())
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py:764[39m, in [36mLazilyIndexedArray.get_duck_array[39m[34m(self)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py:764[39m, in [36mget_duck_array[39m[34m()[39m
 [32m    761[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mxarray[39;00m[34;01m.[39;00m[34;01mbackends[39;00m[34;01m.[39;00m[34;01mcommon[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m BackendArray
 [32m    763[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m([38;5;28mself[39m.array, BackendArray):
-[32m--> [39m[32m764[39m     array = [30;43mself[39;49m[30;43m.[39;49m[30;43marray[39;49m[30;43m[[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mkey[39;49m[30;43m][39;49m
+[32m--> [39m[32m764[39m     array = [38;5;28mself[39m.array[[38;5;28mself[39m.key]
 [32m    765[39m [38;5;28;01melse[39;00m:
 [32m    766[39m     array = apply_indexer([38;5;28mself[39m.array, [38;5;28mself[39m.key)
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/zarr.py:316[39m, in [36mZarrArrayWrapper.__getitem__[39m[34m(self, key)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/zarr.py:316[39m, in [36m__getitem__[39m[34m()[39m
 [32m    314[39m [38;5;28;01melif[39;00m [38;5;28misinstance[39m(key, indexing.OuterIndexer):
 [32m    315[39m     method = [38;5;28mself[39m._oindex
-[32m--> [39m[32m316[39m [38;5;28;01mreturn[39;00m [30;43mindexing[39;49m[30;43m.[39;49m[30;43mexplicit_indexing_adapter[39;49m[30;43m([39;49m
-[32m    317[39m [30;43m    [39;49m[30;43mkey[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43marray[39;49m[30;43m.[39;49m[30;43mshape[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mindexing[39;49m[30;43m.[39;49m[30;43mIndexingSupport[39;49m[30;43m.[39;49m[30;43mVECTORIZED[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mmethod[39;49m
-[32m    318[39m [30;43m[39;49m[30;43m)[39;49m
+[32m--> [39m[32m316[39m [38;5;28;01mreturn[39;00m indexing.explicit_indexing_adapter(
+[32m    317[39m     key, array.shape, indexing.IndexingSupport.VECTORIZED, method
+[32m    318[39m )
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py:1156[39m, in [36mexplicit_indexing_adapter[39m[34m(key, shape, indexing_support, raw_indexing_method)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/indexing.py:1156[39m, in [36mexplicit_indexing_adapter[39m[34m()[39m
 [32m   1134[39m [38;5;250m[39m[33;03m"""Support explicit indexing by delegating to a raw indexing method.[39;00m
 [32m   1135[39m 
 [32m   1136[39m [33;03mOuter and/or vectorized indexers are supported by indexing a second time[39;00m
 [32m   (...)[39m[32m   1153[39m [33;03mIndexing result, in the form of a duck numpy-array.[39;00m
 [32m   1154[39m [33;03m"""[39;00m
 [32m   1155[39m raw_key, numpy_indices = decompose_indexer(key, shape, indexing_support)
-[32m-> [39m[32m1156[39m result = [30;43mraw_indexing_method[39;49m[30;43m([39;49m[30;43mraw_key[39;49m[30;43m.[39;49m[30;43mtuple[39;49m[30;43m)[39;49m
+[32m-> [39m[32m1156[39m result = raw_indexing_method(raw_key.tuple)
 [32m   1157[39m [38;5;28;01mif[39;00m numpy_indices.tuple:
 [32m   1158[39m     [38;5;66;03m# index the loaded duck array[39;00m
 [32m   1159[39m     indexable = as_indexable(result)
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/zarr.py:279[39m, in [36mZarrArrayWrapper._getitem[39m[34m(self, key)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/backends/zarr.py:279[39m, in [36m_getitem[39m[34m()[39m
 [32m    278[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_getitem[39m([38;5;28mself[39m, key):
-[32m--> [39m[32m279[39m     [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43m_array[39;49m[30;43m[[39;49m[30;43mkey[39;49m[30;43m][39;49m
+[32m--> [39m[32m279[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m._array[key]
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py:2578[39m, in [36mArray.__getitem__[39m[34m(self, selection)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py:2578[39m, in [36m__getitem__[39m[34m()[39m
 [32m   2576[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m.vindex[cast([33m"[39m[33mCoordinateSelection | MaskSelection[39m[33m"[39m, selection)]
 [32m   2577[39m [38;5;28;01melif[39;00m is_pure_orthogonal_indexing(pure_selection, [38;5;28mself[39m.ndim):
-[32m-> [39m[32m2578[39m     [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43mget_orthogonal_selection[39;49m[30;43m([39;49m[30;43mpure_selection[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mfields[39;49m[30;43m=[39;49m[30;43mfields[39;49m[30;43m)[39;49m
+[32m-> [39m[32m2578[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m.get_orthogonal_selection(pure_selection, fields=fields)
 [32m   2579[39m [38;5;28;01melse[39;00m:
 [32m   2580[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m.get_basic_selection(cast([33m"[39m[33mBasicSelection[39m[33m"[39m, pure_selection), fields=fields)
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py:3055[39m, in [36mArray.get_orthogonal_selection[39m[34m(self, selection, out, fields, prototype)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py:3055[39m, in [36mget_orthogonal_selection[39m[34m()[39m
 [32m   3053[39m     prototype = default_buffer_prototype()
 [32m   3054[39m indexer = OrthogonalIndexer(selection, [38;5;28mself[39m.shape, [38;5;28mself[39m._chunk_grid)
-[32m-> [39m[32m3055[39m [38;5;28;01mreturn[39;00m [30;43msync[39;49m[30;43m([39;49m
-[32m   3056[39m [30;43m    [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43masync_array[39;49m[30;43m.[39;49m[30;43m_get_selection[39;49m[30;43m([39;49m
-[32m   3057[39m [30;43m        [39;49m[30;43mindexer[39;49m[30;43m=[39;49m[30;43mindexer[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mout[39;49m[30;43m=[39;49m[30;43mout[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mfields[39;49m[30;43m=[39;49m[30;43mfields[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mprototype[39;49m[30;43m=[39;49m[30;43mprototype[39;49m
-[32m   3058[39m [30;43m    [39;49m[30;43m)[39;49m
-[32m   3059[39m [30;43m[39;49m[30;43m)[39;49m
+[32m-> [39m[32m3055[39m [38;5;28;01mreturn[39;00m sync(
+[32m   3056[39m     [38;5;28mself[39m.async_array._get_selection(
+[32m   3057[39m         indexer=indexer, out=out, fields=fields, prototype=prototype
+[32m   3058[39m     )
+[32m   3059[39m )
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/sync.py:158[39m, in [36msync[39m[34m(coro, loop, timeout)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/sync.py:158[39m, in [36msync[39m[34m()[39m
 [32m    155[39m return_result = [38;5;28mnext[39m([38;5;28miter[39m(finished)).result()
 [32m    157[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(return_result, [38;5;167;01mBaseException[39;00m):
 [32m--> [39m[32m158[39m     [38;5;28;01mraise[39;00m return_result
 [32m    159[39m [38;5;28;01melse[39;00m:
 [32m    160[39m     [38;5;28;01mreturn[39;00m return_result
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/sync.py:118[39m, in [36m_runner[39m[34m(coro)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/sync.py:118[39m, in [36m_runner[39m[34m()[39m
 [32m    113[39m [38;5;250m[39m[33;03m"""[39;00m
 [32m    114[39m [33;03mAwait a coroutine and return the result of running it. If awaiting the coroutine raises an[39;00m
 [32m    115[39m [33;03mexception, the exception will be returned.[39;00m
@@ -153,7 +210,7 @@
 [32m    119[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m ex:
 [32m    120[39m     [38;5;28;01mreturn[39;00m ex
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py:1414[39m, in [36mAsyncArray._get_selection[39m[34m(self, indexer, prototype, out, fields)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py:1414[39m, in [36m_get_selection[39m[34m()[39m
 [32m   1406[39m [38;5;28;01masync[39;00m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_get_selection[39m(
 [32m   1407[39m     [38;5;28mself[39m,
 [32m   1408[39m     indexer: Indexer,
@@ -171,7 +228,7 @@
 [32m   1423[39m         fields=fields,
 [32m   1424[39m     )
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py:5452[39m, in [36m_get_selection[39m[34m(store_path, metadata, codec_pipeline, config, chunk_grid, indexer, prototype, out, fields)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/array.py:5452[39m, in [36m_get_selection[39m[34m()[39m
 [32m   5450[39m [38;5;66;03m# reading chunks and decoding them[39;00m
 [32m   5451[39m indexed_chunks = [38;5;28mlist[39m(indexer)
 [32m-> [39m[32m5452[39m results = [38;5;28;01mawait[39;00m codec_pipeline.read(
@@ -191,7 +248,7 @@
 [32m   5466[39m [38;5;28;01mif[39;00m _config.read_missing_chunks [38;5;129;01mis[39;00m [38;5;28;01mFalse[39;00m:
 [32m   5467[39m     missing_info = []
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/codec_pipeline.py:601[39m, in [36mBatchedCodecPipeline.read[39m[34m(self, batch_info, out, drop_axes)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/codec_pipeline.py:601[39m, in [36mread[39m[34m()[39m
 [32m    595[39m [38;5;28;01masync[39;00m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mread[39m(
 [32m    596[39m     [38;5;28mself[39m,
 [32m    597[39m     batch_info: Iterable[[38;5;28mtuple[39m[ByteGetter, ArraySpec, SelectorTuple, SelectorTuple, [38;5;28mbool[39m]],
@@ -209,17 +266,17 @@
 [32m    609[39m     results: [38;5;28mlist[39m[GetResult] = []
 [32m    610[39m     [38;5;28;01mfor[39;00m batch [38;5;129;01min[39;00m batch_results:
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py:110[39m, in [36mconcurrent_map[39m[34m(items, func, limit)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py:110[39m, in [36mconcurrent_map[39m[34m()[39m
 [32m    107[39m     [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m sem:
 [32m    108[39m         [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m func(*item)
 [32m--> [39m[32m110[39m [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m asyncio.gather(*[asyncio.ensure_future(run(item)) [38;5;28;01mfor[39;00m item [38;5;129;01min[39;00m items])
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py:108[39m, in [36mconcurrent_map.<locals>.run[39m[34m(item)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py:108[39m, in [36mrun[39m[34m()[39m
 [32m    106[39m [38;5;28;01masync[39;00m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mrun[39m(item: [38;5;28mtuple[39m[Any]) -> V:
 [32m    107[39m     [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m sem:
 [32m--> [39m[32m108[39m         [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m func(*item)
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/codec_pipeline.py:392[39m, in [36mBatchedCodecPipeline.read_batch[39m[34m(self, batch_info, out, drop_axes)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/codec_pipeline.py:392[39m, in [36mread_batch[39m[34m()[39m
 [32m    390[39m [38;5;28;01melse[39;00m:
 [32m    391[39m     batch_info_list = [38;5;28mlist[39m(batch_info)
 [32m--> [39m[32m392[39m     chunk_bytes_batch = [38;5;28;01mawait[39;00m concurrent_map(
@@ -239,22 +296,22 @@
 [32m    409[39m         chunk_array_batch, batch_info_list, strict=[38;5;28;01mFalse[39;00m
 [32m    410[39m     ):
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py:110[39m, in [36mconcurrent_map[39m[34m(items, func, limit)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py:110[39m, in [36mconcurrent_map[39m[34m()[39m
 [32m    107[39m     [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m sem:
 [32m    108[39m         [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m func(*item)
 [32m--> [39m[32m110[39m [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m asyncio.gather(*[asyncio.ensure_future(run(item)) [38;5;28;01mfor[39;00m item [38;5;129;01min[39;00m items])
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py:108[39m, in [36mconcurrent_map.<locals>.run[39m[34m(item)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/core/common.py:108[39m, in [36mrun[39m[34m()[39m
 [32m    106[39m [38;5;28;01masync[39;00m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mrun[39m(item: [38;5;28mtuple[39m[Any]) -> V:
 [32m    107[39m     [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m sem:
 [32m--> [39m[32m108[39m         [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m func(*item)
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/storage/_common.py:162[39m, in [36mStorePath.get[39m[34m(self, prototype, byte_range)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/storage/_common.py:162[39m, in [36mget[39m[34m()[39m
 [32m    160[39m [38;5;28;01mif[39;00m prototype [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
 [32m    161[39m     prototype = default_buffer_prototype()
 [32m--> [39m[32m162[39m [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m [38;5;28mself[39m.store.get([38;5;28mself[39m.path, prototype=prototype, byte_range=byte_range)
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/storage/_fsspec.py:289[39m, in [36mFsspecStore.get[39m[34m(self, key, prototype, byte_range)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/zarr/storage/_fsspec.py:289[39m, in [36mget[39m[34m()[39m
 [32m    287[39m [38;5;28;01mtry[39;00m:
 [32m    288[39m     [38;5;28;01mif[39;00m byte_range [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
 [32m--> [39m[32m289[39m         value = prototype.buffer.from_bytes([38;5;28;01mawait[39;00m [38;5;28mself[39m.fs._cat_file(path))
@@ -265,18 +322,30 @@
 [32m   (...)[39m[32m    296[39m             )
 [32m    297[39m         )
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py:250[39m, in [36mHTTPFileSystem._cat_file[39m[34m(self, url, start, end, **kwargs)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/pelicanfs/core.py:1155[39m, in [36mwrapper[39m[34m()[39m
+[32m   1153[39m [38;5;28;01mtry[39;00m:
+[32m   1154[39m     logger.debug([33mf[39m[33m"[39m[33mCalling [39m[38;5;132;01m{[39;00mfunc[38;5;132;01m}[39;00m[33m using the following url: [39m[38;5;132;01m{[39;00mdata_url[38;5;132;01m}[39;00m[33m"[39m)
+[32m-> [39m[32m1155[39m     result = [38;5;28;01mawait[39;00m func([38;5;28mself[39m, data_url, *args[[32m1[39m:], **kwargs)
+[32m   1156[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+[32m   1157[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m.direct_reads:
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/pelicanfs/core.py:1236[39m, in [36m_cat_file[39m[34m()[39m
+[32m   1234[39m [38;5;129m@_cache_dec[39m
+[32m   1235[39m [38;5;28;01masync[39;00m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_cat_file[39m([38;5;28mself[39m, path, start=[38;5;28;01mNone[39;00m, end=[38;5;28;01mNone[39;00m, **kwargs):
+[32m-> [39m[32m1236[39m     [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m [38;5;28mself[39m.http_file_system._cat_file(path, start, end, **kwargs)
+
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py:250[39m, in [36m_cat_file[39m[34m()[39m
 [32m    248[39m [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m session.get([38;5;28mself[39m.encode_url(url), **kw) [38;5;28;01mas[39;00m r:
 [32m    249[39m     out = [38;5;28;01mawait[39;00m r.read()
-[32m--> [39m[32m250[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43m_raise_not_found_for_status[39;49m[30;43m([39;49m[30;43mr[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m)[39;49m
+[32m--> [39m[32m250[39m     [38;5;28mself[39m._raise_not_found_for_status(r, url)
 [32m    251[39m [38;5;28;01mreturn[39;00m out
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py:233[39m, in [36mHTTPFileSystem._raise_not_found_for_status[39m[34m(self, response, url)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py:233[39m, in [36m_raise_not_found_for_status[39m[34m()[39m
 [32m    231[39m [38;5;28;01mif[39;00m response.status == [32m404[39m:
 [32m    232[39m     [38;5;28;01mraise[39;00m [38;5;167;01mFileNotFoundError[39;00m(url)
-[32m--> [39m[32m233[39m [30;43mresponse[39;49m[30;43m.[39;49m[30;43mraise_for_status[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m--> [39m[32m233[39m response.raise_for_status()
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client_reqrep.py:655[39m, in [36mClientResponse.raise_for_status[39m[34m(self)[39m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client_reqrep.py:655[39m, in [36mraise_for_status[39m[34m()[39m
 [32m    652[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m._in_context:
 [32m    653[39m     [38;5;28mself[39m.release()
 [32m--> [39m[32m655[39m [38;5;28;01mraise[39;00m ClientResponseError(
@@ -287,4 +356,4 @@
 [32m    660[39m     headers=[38;5;28mself[39m.headers,
 [32m    661[39m )
 
-[31mClientResponseError[39m: 500, message='Internal Server Error', url='https://osg-houston-stashcache.nrp.internet2.edu:8443/ncar/gdex/d121499/prof449_M2HATS_winds30.zarr/u_wind/c/26/0'
+[31mException[39m: ClientResponseError(RequestInfo(url=URL('https://pelican-cache.rc.duke.edu/ncar-gdex/d316010/day/tmax.eval.day.NAM-44i.raw.zarr/tmax/0.0.0.0'), method='GET', headers=<CIMultiDictProxy('Host': 'pelican-cache.rc.duke.edu', 'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate, br, zstd', 'User-Agent': 'Python/3.12 aiohttp/3.14.1')>, real_url=URL('https://pelican-cache.rc.duke.edu/ncar-gdex/d316010/day/tmax.eval.day.NAM-44i.raw.zarr/tmax/0.0.0.0')), (), status=500, message='Internal Server Error', headers=<CIMultiDictProxy('Access-Control-Allow-Headers': 'Authorization,Want-Digest,Content-Type,User-Agent', 'Access-Control-Allow-Origin': '*', 'Content-Length': '97', 'Server': 'XrootD/v5.9.1', 'Date': 'Fri, 19 Jun 2026 00:32:15 GMT')>)
