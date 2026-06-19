@@ -1,0 +1,303 @@
+[31m---------------------------------------------------------------------------[39m
+[31mException[39m                                 Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[7][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m [43mget_ipython[49m[43m([49m[43m)[49m[43m.[49m[43mrun_cell_magic[49m[43m([49m[33;43m'[39;49m[33;43mtime[39;49m[33;43m'[39;49m[43m,[49m[43m [49m[33;43m'[39;49m[33;43m'[39;49m[43m,[49m[43m [49m[33;43m'[39;49m[33;43mgmst_ano = gmst_ano.compute()[39;49m[38;5;130;43;01m\n[39;49;00m[33;43m'[39;49m[43m)[49m
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/IPython/core/interactiveshell.py:2565[39m, in [36mInteractiveShell.run_cell_magic[39m[34m(self, magic_name, line, cell)[39m
+[32m   2563[39m [38;5;28;01mwith[39;00m [38;5;28mself[39m.builtin_trap:
+[32m   2564[39m     args = (magic_arg_s, cell)
+[32m-> [39m[32m2565[39m     result = [43mfn[49m[43m([49m[43m*[49m[43margs[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[32m   2567[39m [38;5;66;03m# The code below prevents the output from being displayed[39;00m
+[32m   2568[39m [38;5;66;03m# when using magics with decorator @output_can_be_silenced[39;00m
+[32m   2569[39m [38;5;66;03m# when the last Python token in the expression is a ';'.[39;00m
+[32m   2570[39m [38;5;28;01mif[39;00m [38;5;28mgetattr[39m(fn, magic.MAGIC_OUTPUT_CAN_BE_SILENCED, [38;5;28;01mFalse[39;00m):
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/IPython/core/magics/execution.py:1452[39m, in [36mExecutionMagics.time[39m[34m(self, line, cell, local_ns)[39m
+[32m   1450[39m [38;5;28;01mif[39;00m interrupt_occured:
+[32m   1451[39m     [38;5;28;01mif[39;00m exit_on_interrupt [38;5;129;01mand[39;00m captured_exception:
+[32m-> [39m[32m1452[39m         [38;5;28;01mraise[39;00m captured_exception
+[32m   1453[39m     [38;5;28;01mreturn[39;00m
+[32m   1454[39m [38;5;28;01mreturn[39;00m out
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/IPython/core/magics/execution.py:1416[39m, in [36mExecutionMagics.time[39m[34m(self, line, cell, local_ns)[39m
+[32m   1414[39m st = clock2()
+[32m   1415[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m1416[39m     [43mexec[49m[43m([49m[43mcode[49m[43m,[49m[43m [49m[43mglob[49m[43m,[49m[43m [49m[43mlocal_ns[49m[43m)[49m
+[32m   1417[39m     out = [38;5;28;01mNone[39;00m
+[32m   1418[39m     [38;5;66;03m# multi-line %%time case[39;00m
+
+[36mFile [39m[32m<timed exec>:1[39m
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/core/dataarray.py:1247[39m, in [36mDataArray.compute[39m[34m(self, **kwargs)[39m
+[32m   1217[39m [38;5;250m[39m[33;03m"""Trigger loading data into memory and return a new dataarray.[39;00m
+[32m   1218[39m 
+[32m   1219[39m [33;03mData will be computed and/or loaded from disk or a remote source.[39;00m
+[32m   (...)[39m[32m   1244[39m [33;03mVariable.compute[39;00m
+[32m   1245[39m [33;03m"""[39;00m
+[32m   1246[39m new = [38;5;28mself[39m.copy(deep=[38;5;28;01mFalse[39;00m)
+[32m-> [39m[32m1247[39m [38;5;28;01mreturn[39;00m [43mnew[49m[43m.[49m[43mload[49m[43m([49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/core/dataarray.py:1173[39m, in [36mDataArray.load[39m[34m(self, **kwargs)[39m
+[32m   1143[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mload[39m([38;5;28mself[39m, **kwargs) -> Self:
+[32m   1144[39m [38;5;250m    [39m[33;03m"""Trigger loading data into memory and return this dataarray.[39;00m
+[32m   1145[39m 
+[32m   1146[39m [33;03m    Data will be computed and/or loaded from disk or a remote source.[39;00m
+[32m   (...)[39m[32m   1171[39m [33;03m    Variable.load[39;00m
+[32m   1172[39m [33;03m    """[39;00m
+[32m-> [39m[32m1173[39m     ds = [38;5;28;43mself[39;49m[43m.[49m[43m_to_temp_dataset[49m[43m([49m[43m)[49m[43m.[49m[43mload[49m[43m([49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[32m   1174[39m     new = [38;5;28mself[39m._from_temp_dataset(ds)
+[32m   1175[39m     [38;5;28mself[39m._variable = new._variable
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/core/dataset.py:569[39m, in [36mDataset.load[39m[34m(self, **kwargs)[39m
+[32m    566[39m chunkmanager = get_chunked_array_type(*chunked_data.values())
+[32m    568[39m [38;5;66;03m# evaluate all the chunked arrays simultaneously[39;00m
+[32m--> [39m[32m569[39m evaluated_data: [38;5;28mtuple[39m[np.ndarray[Any, Any], ...] = [43mchunkmanager[49m[43m.[49m[43mcompute[49m[43m([49m
+[32m    570[39m [43m    [49m[43m*[49m[43mchunked_data[49m[43m.[49m[43mvalues[49m[43m([49m[43m)[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m
+[32m    571[39m [43m[49m[43m)[49m
+[32m    573[39m [38;5;28;01mfor[39;00m k, data [38;5;129;01min[39;00m [38;5;28mzip[39m(chunked_data, evaluated_data, strict=[38;5;28;01mFalse[39;00m):
+[32m    574[39m     [38;5;28mself[39m.variables[k].data = data
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/namedarray/daskmanager.py:85[39m, in [36mDaskManager.compute[39m[34m(self, *data, **kwargs)[39m
+[32m     80[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mcompute[39m(
+[32m     81[39m     [38;5;28mself[39m, *data: Any, **kwargs: Any
+[32m     82[39m ) -> [38;5;28mtuple[39m[np.ndarray[Any, _DType_co], ...]:
+[32m     83[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mdask[39;00m[34;01m.[39;00m[34;01marray[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m compute
+[32m---> [39m[32m85[39m     [38;5;28;01mreturn[39;00m [43mcompute[49m[43m([49m[43m*[49m[43mdata[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/dask/base.py:685[39m, in [36mcompute[39m[34m(traverse, optimize_graph, scheduler, get, *args, **kwargs)[39m
+[32m    682[39m     expr = expr.optimize()
+[32m    683[39m     keys = [38;5;28mlist[39m(flatten(expr.__dask_keys__()))
+[32m--> [39m[32m685[39m     results = [43mschedule[49m[43m([49m[43mexpr[49m[43m,[49m[43m [49m[43mkeys[49m[43m,[49m[43m [49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+[32m    687[39m [38;5;28;01mreturn[39;00m repack(results)
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/core/indexing.py:686[39m, in [36m__array__[39m[34m()[39m
+[32m    682[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m__array__[39m(
+[32m    683[39m     [38;5;28mself[39m, dtype: DTypeLike | [38;5;28;01mNone[39;00m = [38;5;28;01mNone[39;00m, /, *, copy: [38;5;28mbool[39m | [38;5;28;01mNone[39;00m = [38;5;28;01mNone[39;00m
+[32m    684[39m ) -> np.ndarray:
+[32m    685[39m     [38;5;28;01mif[39;00m Version(np.__version__) >= Version([33m"[39m[33m2.0.0[39m[33m"[39m):
+[32m--> [39m[32m686[39m         [38;5;28;01mreturn[39;00m np.asarray([38;5;28mself[39m.get_duck_array(), dtype=dtype, copy=copy)
+[32m    687[39m     [38;5;28;01melse[39;00m:
+[32m    688[39m         [38;5;28;01mreturn[39;00m np.asarray([38;5;28mself[39m.get_duck_array(), dtype=dtype)
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/core/indexing.py:691[39m, in [36mget_duck_array[39m[34m()[39m
+[32m    690[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mget_duck_array[39m([38;5;28mself[39m):
+[32m--> [39m[32m691[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m.array.get_duck_array()
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/core/indexing.py:924[39m, in [36mget_duck_array[39m[34m()[39m
+[32m    923[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mget_duck_array[39m([38;5;28mself[39m):
+[32m--> [39m[32m924[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m.array.get_duck_array()
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/coding/common.py:80[39m, in [36mget_duck_array[39m[34m()[39m
+[32m     79[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mget_duck_array[39m([38;5;28mself[39m):
+[32m---> [39m[32m80[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m.func([38;5;28mself[39m.array.get_duck_array())
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/core/indexing.py:764[39m, in [36mget_duck_array[39m[34m()[39m
+[32m    761[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mxarray[39;00m[34;01m.[39;00m[34;01mbackends[39;00m[34;01m.[39;00m[34;01mcommon[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m BackendArray
+[32m    763[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m([38;5;28mself[39m.array, BackendArray):
+[32m--> [39m[32m764[39m     array = [38;5;28mself[39m.array[[38;5;28mself[39m.key]
+[32m    765[39m [38;5;28;01melse[39;00m:
+[32m    766[39m     array = apply_indexer([38;5;28mself[39m.array, [38;5;28mself[39m.key)
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/backends/zarr.py:316[39m, in [36m__getitem__[39m[34m()[39m
+[32m    314[39m [38;5;28;01melif[39;00m [38;5;28misinstance[39m(key, indexing.OuterIndexer):
+[32m    315[39m     method = [38;5;28mself[39m._oindex
+[32m--> [39m[32m316[39m [38;5;28;01mreturn[39;00m indexing.explicit_indexing_adapter(
+[32m    317[39m     key, array.shape, indexing.IndexingSupport.VECTORIZED, method
+[32m    318[39m )
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/core/indexing.py:1156[39m, in [36mexplicit_indexing_adapter[39m[34m()[39m
+[32m   1134[39m [38;5;250m[39m[33;03m"""Support explicit indexing by delegating to a raw indexing method.[39;00m
+[32m   1135[39m 
+[32m   1136[39m [33;03mOuter and/or vectorized indexers are supported by indexing a second time[39;00m
+[32m   (...)[39m[32m   1153[39m [33;03mIndexing result, in the form of a duck numpy-array.[39;00m
+[32m   1154[39m [33;03m"""[39;00m
+[32m   1155[39m raw_key, numpy_indices = decompose_indexer(key, shape, indexing_support)
+[32m-> [39m[32m1156[39m result = raw_indexing_method(raw_key.tuple)
+[32m   1157[39m [38;5;28;01mif[39;00m numpy_indices.tuple:
+[32m   1158[39m     [38;5;66;03m# index the loaded duck array[39;00m
+[32m   1159[39m     indexable = as_indexable(result)
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/xarray/backends/zarr.py:279[39m, in [36m_getitem[39m[34m()[39m
+[32m    278[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_getitem[39m([38;5;28mself[39m, key):
+[32m--> [39m[32m279[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m._array[key]
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/zarr/core/array.py:2578[39m, in [36m__getitem__[39m[34m()[39m
+[32m   2576[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m.vindex[cast([33m"[39m[33mCoordinateSelection | MaskSelection[39m[33m"[39m, selection)]
+[32m   2577[39m [38;5;28;01melif[39;00m is_pure_orthogonal_indexing(pure_selection, [38;5;28mself[39m.ndim):
+[32m-> [39m[32m2578[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m.get_orthogonal_selection(pure_selection, fields=fields)
+[32m   2579[39m [38;5;28;01melse[39;00m:
+[32m   2580[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m.get_basic_selection(cast([33m"[39m[33mBasicSelection[39m[33m"[39m, pure_selection), fields=fields)
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/zarr/core/array.py:3055[39m, in [36mget_orthogonal_selection[39m[34m()[39m
+[32m   3053[39m     prototype = default_buffer_prototype()
+[32m   3054[39m indexer = OrthogonalIndexer(selection, [38;5;28mself[39m.shape, [38;5;28mself[39m._chunk_grid)
+[32m-> [39m[32m3055[39m [38;5;28;01mreturn[39;00m sync(
+[32m   3056[39m     [38;5;28mself[39m.async_array._get_selection(
+[32m   3057[39m         indexer=indexer, out=out, fields=fields, prototype=prototype
+[32m   3058[39m     )
+[32m   3059[39m )
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/zarr/core/sync.py:158[39m, in [36msync[39m[34m()[39m
+[32m    155[39m return_result = [38;5;28mnext[39m([38;5;28miter[39m(finished)).result()
+[32m    157[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(return_result, [38;5;167;01mBaseException[39;00m):
+[32m--> [39m[32m158[39m     [38;5;28;01mraise[39;00m return_result
+[32m    159[39m [38;5;28;01melse[39;00m:
+[32m    160[39m     [38;5;28;01mreturn[39;00m return_result
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/zarr/core/sync.py:118[39m, in [36m_runner[39m[34m()[39m
+[32m    113[39m [38;5;250m[39m[33;03m"""[39;00m
+[32m    114[39m [33;03mAwait a coroutine and return the result of running it. If awaiting the coroutine raises an[39;00m
+[32m    115[39m [33;03mexception, the exception will be returned.[39;00m
+[32m    116[39m [33;03m"""[39;00m
+[32m    117[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m118[39m     [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m coro
+[32m    119[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m ex:
+[32m    120[39m     [38;5;28;01mreturn[39;00m ex
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/zarr/core/array.py:1414[39m, in [36m_get_selection[39m[34m()[39m
+[32m   1406[39m [38;5;28;01masync[39;00m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_get_selection[39m(
+[32m   1407[39m     [38;5;28mself[39m,
+[32m   1408[39m     indexer: Indexer,
+[32m   (...)[39m[32m   1412[39m     fields: Fields | [38;5;28;01mNone[39;00m = [38;5;28;01mNone[39;00m,
+[32m   1413[39m ) -> NDArrayLikeOrScalar:
+[32m-> [39m[32m1414[39m     [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m _get_selection(
+[32m   1415[39m         [38;5;28mself[39m.store_path,
+[32m   1416[39m         [38;5;28mself[39m.metadata,
+[32m   1417[39m         [38;5;28mself[39m.codec_pipeline,
+[32m   1418[39m         [38;5;28mself[39m.config,
+[32m   1419[39m         [38;5;28mself[39m._chunk_grid,
+[32m   1420[39m         indexer,
+[32m   1421[39m         prototype=prototype,
+[32m   1422[39m         out=out,
+[32m   1423[39m         fields=fields,
+[32m   1424[39m     )
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/zarr/core/array.py:5452[39m, in [36m_get_selection[39m[34m()[39m
+[32m   5450[39m [38;5;66;03m# reading chunks and decoding them[39;00m
+[32m   5451[39m indexed_chunks = [38;5;28mlist[39m(indexer)
+[32m-> [39m[32m5452[39m results = [38;5;28;01mawait[39;00m codec_pipeline.read(
+[32m   5453[39m     [
+[32m   5454[39m         (
+[32m   5455[39m             store_path / metadata.encode_chunk_key(chunk_coords),
+[32m   5456[39m             _get_chunk_spec(metadata, chunk_grid, chunk_coords, _config, prototype),
+[32m   5457[39m             chunk_selection,
+[32m   5458[39m             out_selection,
+[32m   5459[39m             is_complete_chunk,
+[32m   5460[39m         )
+[32m   5461[39m         [38;5;28;01mfor[39;00m chunk_coords, chunk_selection, out_selection, is_complete_chunk [38;5;129;01min[39;00m indexed_chunks
+[32m   5462[39m     ],
+[32m   5463[39m     out_buffer,
+[32m   5464[39m     drop_axes=indexer.drop_axes,
+[32m   5465[39m )
+[32m   5466[39m [38;5;28;01mif[39;00m _config.read_missing_chunks [38;5;129;01mis[39;00m [38;5;28;01mFalse[39;00m:
+[32m   5467[39m     missing_info = []
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/zarr/core/codec_pipeline.py:601[39m, in [36mread[39m[34m()[39m
+[32m    595[39m [38;5;28;01masync[39;00m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mread[39m(
+[32m    596[39m     [38;5;28mself[39m,
+[32m    597[39m     batch_info: Iterable[[38;5;28mtuple[39m[ByteGetter, ArraySpec, SelectorTuple, SelectorTuple, [38;5;28mbool[39m]],
+[32m    598[39m     out: NDBuffer,
+[32m    599[39m     drop_axes: [38;5;28mtuple[39m[[38;5;28mint[39m, ...] = (),
+[32m    600[39m ) -> [38;5;28mtuple[39m[GetResult, ...]:
+[32m--> [39m[32m601[39m     batch_results = [38;5;28;01mawait[39;00m concurrent_map(
+[32m    602[39m         [
+[32m    603[39m             (single_batch_info, out, drop_axes)
+[32m    604[39m             [38;5;28;01mfor[39;00m single_batch_info [38;5;129;01min[39;00m batched(batch_info, [38;5;28mself[39m.batch_size)
+[32m    605[39m         ],
+[32m    606[39m         [38;5;28mself[39m.read_batch,
+[32m    607[39m         config.get([33m"[39m[33masync.concurrency[39m[33m"[39m),
+[32m    608[39m     )
+[32m    609[39m     results: [38;5;28mlist[39m[GetResult] = []
+[32m    610[39m     [38;5;28;01mfor[39;00m batch [38;5;129;01min[39;00m batch_results:
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/zarr/core/common.py:110[39m, in [36mconcurrent_map[39m[34m()[39m
+[32m    107[39m     [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m sem:
+[32m    108[39m         [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m func(*item)
+[32m--> [39m[32m110[39m [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m asyncio.gather(*[asyncio.ensure_future(run(item)) [38;5;28;01mfor[39;00m item [38;5;129;01min[39;00m items])
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/zarr/core/common.py:108[39m, in [36mrun[39m[34m()[39m
+[32m    106[39m [38;5;28;01masync[39;00m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mrun[39m(item: [38;5;28mtuple[39m[Any]) -> V:
+[32m    107[39m     [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m sem:
+[32m--> [39m[32m108[39m         [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m func(*item)
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/zarr/core/codec_pipeline.py:392[39m, in [36mread_batch[39m[34m()[39m
+[32m    390[39m [38;5;28;01melse[39;00m:
+[32m    391[39m     batch_info_list = [38;5;28mlist[39m(batch_info)
+[32m--> [39m[32m392[39m     chunk_bytes_batch = [38;5;28;01mawait[39;00m concurrent_map(
+[32m    393[39m         [
+[32m    394[39m             (byte_getter, array_spec.prototype)
+[32m    395[39m             [38;5;28;01mfor[39;00m byte_getter, array_spec, *_ [38;5;129;01min[39;00m batch_info_list
+[32m    396[39m         ],
+[32m    397[39m         [38;5;28;01mlambda[39;00m byte_getter, prototype: byte_getter.get(prototype),
+[32m    398[39m         config.get([33m"[39m[33masync.concurrency[39m[33m"[39m),
+[32m    399[39m     )
+[32m    400[39m     chunk_array_batch = [38;5;28;01mawait[39;00m [38;5;28mself[39m.decode_batch(
+[32m    401[39m         [
+[32m    402[39m             (chunk_bytes, chunk_spec)
+[32m   (...)[39m[32m    406[39m         ],
+[32m    407[39m     )
+[32m    408[39m     [38;5;28;01mfor[39;00m chunk_array, (_, chunk_spec, chunk_selection, out_selection, _) [38;5;129;01min[39;00m [38;5;28mzip[39m(
+[32m    409[39m         chunk_array_batch, batch_info_list, strict=[38;5;28;01mFalse[39;00m
+[32m    410[39m     ):
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/zarr/core/common.py:110[39m, in [36mconcurrent_map[39m[34m()[39m
+[32m    107[39m     [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m sem:
+[32m    108[39m         [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m func(*item)
+[32m--> [39m[32m110[39m [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m asyncio.gather(*[asyncio.ensure_future(run(item)) [38;5;28;01mfor[39;00m item [38;5;129;01min[39;00m items])
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/zarr/core/common.py:108[39m, in [36mrun[39m[34m()[39m
+[32m    106[39m [38;5;28;01masync[39;00m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mrun[39m(item: [38;5;28mtuple[39m[Any]) -> V:
+[32m    107[39m     [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m sem:
+[32m--> [39m[32m108[39m         [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m func(*item)
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/zarr/storage/_common.py:162[39m, in [36mget[39m[34m()[39m
+[32m    160[39m [38;5;28;01mif[39;00m prototype [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[32m    161[39m     prototype = default_buffer_prototype()
+[32m--> [39m[32m162[39m [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m [38;5;28mself[39m.store.get([38;5;28mself[39m.path, prototype=prototype, byte_range=byte_range)
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/zarr/storage/_fsspec.py:289[39m, in [36mget[39m[34m()[39m
+[32m    287[39m [38;5;28;01mtry[39;00m:
+[32m    288[39m     [38;5;28;01mif[39;00m byte_range [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[32m--> [39m[32m289[39m         value = prototype.buffer.from_bytes([38;5;28;01mawait[39;00m [38;5;28mself[39m.fs._cat_file(path))
+[32m    290[39m     [38;5;28;01melif[39;00m [38;5;28misinstance[39m(byte_range, RangeByteRequest):
+[32m    291[39m         value = prototype.buffer.from_bytes(
+[32m    292[39m             [38;5;28;01mawait[39;00m [38;5;28mself[39m.fs._cat_file(
+[32m    293[39m                 path,
+[32m   (...)[39m[32m    296[39m             )
+[32m    297[39m         )
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/pelicanfs/core.py:1155[39m, in [36mwrapper[39m[34m()[39m
+[32m   1153[39m [38;5;28;01mtry[39;00m:
+[32m   1154[39m     logger.debug([33mf[39m[33m"[39m[33mCalling [39m[38;5;132;01m{[39;00mfunc[38;5;132;01m}[39;00m[33m using the following url: [39m[38;5;132;01m{[39;00mdata_url[38;5;132;01m}[39;00m[33m"[39m)
+[32m-> [39m[32m1155[39m     result = [38;5;28;01mawait[39;00m func([38;5;28mself[39m, data_url, *args[[32m1[39m:], **kwargs)
+[32m   1156[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+[32m   1157[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m.direct_reads:
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/pelicanfs/core.py:1236[39m, in [36m_cat_file[39m[34m()[39m
+[32m   1234[39m [38;5;129m@_cache_dec[39m
+[32m   1235[39m [38;5;28;01masync[39;00m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_cat_file[39m([38;5;28mself[39m, path, start=[38;5;28;01mNone[39;00m, end=[38;5;28;01mNone[39;00m, **kwargs):
+[32m-> [39m[32m1236[39m     [38;5;28;01mreturn[39;00m [38;5;28;01mawait[39;00m [38;5;28mself[39m.http_file_system._cat_file(path, start, end, **kwargs)
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/fsspec/implementations/http.py:250[39m, in [36m_cat_file[39m[34m()[39m
+[32m    248[39m [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m session.get([38;5;28mself[39m.encode_url(url), **kw) [38;5;28;01mas[39;00m r:
+[32m    249[39m     out = [38;5;28;01mawait[39;00m r.read()
+[32m--> [39m[32m250[39m     [38;5;28mself[39m._raise_not_found_for_status(r, url)
+[32m    251[39m [38;5;28;01mreturn[39;00m out
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/fsspec/implementations/http.py:233[39m, in [36m_raise_not_found_for_status[39m[34m()[39m
+[32m    231[39m [38;5;28;01mif[39;00m response.status == [32m404[39m:
+[32m    232[39m     [38;5;28;01mraise[39;00m [38;5;167;01mFileNotFoundError[39;00m(url)
+[32m--> [39m[32m233[39m response.raise_for_status()
+
+[36mFile [39m[32m/srv/conda/envs/notebook/lib/python3.12/site-packages/aiohttp/client_reqrep.py:655[39m, in [36mraise_for_status[39m[34m()[39m
+[32m    652[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m._in_context:
+[32m    653[39m     [38;5;28mself[39m.release()
+[32m--> [39m[32m655[39m [38;5;28;01mraise[39;00m ClientResponseError(
+[32m    656[39m     [38;5;28mself[39m.request_info,
+[32m    657[39m     [38;5;28mself[39m.history,
+[32m    658[39m     status=[38;5;28mself[39m.status,
+[32m    659[39m     message=[38;5;28mself[39m.reason,
+[32m    660[39m     headers=[38;5;28mself[39m.headers,
+[32m    661[39m )
+
+[31mException[39m: ClientResponseError(RequestInfo(url=URL('https://osdf1.newy32aoa.nrp.internet2.edu:8443/ncar-gdex/d010092/atm/monthly/cesm2LE-ssp370-cmip6-TREFHT.zarr/TREFHT/1.1.0.0'), method='GET', headers=<CIMultiDictProxy('Host': 'osdf1.newy32aoa.nrp.internet2.edu:8443', 'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate, br', 'User-Agent': 'Python/3.12 aiohttp/3.14.1')>, real_url=URL('https://osdf1.newy32aoa.nrp.internet2.edu:8443/ncar-gdex/d010092/atm/monthly/cesm2LE-ssp370-cmip6-TREFHT.zarr/TREFHT/1.1.0.0')), (), status=500, message='Internal Server Error', headers=<CIMultiDictProxy('Connection': 'Close', 'Server': 'XrootD/v5.9.1', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'Authorization,Want-Digest,Content-Type,User-Agent', 'Content-Length': '109')>)
