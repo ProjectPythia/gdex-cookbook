@@ -1,27 +1,13 @@
 [31m---------------------------------------------------------------------------[39m
-[31mContentLengthError[39m                        Traceback (most recent call last)
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client_proto.py:143[39m, in [36mResponseHandler.connection_lost[39m[34m(self, exc)[39m
-[32m    142[39m [38;5;28;01mtry[39;00m:
-[32m--> [39m[32m143[39m     uncompleted = [30;43mself[39;49m[30;43m.[39;49m[30;43m_parser[39;49m[30;43m.[39;49m[30;43mfeed_eof[39;49m[30;43m([39;49m[30;43m)[39;49m
-[32m    144[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m underlying_exc:
-
-[36mFile [39m[32maiohttp/_http_parser.pyx:578[39m, in [36maiohttp._http_parser.HttpParser.feed_eof[39m[34m()[39m
-[32m--> [39m[32m578[39m [33m'Could not get source, probably due dynamically evaluated source code.'[39m
-
-[31mContentLengthError[39m: 400, message:
-  Not enough data to satisfy content length header (received 0 of 398 bytes).
-
-The above exception was the direct cause of the following exception:
-
-[31mClientPayloadError[39m                        Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 6[39m
-[32m      2[39m fig, axes = plt.subplots([32m1[39m, [32m3[39m, figsize=([32m18[39m, [32m6[39m))
+[31mClientResponseError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[5][39m[32m, line 6[39m
+[32m      2[39m fig, axes = plt.subplots(nrows=[32m3[39m, ncols=[32m3[39m, figsize=([32m18[39m, [32m14[39m))
 [32m      3[39m 
-[32m      4[39m [38;5;28;01mfor[39;00m ax, var [38;5;28;01min[39;00m zip(axes, vars_to_compare):
-[32m      5[39m     x = prof449[var].values.ravel()
-[32m----> [39m[32m6[39m     y = era5[var].values.ravel()
-[32m      7[39m     mask = ~np.isnan(x) & ~np.isnan(y)
-[32m      8[39m     x, y = x[mask], y[mask]
+[32m      4[39m [38;5;28;01mfor[39;00m row, var [38;5;28;01min[39;00m enumerate(vars_to_compare):
+[32m      5[39m     obs = prof449[var].values
+[32m----> [39m[32m6[39m     mod = era5[var].values
+[32m      7[39m     time = prof449[[33m"time"[39m].values
+[32m      8[39m     height = prof449[[33m"height_msl"[39m].values
 [32m      9[39m 
 
 [36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/dataarray.py:803[39m, in [36mDataArray.values[39m[34m(self)[39m
@@ -275,42 +261,26 @@ The above exception was the direct cause of the following exception:
 [32m   (...)[39m[32m    296[39m             )
 [32m    297[39m         )
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py:249[39m, in [36mHTTPFileSystem._cat_file[39m[34m(self, url, start, end, **kwargs)[39m
-[32m    247[39m session = [38;5;28;01mawait[39;00m [38;5;28mself[39m.set_session()
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py:250[39m, in [36mHTTPFileSystem._cat_file[39m[34m(self, url, start, end, **kwargs)[39m
 [32m    248[39m [38;5;28;01masync[39;00m [38;5;28;01mwith[39;00m session.get([38;5;28mself[39m.encode_url(url), **kw) [38;5;28;01mas[39;00m r:
-[32m--> [39m[32m249[39m     out = [38;5;28;01mawait[39;00m r.read()
-[32m    250[39m     [38;5;28mself[39m._raise_not_found_for_status(r, url)
+[32m    249[39m     out = [38;5;28;01mawait[39;00m r.read()
+[32m--> [39m[32m250[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43m_raise_not_found_for_status[39;49m[30;43m([39;49m[30;43mr[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m)[39;49m
 [32m    251[39m [38;5;28;01mreturn[39;00m out
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client_reqrep.py:715[39m, in [36mClientResponse.read[39m[34m(self)[39m
-[32m    713[39m [38;5;28;01mif[39;00m [38;5;28mself[39m._body [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
-[32m    714[39m     [38;5;28;01mtry[39;00m:
-[32m--> [39m[32m715[39m         [38;5;28mself[39m._body = [38;5;28;01mawait[39;00m [38;5;28mself[39m.content.read()
-[32m    716[39m         [38;5;28;01mfor[39;00m trace [38;5;129;01min[39;00m [38;5;28mself[39m._traces:
-[32m    717[39m             [38;5;28;01mawait[39;00m trace.send_response_chunk_received(
-[32m    718[39m                 [38;5;28mself[39m.method, [38;5;28mself[39m.url, [38;5;28mself[39m._body
-[32m    719[39m             )
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/fsspec/implementations/http.py:233[39m, in [36mHTTPFileSystem._raise_not_found_for_status[39m[34m(self, response, url)[39m
+[32m    231[39m [38;5;28;01mif[39;00m response.status == [32m404[39m:
+[32m    232[39m     [38;5;28;01mraise[39;00m [38;5;167;01mFileNotFoundError[39;00m(url)
+[32m--> [39m[32m233[39m [30;43mresponse[39;49m[30;43m.[39;49m[30;43mraise_for_status[39;49m[30;43m([39;49m[30;43m)[39;49m
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/streams.py:437[39m, in [36mStreamReader.read[39m[34m(self, n)[39m
-[32m    435[39m blocks = []
-[32m    436[39m [38;5;28;01mwhile[39;00m [38;5;28;01mTrue[39;00m:
-[32m--> [39m[32m437[39m     block = [38;5;28;01mawait[39;00m [38;5;28mself[39m.readany()
-[32m    438[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m block:
-[32m    439[39m         [38;5;28;01mbreak[39;00m
+[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/client_reqrep.py:655[39m, in [36mClientResponse.raise_for_status[39m[34m(self)[39m
+[32m    652[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m._in_context:
+[32m    653[39m     [38;5;28mself[39m.release()
+[32m--> [39m[32m655[39m [38;5;28;01mraise[39;00m ClientResponseError(
+[32m    656[39m     [38;5;28mself[39m.request_info,
+[32m    657[39m     [38;5;28mself[39m.history,
+[32m    658[39m     status=[38;5;28mself[39m.status,
+[32m    659[39m     message=[38;5;28mself[39m.reason,
+[32m    660[39m     headers=[38;5;28mself[39m.headers,
+[32m    661[39m )
 
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/streams.py:460[39m, in [36mStreamReader.readany[39m[34m(self)[39m
-[32m    456[39m [38;5;66;03m# TODO: should be `if` instead of `while`[39;00m
-[32m    457[39m [38;5;66;03m# because waiter maybe triggered on chunk end,[39;00m
-[32m    458[39m [38;5;66;03m# without feeding any data[39;00m
-[32m    459[39m [38;5;28;01mwhile[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m._buffer [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m._eof:
-[32m--> [39m[32m460[39m     [38;5;28;01mawait[39;00m [38;5;28mself[39m._wait([33m"[39m[33mreadany[39m[33m"[39m)
-[32m    462[39m [38;5;28;01mreturn[39;00m [38;5;28mself[39m._read_nowait(-[32m1[39m)
-
-[36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/aiohttp/streams.py:365[39m, in [36mStreamReader._wait[39m[34m(self, func_name)[39m
-[32m    363[39m [38;5;28;01mtry[39;00m:
-[32m    364[39m     [38;5;28;01mwith[39;00m [38;5;28mself[39m._timer:
-[32m--> [39m[32m365[39m         [38;5;28;01mawait[39;00m waiter
-[32m    366[39m [38;5;28;01mfinally[39;00m:
-[32m    367[39m     [38;5;28mself[39m._waiter = [38;5;28;01mNone[39;00m
-
-[31mClientPayloadError[39m: Response payload is not completed: <ContentLengthError: 400, message='Not enough data to satisfy content length header (received 0 of 398 bytes).'>
+[31mClientResponseError[39m: 500, message='Internal Server Error', url='https://osdf-cache-01.gwave.ics.psu.edu:8443/ncar/gdex/d121499/era5_M2HATS_heights.zarr/w_wind/c/814/0'
