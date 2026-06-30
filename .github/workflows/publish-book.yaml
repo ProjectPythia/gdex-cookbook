@@ -9,7 +9,9 @@ on:
 
 jobs:
   build:
-    uses: ProjectPythia/cookbook-actions/.github/workflows/build-book.yaml@main
+    uses: brian-rose/cookbook-actions/.github/workflows/build-book.yaml@new-binder
+    with:
+      use_binder: 'true'
 
   deploy:
     needs: build
