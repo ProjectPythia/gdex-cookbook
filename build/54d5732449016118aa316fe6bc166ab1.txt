@@ -324,4 +324,4 @@ The above exception was the direct cause of the following exception:
 [32m    845[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
 [32m--> [39m[32m846[39m     [38;5;28;01mraise[39;00m ReferenceNotReachable(path, part_or_url) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
 
-[31mReferenceNotReachable[39m: Reference "PREC_ACC_NC/327818.1.1" failed to fetch target https://data.gdex.ucar.edu/d559000/wy2017/201702/wrf2d_d01_2017-02-22_02:00:00.nc
+[31mReferenceNotReachable[39m: Reference "PREC_ACC_NC/327775.0.1" failed to fetch target https://data.gdex.ucar.edu/d559000/wy2017/201702/wrf2d_d01_2017-02-20_07:00:00.nc
