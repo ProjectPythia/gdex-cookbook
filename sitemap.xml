@@ -1,82 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="http://localhost:3000/sitemap_style.xsl" ?>
+<?xml-stylesheet type="text/xsl" href="http://pre.render/sitemap_style.xsl" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost:3000</loc>
+    <loc>http://pre.render</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/how-to-cite</loc>
+    <loc>http://pre.render/notebooks/how-to-cite</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/gdex-intro/gdex-intro</loc>
+    <loc>http://pre.render/notebooks/gdex-intro/gdex-intro</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/gdex-intro/services</loc>
+    <loc>http://pre.render/notebooks/gdex-intro/services</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/gdex-intro/enabling-science</loc>
+    <loc>http://pre.render/notebooks/gdex-intro/enabling-science</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/services/services-intro</loc>
+    <loc>http://pre.render/notebooks/services/services-intro</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/services/tds-intro</loc>
+    <loc>http://pre.render/notebooks/services/tds-intro</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/services/tds-xarray</loc>
+    <loc>http://pre.render/notebooks/services/tds-xarray</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/services/tds-siphon</loc>
+    <loc>http://pre.render/notebooks/services/tds-siphon</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/services/zarr-intro</loc>
+    <loc>http://pre.render/notebooks/services/zarr-intro</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/services/zarr-workflow</loc>
+    <loc>http://pre.render/notebooks/services/zarr-workflow</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/services/api-intro</loc>
+    <loc>http://pre.render/notebooks/services/api-intro</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/services/api-subset</loc>
+    <loc>http://pre.render/notebooks/services/api-subset</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/services/api-metadata</loc>
+    <loc>http://pre.render/notebooks/services/api-metadata</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/services/download-intro</loc>
+    <loc>http://pre.render/notebooks/services/download-intro</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/services/download-workflow</loc>
+    <loc>http://pre.render/notebooks/services/download-workflow</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/services/posix-intro</loc>
+    <loc>http://pre.render/notebooks/services/posix-intro</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/services/globus-intro</loc>
+    <loc>http://pre.render/notebooks/services/globus-intro</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/workflows/era5</loc>
+    <loc>http://pre.render/notebooks/workflows/era5</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/workflows/jra3q</loc>
+    <loc>http://pre.render/notebooks/workflows/jra3q</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/workflows/cesm2-lens</loc>
+    <loc>http://pre.render/notebooks/workflows/cesm2-lens</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/workflows/na-cordex</loc>
+    <loc>http://pre.render/notebooks/workflows/na-cordex</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/workflows/conus404</loc>
+    <loc>http://pre.render/notebooks/workflows/conus404</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/workflows/hadisst</loc>
+    <loc>http://pre.render/notebooks/workflows/hadisst</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/workflows/radar</loc>
+    <loc>http://pre.render/notebooks/workflows/radar</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/notebooks/workflows/data-fusion</loc>
+    <loc>http://pre.render/notebooks/workflows/data-fusion</loc>
   </url>
 </urlset>
