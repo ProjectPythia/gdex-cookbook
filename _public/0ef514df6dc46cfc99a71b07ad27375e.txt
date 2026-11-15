@@ -1,13 +1,13 @@
 [31m---------------------------------------------------------------------------[39m
 [31mClientResponseError[39m                       Traceback (most recent call last)
-[36mCell[39m[36m [39m[32mIn[5][39m[32m, line 6[39m
-[32m      2[39m fig, axes = plt.subplots(nrows=[32m3[39m, ncols=[32m3[39m, figsize=([32m18[39m, [32m14[39m))
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 6[39m
+[32m      2[39m fig, axes = plt.subplots([32m1[39m, [32m3[39m, figsize=([32m18[39m, [32m6[39m))
 [32m      3[39m 
-[32m      4[39m [38;5;28;01mfor[39;00m row, var [38;5;28;01min[39;00m enumerate(vars_to_compare):
-[32m      5[39m     obs = prof449[var].values
-[32m----> [39m[32m6[39m     mod = era5[var].values
-[32m      7[39m     time = prof449[[33m"time"[39m].values
-[32m      8[39m     height = prof449[[33m"height_msl"[39m].values
+[32m      4[39m [38;5;28;01mfor[39;00m ax, var [38;5;28;01min[39;00m zip(axes, vars_to_compare):
+[32m      5[39m     x = prof449[var].values.ravel()
+[32m----> [39m[32m6[39m     y = era5[var].values.ravel()
+[32m      7[39m     mask = ~np.isnan(x) & ~np.isnan(y)
+[32m      8[39m     x, y = x[mask], y[mask]
 [32m      9[39m 
 
 [36mFile [39m[32m~/micromamba/envs/gdex-cookbook/lib/python3.12/site-packages/xarray/core/dataarray.py:923[39m, in [36mDataArray.values[39m[34m(self)[39m
@@ -301,4 +301,4 @@
 [32m    847[39m     headers=[38;5;28mself[39m.headers,
 [32m    848[39m )
 
-[31mClientResponseError[39m: 500, message='Internal Server Error', url='https://osg-stash-sfu-computecanada-ca.nationalresearchplatform.org:8443/ncar/gdex/d121499/era5_M2HATS_heights.zarr/wdir/c/475/0'
+[31mClientResponseError[39m: 500, message='Internal Server Error', url='https://osdf-uw-cache.svc.osg-htc.org:8443/ncar/gdex/d121499/era5_M2HATS_heights.zarr/v_wind/c/839/0'
