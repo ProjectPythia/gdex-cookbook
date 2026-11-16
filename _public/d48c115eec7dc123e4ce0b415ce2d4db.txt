@@ -301,4 +301,4 @@
 [32m    847[39m     headers=[38;5;28mself[39m.headers,
 [32m    848[39m )
 
-[31mClientResponseError[39m: 500, message='Internal Server Error', url='https://osdf-uw-cache.svc.osg-htc.org:8443/ncar/gdex/d121499/era5_M2HATS_heights.zarr/v_wind/c/839/0'
+[31mClientResponseError[39m: 500, message='Internal Server Error', url='https://osg-stash-sfu-computecanada-ca.nationalresearchplatform.org:8443/ncar/gdex/d121499/era5_M2HATS_heights.zarr/v_wind/c/384/0'
